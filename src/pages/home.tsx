@@ -1,5 +1,5 @@
 // src/pages/home.tsx
-import Head from "next/head";
+import Head from "../components/MetaHead";
 import HeroSection from "../components/HeroSection";
 import AboutSection from "../components/AboutSection";
 import UtilitySection from "../components/UtilitySection";
