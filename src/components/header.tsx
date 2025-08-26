@@ -5,8 +5,10 @@ const Header = () => {
   return (
     <header className="sticky top-0 z-50 bg-transparent backdrop-blur-md px-4 py-3 shadow-sm flex justify-between items-center">
       <Link href="/home">
-        <a className="text-2xl font-bold text-primary">DGTEnergy</a>
-      </Link>
+  <a>
+    <img src="/logo/logo_icon.svg" alt="DGTEnergy Logo" className="h-8 w-auto" />
+  </a>
+</Link>
       <nav className="space-x-4 hidden md:block">
         <Link href="/rounds"><a>Rounds</a></Link>
         <Link href="/desk"><a>Desk</a></Link>
