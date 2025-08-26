@@ -1,7 +1,5 @@
 // src/pages/home.tsx
 import MetaHead from "../components/MetaHead";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
 
 import HeroSection from "../components/HeroSection";
 import AboutSection from "../components/AboutSection";
@@ -15,7 +13,6 @@ export default function HomePage() {
   return (
     <>
       <MetaHead />
-      <Header />
       <main className="flex flex-col items-center justify-center scroll-smooth bg-[#FAFAFA] text-gray-900">
         <section id="hero" className="w-full">
           <HeroSection />
@@ -39,7 +36,6 @@ export default function HomePage() {
           <FAQSection />
         </section>
       </main>
-      <Footer />
     </>
   );
 }
