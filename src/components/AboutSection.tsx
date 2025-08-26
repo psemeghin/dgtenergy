@@ -44,7 +44,7 @@ export default function AboutSection() {
 
         <div className="bg-[#FAFAFA] rounded-lg shadow-md p-6 border border-gray-200">
           <img
-            src="/icons/icon-audit.svg"
+            src="/icons/icon-security.svg"
             alt="Audited"
             className="w-10 h-10 mb-4"
           />
