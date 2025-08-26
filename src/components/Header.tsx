@@ -13,24 +13,27 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 bg-black bg-opacity-70 backdrop-blur-md px-4 py-3 shadow-sm flex justify-between items-center transition-all duration-300">
+    <header className="sticky top-0 z-50 bg-black/80 backdrop-blur-md px-4 py-3 shadow-sm flex justify-between items-center transition-all duration-300">
       <div className="flex items-center space-x-2">
+        {/* Ícone da logo (sempre visível) */}
         <Link href="/home">
-          <a className="flex items-center space-x-2">
-            {/* Ícone da logomarca */}
+          <a>
             <img
-              src="/logo/logo_icon.svg"
-              alt="DGT Icon"
+              src="/icons/logo-icon.svg"
+              alt="DGT Logo Icon"
               className="w-8 h-8"
-            />
-            {/* Marca escrita (logotipo completo) */}
-            <img
-              src="/logo/logo_full.svg"
-              alt="DGT Energy Logo"
-              className="hidden md:inline-block h-6"
             />
           </a>
         </Link>
+
+        {/* Texto da logo (visível apenas em md+, some ao rolar) */}
+        <img
+          src="/icons/logo-full.svg"
+          alt="DGT Logo Full"
+          className={`hidden md:inline-block h-6 transition-all duration-300 ${
+            scrolled ? "opacity-0 scale-95" : "opacity-100 scale-100"
+          }`}
+        />
       </div>
 
       {/* Navegação desktop */}
