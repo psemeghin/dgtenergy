@@ -15,16 +15,29 @@ export default function RoundsPage() {
       <main className="max-w-6xl mx-auto px-6 py-16">
         {/* Hero Section */}
         <section className="text-center mb-16">
-          <h1 className="font-display text-4xl md:text-5xl mb-4">
-            DGTEnergy Token Sale Portal
-          </h1>
-          <p className="font-sans text-lg text-gray-500 mb-6">
-            Progressive rounds with fixed supply and valuation step-up.
-          </p>
-          <div className="bg-energy-sand p-4 rounded-md inline-block text-sm font-medium text-white">
-            Seed Round · Target: 420k USDT · Price: 0.036 USDT/DGTE
-          </div>
-        </section>
+  <h1 className="font-display text-4xl md:text-5xl mb-4">
+    DGTEnergy Token Sale Portal
+  </h1>
+  <p className="font-sans text-lg text-gray-500 mb-6">
+    Progressive rounds with fixed supply and valuation step-up.
+  </p>
+
+  <div className="bg-energy-sand p-6 rounded-lg max-w-xl mx-auto shadow-md">
+    <div className="text-sm text-white font-semibold mb-2">
+      <span className="block">💰 Seed Round Open</span>
+      <span className="block">Target: 420k USDT · Price: 0.036 USDT/DGTE</span>
+    </div>
+
+    {/* Barra de progresso */}
+    <div className="w-full bg-gray-300 rounded-full h-3 overflow-hidden mb-1">
+      <div
+        className="bg-energy-green h-full transition-all duration-500"
+        style={{ width: "48%" }} // <== ajuste aqui conforme a captação real
+      ></div>
+    </div>
+    <div className="text-xs text-white text-right">48% Raised</div>
+  </div>
+</section>
 
         {/* Token Sale Cards */}
         <section className="grid md:grid-cols-3 gap-8 mb-20">
