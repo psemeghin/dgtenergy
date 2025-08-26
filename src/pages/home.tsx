@@ -1,5 +1,4 @@
 // src/pages/home.tsx
-
 import Head from "next/head";
 import HeroSection from "../components/HeroSection";
 import AboutSection from "../components/AboutSection";
@@ -24,7 +23,7 @@ export default function HomePage() {
 
       <Header />
 
-      <main className="flex flex-col items-center justify-center">
+      <main className="flex flex-col items-center justify-center scroll-smooth">
         <section id="hero">
           <HeroSection />
         </section>
