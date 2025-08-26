@@ -1,64 +1,61 @@
 // src/components/UtilitySection.tsx
-
-import Image from "next/image";
-
-const utilities = [
-  {
-    title: "Staking Rewards",
-    description: "Earn variable returns in USDT, directly from real-world energy flows.",
-    icon: "/icons/icon-staking.svg",
-  },
-  {
-    title: "Treasury Access",
-    description: "Track locked supply, protocol liquidity and token flow in real time.",
-    icon: "/icons/icon-treasury-flow.svg",
-  },
-  {
-    title: "Governance",
-    description: "Propose and vote on key parameters via DGT DAO.",
-    icon: "/icons/icon-dao-governance.svg",
-  },
-  {
-    title: "Performance Dashboard",
-    description: "Access analytics and KPIs anchored to energy receivables.",
-    icon: "/icons/icon-performance-kpi.svg",
-  },
-  {
-    title: "Token Utility",
-    description: "Use DGT across our ecosystem, P2P, treasury and affiliate partners.",
-    icon: "/icons/icon-token-utility.svg",
-  },
-  {
-    title: "Real Assets",
-    description: "Each token backed by exposure to receivables in real-world energy markets.",
-    icon: "/icons/icon-energy-assets.svg",
-  },
-];
-
 export default function UtilitySection() {
   return (
-    <section id="utility" className="w-full bg-[#FAFAFA] py-20 px-6">
+    <section className="bg-energy-gray text-white py-24 px-6">
       <div className="max-w-6xl mx-auto text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-[#2F3E46] mb-4 font-display">
-          Utility-Driven Value
+        <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
+          Token Utility
         </h2>
-        <p className="text-gray-600 max-w-2xl mx-auto mb-12">
-          Explore the real use cases of DGT-Energy in our decentralized ecosystem.
+        <p className="text-lg font-sans text-gray-200 mb-12 max-w-3xl mx-auto leading-relaxed">
+          DGTEnergy is not just a token — it's a real asset access key.
+          Every DGT token unlocks functions connected to the performance of clean energy assets, treasury growth, and user governance.
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {utilities.map((item, index) => (
-            <div
-              key={index}
-              className="bg-white shadow-sm hover:shadow-md transition rounded-xl p-6 text-left border border-[#E5E7EB]"
-            >
-              <div className="w-12 h-12 mb-4">
-                <Image src={item.icon} alt={item.title} width={48} height={48} />
-              </div>
-              <h3 className="text-xl font-semibold text-[#005F73] mb-2">{item.title}</h3>
-              <p className="text-gray-700 text-sm leading-relaxed">{item.description}</p>
-            </div>
-          ))}
+        <div className="grid md:grid-cols-3 gap-8">
+          {/* 1. Governance */}
+          <div className="bg-[#2F3E46] border border-gray-600 rounded-lg p-6 text-left hover:shadow-lg transition">
+            <img
+              src="/icons/icon-dao.svg"
+              alt="DAO Governance"
+              className="w-10 h-10 mb-4"
+            />
+            <h3 className="text-xl font-display font-semibold mb-2">
+              DAO Governance
+            </h3>
+            <p className="text-sm text-gray-300 leading-relaxed">
+              Token holders vote on proposals and treasury management decisions via smart contracts.
+            </p>
+          </div>
+
+          {/* 2. Access to Yield */}
+          <div className="bg-[#2F3E46] border border-gray-600 rounded-lg p-6 text-left hover:shadow-lg transition">
+            <img
+              src="/icons/icon-yield.svg"
+              alt="Yield Access"
+              className="w-10 h-10 mb-4"
+            />
+            <h3 className="text-xl font-display font-semibold mb-2">
+              Yield Access
+            </h3>
+            <p className="text-sm text-gray-300 leading-relaxed">
+              Staking rewards distributed in USDT, linked to real revenue of energy operations.
+            </p>
+          </div>
+
+          {/* 3. Treasury Access */}
+          <div className="bg-[#2F3E46] border border-gray-600 rounded-lg p-6 text-left hover:shadow-lg transition">
+            <img
+              src="/icons/icon-treasury.svg"
+              alt="Treasury"
+              className="w-10 h-10 mb-4"
+            />
+            <h3 className="text-xl font-display font-semibold mb-2">
+              Treasury Transparency
+            </h3>
+            <p className="text-sm text-gray-300 leading-relaxed">
+              The treasury holds real-world assets and is visible via public dashboards, including staking pools.
+            </p>
+          </div>
         </div>
       </div>
     </section>
