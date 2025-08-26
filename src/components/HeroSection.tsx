@@ -2,14 +2,15 @@ export default function HeroSection() {
   return (
     <section className="relative h-screen text-center flex items-center justify-center">
       <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover opacity-70"
-      >
-        <source src="/media/earth-lights.webm" type="video/webm" />
-      </video>
+  autoPlay
+  muted
+  loop
+  playsInline
+  className="absolute inset-0 w-full h-full object-cover opacity-70"
+>
+  <source src="/media/earth-moon.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
       <div className="relative z-10 max-w-3xl px-6">
         <h1 className="text-4xl md:text-6xl font-display font-bold text-white">
           A New Gateway to Energy Finance
