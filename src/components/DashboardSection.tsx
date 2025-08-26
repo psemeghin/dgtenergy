@@ -13,6 +13,11 @@ export default function DashboardSection() {
         <div className="grid md:grid-cols-4 gap-6 text-left">
           {/* Metric 1 */}
           <div className="p-6 border border-gray-200 rounded-lg bg-gray-50 hover:shadow transition">
+            <img
+              src="/icons/icon-treasury.svg"
+              alt="Treasury"
+              className="w-8 h-8 mb-3"
+            />
             <h3 className="text-2xl font-bold text-energy-blue mb-1">$4.2M</h3>
             <p className="text-sm text-gray-500 font-sans">
               Real-World Assets Under Management
@@ -21,6 +26,11 @@ export default function DashboardSection() {
 
           {/* Metric 2 */}
           <div className="p-6 border border-gray-200 rounded-lg bg-gray-50 hover:shadow transition">
+            <img
+              src="/icons/icon-seed.svg"
+              alt="Seed Round"
+              className="w-8 h-8 mb-3"
+            />
             <h3 className="text-2xl font-bold text-energy-blue mb-1">11,111,111</h3>
             <p className="text-sm text-gray-500 font-sans">
               DGTE Tokens in Seed Round
@@ -29,6 +39,11 @@ export default function DashboardSection() {
 
           {/* Metric 3 */}
           <div className="p-6 border border-gray-200 rounded-lg bg-gray-50 hover:shadow transition">
+            <img
+              src="/icons/icon-staking.svg"
+              alt="Staking"
+              className="w-8 h-8 mb-3"
+            />
             <h3 className="text-2xl font-bold text-energy-blue mb-1">15–30% APY</h3>
             <p className="text-sm text-gray-500 font-sans">
               Target Staking Yield (USDT)
@@ -37,6 +52,11 @@ export default function DashboardSection() {
 
           {/* Metric 4 */}
           <div className="p-6 border border-gray-200 rounded-lg bg-gray-50 hover:shadow transition">
+            <img
+              src="/icons/icon-security.svg"
+              alt="Transparency"
+              className="w-8 h-8 mb-3"
+            />
             <h3 className="text-2xl font-bold text-energy-blue mb-1">100%</h3>
             <p className="text-sm text-gray-500 font-sans">
               On-Chain Transparency
