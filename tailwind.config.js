@@ -7,15 +7,16 @@ module.exports = {
     "./src/components/**/*.{js,ts,jsx,tsx}",
     "./public/**/*.html",
   ],
+  darkMode: "class", // permite usar temas escuros com 'dark:' em classes
   theme: {
     extend: {
       colors: {
         // Cores institucionais
         energy: {
-          green: "#86CB67",    // Verde-energia
-          blue: "#005F73",     // Azul-pavão
-          gray: "#2F3E46",     // Cinza-mineral
-          sand: "#A67F59",     // Areia-dourada
+          green: "#86CB67",   // Verde-energia
+          blue: "#005F73",    // Azul-pavão
+          gray: "#2F3E46",    // Cinza-mineral
+          sand: "#A67F59",    // Areia-dourada
         },
       },
       fontFamily: {
