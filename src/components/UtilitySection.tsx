@@ -15,7 +15,7 @@ export default function UtilitySection() {
           {/* 1. Governance */}
           <div className="bg-[#2F3E46] border border-gray-600 rounded-lg p-6 text-left hover:shadow-lg transition">
             <img
-              src="/icons/icon-dao.svg"
+              src="/icons/icon-governance.svg"
               alt="DAO Governance"
               className="w-10 h-10 mb-4"
             />
@@ -30,7 +30,7 @@ export default function UtilitySection() {
           {/* 2. Access to Yield */}
           <div className="bg-[#2F3E46] border border-gray-600 rounded-lg p-6 text-left hover:shadow-lg transition">
             <img
-              src="/icons/icon-yield.svg"
+              src="/icons/icon-staking.svg"
               alt="Yield Access"
               className="w-10 h-10 mb-4"
             />
