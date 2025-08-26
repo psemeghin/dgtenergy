@@ -1,89 +1,60 @@
-import Head from "next/head";
-import Header from "../components/header";
-import Footer from "../components/footer";
+// src/pages/home.tsx
 
-export default function Home() {
+import Head from "next/head";
+import HeroSection from "../components/HeroSection";
+import AboutSection from "../components/AboutSection";
+import UtilitySection from "../components/UtilitySection";
+import DashboardSection from "../components/DashboardSection";
+import GovernanceSection from "../components/GovernanceSection";
+import RoadmapSection from "../components/RoadmapSection";
+import FAQSection from "../components/FAQSection";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
+
+export default function HomePage() {
   return (
-    <div className="dark bg-[#0b0d0f] text-gray-100 min-h-screen">
+    <>
       <Head>
-        <title>DGT-Energy | A New Gateway to Energy Finance</title>
+        <title>DGT-Energy — Real-World Energy Token</title>
+        <meta
+          name="description"
+          content="A utility token anchored in real-world energy receivables. Transparent. Multichain. Institutional-grade."
+        />
       </Head>
 
       <Header />
 
-      {/* 1. Hero Section */}
-      <section id="hero" className="relative h-screen flex items-center justify-center text-center px-6">
-        <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover opacity-70">
-          <source src="/earth-lights.webm" type="video/webm" />
-        </video>
-        <div className="relative z-10 max-w-3xl">
-          <h1 className="text-4xl md:text-6xl font-bold">A New Gateway to Energy Finance</h1>
-          <p className="mt-4 text-lg text-gray-300">Utility Token for Real-World Energy Assets</p>
-          <a href="/rounds" className="mt-6 inline-block bg-green-500 text-black font-semibold px-6 py-3 rounded-lg">
-            Join the Seed
-          </a>
-        </div>
-      </section>
+      <main className="flex flex-col items-center justify-center">
+        <section id="hero">
+          <HeroSection />
+        </section>
 
-      {/* 2. Sobre o Projeto */}
-      <section id="about" className="max-w-5xl mx-auto px-6 py-20">
-        <h2 className="text-3xl font-bold mb-6">About the Project</h2>
-        <p className="text-gray-300">
-          DGT-Energy is a protocol that connects Web3 capital with real-world
-          energy assets through a hybrid DAO model and transparent on-chain
-          operations.
-        </p>
-      </section>
+        <section id="about">
+          <AboutSection />
+        </section>
 
-      {/* 3. Utilidade do Token */}
-      <section id="utility" className="bg-gray-900 py-20 px-6">
-        <h2 className="text-3xl font-bold mb-6 text-center">Token Utility</h2>
-        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          <div className="p-6 border rounded">Staking — Rewards in USDT</div>
-          <div className="p-6 border rounded">Governance — Vote in DAO</div>
-          <div className="p-6 border rounded">Access — Secure P2P Trading</div>
-        </div>
-      </section>
+        <section id="utility">
+          <UtilitySection />
+        </section>
 
-      {/* 4. Dashboard */}
-      <section id="dashboard" className="max-w-5xl mx-auto px-6 py-20">
-        <h2 className="text-3xl font-bold mb-6">Dashboard</h2>
-        <p className="text-gray-300">Transparency in real time — see capital allocation and performance.</p>
-      </section>
+        <section id="dashboard">
+          <DashboardSection />
+        </section>
 
-      {/* 5. Governança */}
-      <section id="governance" className="bg-gray-900 py-20 px-6">
-        <h2 className="text-3xl font-bold mb-6 text-center">Transparency & Governance</h2>
-        <p className="text-center text-gray-300">Hybrid DAO · On-chain treasury · Audited contracts</p>
-      </section>
+        <section id="governance">
+          <GovernanceSection />
+        </section>
 
-      {/* 6. Roadmap */}
-      <section id="roadmap" className="max-w-5xl mx-auto px-6 py-20">
-        <h2 className="text-3xl font-bold mb-6">Roadmap</h2>
-        <ul className="list-disc list-inside text-gray-300">
-          <li>Phase 0 – Foundation</li>
-          <li>Phase 1 – Protocol Launch (Q3 2025)</li>
-          <li>Phase 2 – Ecosystem Expansion</li>
-          <li>Phase 3 – DAO Maturity</li>
-        </ul>
-      </section>
+        <section id="roadmap">
+          <RoadmapSection />
+        </section>
 
-      {/* 7. FAQ */}
-      <section id="faq" className="bg-gray-900 py-20 px-6">
-        <h2 className="text-3xl font-bold mb-6 text-center">FAQ</h2>
-        <div className="max-w-3xl mx-auto space-y-4">
-          <details className="border p-4 rounded">
-            <summary>Is DGTEnergy a stock?</summary>
-            <p>No. It is a utility token without equity or debt nature.</p>
-          </details>
-          <details className="border p-4 rounded">
-            <summary>Do I need KYC?</summary>
-            <p>Only for institutional rounds. Open access otherwise.</p>
-          </details>
-        </div>
-      </section>
+        <section id="faq">
+          <FAQSection />
+        </section>
+      </main>
 
       <Footer />
-    </div>
+    </>
   );
 }
