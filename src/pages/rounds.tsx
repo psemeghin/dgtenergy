@@ -143,40 +143,34 @@ export default function RoundsPage() {
     </button>
   </div>
 </section>
-        {/* Compliance Notes */}
-        <section className="text-sm text-gray-600 max-w-3xl mx-auto leading-relaxed">
-          <p className="mb-2">
-            <strong>Disclaimer:</strong> DGTEnergy is a utility token. It does not represent
-            equity, debt or profit-sharing rights. Rewards via staking are discretionary and
-            based on performance. Participation may require KYC/AML in some jurisdictions.
-          </p>
-          <ul className="list-disc list-inside">
-            <li>
-              <a href="/docs/whitepaper.pdf" className="underline text-energy-blue">
-                Whitepaper
-              </a>{" "}
-              — Protocol Overview
-            </li>
-            <li>
-              <a href="/docs/product1_factsheet.pdf" className="underline text-energy-blue">
-                Product 1 Factsheet
-              </a>{" "}
-              — Energy Receivables
-            </li>
-            <li>
-              <a href="/docs/tokenomics.pdf" className="underline text-energy-blue">
-                Tokenomics
-              </a>{" "}
-              — Token structure & rounds
-            </li>
-            <li>
-              <a href="/docs/legal_terms.pdf" className="underline text-energy-blue">
-                Legal Terms
-              </a>{" "}
-              — Utility Token Disclaimers
-            </li>
-          </ul>
-        </section>
+{/* Compliance Notes */}
+<section className="text-sm text-gray-600 max-w-3xl mx-auto leading-relaxed px-4 mt-20">
+  <p className="mb-2">
+    <strong>Disclaimer:</strong> DGTEnergy is a utility token. It does not represent equity, debt or profit-sharing rights. 
+    Rewards via staking are discretionary and based on performance. 
+    Participation may require KYC/AML in some jurisdictions.
+  </p>
+  <ul className="list-disc pl-5 space-y-1 text-gray-500">
+    <li>Unsold tokens remain locked in treasury.</li>
+    <li>Staking rewards are non-guaranteed and vary with protocol results.</li>
+    <li>Participation is subject to regulatory frameworks of each region.</li>
+    <li>Always verify you are using the official DGT-Energy domain.</li>
+  </ul>
+  <div className="mt-4 flex gap-4 flex-wrap text-sm text-energy-blue">
+    <a href="/docs/whitepaper.pdf" target="_blank" className="underline hover:opacity-80">
+      Whitepaper
+    </a>
+    <a href="/docs/tokenomics.pdf" target="_blank" className="underline hover:opacity-80">
+      Tokenomics
+    </a>
+    <a href="/docs/legal_terms.pdf" target="_blank" className="underline hover:opacity-80">
+      Legal Terms
+    </a>
+    <a href="/docs/product1_factsheet.pdf" target="_blank" className="underline hover:opacity-80">
+      Product 1 Factsheet
+    </a>
+  </div>
+</section>
       </main>
     </>
   );
