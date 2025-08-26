@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 64 64" fill="none">
+  <!-- Eixo Y -->
+  <line x1="12" y1="52" x2="12" y2="12" stroke="#005F73" stroke-width="3" stroke-linecap="round"></line>
+  <!-- Eixo X -->
+  <line x1="12" y1="52" x2="56" y2="52" stroke="#005F73" stroke-width="3" stroke-linecap="round"></line>
+  
+  <!-- Barras de crescimento -->
+  <rect x="18" y="40" width="6" height="12" fill="#005F73"></rect>
+  <rect x="28" y="32" width="6" height="20" fill="#005F73"></rect>
+  <rect x="38" y="24" width="6" height="28" fill="#005F73"></rect>
+  <rect x="48" y="16" width="6" height="36" fill="#005F73"></rect>
+</svg>
