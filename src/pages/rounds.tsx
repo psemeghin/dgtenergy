@@ -86,7 +86,63 @@ export default function RoundsPage() {
             className="mx-auto max-w-md"
           />
         </section>
+{/* Whitelist & Wallet Connect */}
+<section className="max-w-3xl mx-auto mb-20">
+  <h3 className="font-display text-2xl text-center mb-6">
+    Private Round Whitelist & Wallet Access
+  </h3>
 
+  {/* Whitelist Form */}
+  <div className="bg-white rounded-lg shadow-md p-6 border border-gray-200 mb-8">
+    <h4 className="font-sans text-lg font-medium mb-4 text-gray-700">
+      Join the Whitelist
+    </h4>
+    <form className="grid gap-4 md:grid-cols-2">
+      <input
+        type="text"
+        placeholder="Full Name"
+        className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-energy-green"
+      />
+      <input
+        type="email"
+        placeholder="Email Address"
+        className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-energy-green"
+      />
+      <select
+        className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-energy-green col-span-2"
+      >
+        <option>Select Country</option>
+        <option>Brazil</option>
+        <option>Italy</option>
+        <option>USA</option>
+        <option>Germany</option>
+        <option>Singapore</option>
+        <option>Other</option>
+      </select>
+      <button
+        type="submit"
+        className="bg-energy-green text-black font-semibold px-6 py-2 rounded-md mt-2 hover:opacity-90 col-span-2"
+      >
+        Join Whitelist
+      </button>
+    </form>
+  </div>
+
+  {/* Wallet Connect Placeholder */}
+  <div className="bg-gray-100 rounded-lg p-6 border border-gray-300 text-center">
+    <h4 className="font-sans text-lg font-medium mb-2 text-gray-700">
+      Connect Your Wallet
+    </h4>
+    <p className="text-sm text-gray-500 mb-4">
+      This feature is currently in placeholder mode for the MVP. No wallet data is collected.
+    </p>
+    <button
+      className="bg-energy-blue text-white font-semibold px-6 py-2 rounded-md hover:opacity-90"
+    >
+      Connect Wallet
+    </button>
+  </div>
+</section>
         {/* Compliance Notes */}
         <section className="text-sm text-gray-600 max-w-3xl mx-auto leading-relaxed">
           <p className="mb-2">
