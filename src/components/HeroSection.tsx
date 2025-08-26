@@ -16,7 +16,7 @@ export default function HeroSection() {
           A New Gateway to Energy Finance
         </h1>
         <p className="text-lg text-gray-200 mt-4 font-sans">
-          Utilityy Token for Real-World Energy Assets
+          Utility Token for Real-World Energy Assets
         </p>
         <a
           href="/rounds"
