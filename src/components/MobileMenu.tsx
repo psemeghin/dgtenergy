@@ -1,46 +1,32 @@
-// src/components/MobileMenu.tsx
-import { useState } from "react";
 import Link from "next/link";
+import { useState } from "react";
+import { HiMenu, HiX } from "react-icons/hi";
 
 export default function MobileMenu() {
-  const [open, setOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <div className="md:hidden relative z-50">
+    <div className="relative">
       <button
-        onClick={() => setOpen(!open)}
-        className="text-white focus:outline-none"
+        onClick={toggleMenu}
+        className="text-white focus:outline-none text-2xl"
         aria-label="Toggle menu"
       >
-        <svg
-          className="w-6 h-6 fill-current"
-          viewBox="0 0 24 24"
-        >
-          {open ? (
-            <path d="M6 18L18 6M6 6l12 12" /> // X
-          ) : (
-            <path d="M4 6h16M4 12h16M4 18h16" /> // ≡
-          )}
-        </svg>
+        {isOpen ? <HiX /> : <HiMenu />}
       </button>
 
-      {open && (
-        <div className="absolute top-10 right-0 w-48 bg-[#2F3E46] text-white rounded-md shadow-lg py-2">
-          <Link href="/rounds">
-            <a className="block px-4 py-2 hover:bg-[#005F73]">Rounds</a>
-          </Link>
-          <Link href="/desk">
-            <a className="block px-4 py-2 hover:bg-[#005F73]">Desk</a>
-          </Link>
-          <Link href="/data">
-            <a className="block px-4 py-2 hover:bg-[#005F73]">Data</a>
-          </Link>
-          <Link href="/governance">
-            <a className="block px-4 py-2 hover:bg-[#005F73]">Governance</a>
-          </Link>
-          <Link href="/connect">
-            <a className="block px-4 py-2 hover:bg-[#005F73]">Connect</a>
-          </Link>
+      {isOpen && (
+        <div className="absolute right-0 mt-2 w-48 bg-[#1a1a1a] border border-gray-700 rounded-lg shadow-lg z-50">
+          <ul className="flex flex-col text-white text-sm font-sans p-2 space-y-2">
+            <li><Link href="/home"><a onClick={toggleMenu}>Home</a></Link></li>
+            <li><Link href="/rounds"><a onClick={toggleMenu}>Rounds</a></Link></li>
+            <li><Link href="/desk"><a onClick={toggleMenu}>Desk</a></Link></li>
+            <li><Link href="/data"><a onClick={toggleMenu}>Data</a></Link></li>
+            <li><Link href="/governance"><a onClick={toggleMenu}>Governance</a></Link></li>
+            <li><Link href="/connect"><a onClick={toggleMenu}>Connect</a></Link></li>
+          </ul>
         </div>
       )}
     </div>
