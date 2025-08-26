@@ -13,20 +13,24 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 bg-transparent backdrop-blur-md px-4 py-3 shadow-sm flex justify-between items-center transition-all duration-300">
+    <header className="sticky top-0 z-50 bg-black bg-opacity-70 backdrop-blur-md px-4 py-3 shadow-sm flex justify-between items-center transition-all duration-300">
       <div className="flex items-center space-x-2">
         <Link href="/home">
-          <a>
+          <a className="flex items-center space-x-2">
+            {/* Ícone da logomarca */}
             <img
-              src="/icons/icon-dgt-logo.svg"
-              alt="DGT Logo"
+              src="/logo/logo_icon.svg"
+              alt="DGT Icon"
               className="w-8 h-8"
+            />
+            {/* Marca escrita (logotipo completo) */}
+            <img
+              src="/logo/logo_full.svg"
+              alt="DGT Energy Logo"
+              className="hidden md:inline-block h-6"
             />
           </a>
         </Link>
-        <span className="hidden md:inline-block font-display text-xl text-[#FAFAFA] transition-opacity duration-300 opacity-100">
-          DGTEnergy
-        </span>
       </div>
 
       {/* Navegação desktop */}
