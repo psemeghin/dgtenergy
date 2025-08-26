@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 64 64" fill="none">
+  <!-- Círculo central -->
+  <circle cx="32" cy="32" r="6" stroke="#005F73" stroke-width="3" fill="none"></circle>
+  
+  <!-- Três nós externos -->
+  <circle cx="32" cy="10" r="4" stroke="#005F73" stroke-width="3" fill="none"></circle>
+  <circle cx="10" cy="48" r="4" stroke="#005F73" stroke-width="3" fill="none"></circle>
+  <circle cx="54" cy="48" r="4" stroke="#005F73" stroke-width="3" fill="none"></circle>
+  
+  <!-- Linhas de conexão -->
+  <line x1="32" y1="26" x2="32" y2="14" stroke="#005F73" stroke-width="3"></line>
+  <line x1="28" y1="36" x2="14" y2="44" stroke="#005F73" stroke-width="3"></line>
+  <line x1="36" y1="36" x2="50" y2="44" stroke="#005F73" stroke-width="3"></line>
+</svg>
