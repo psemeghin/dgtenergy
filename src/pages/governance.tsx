@@ -1,5 +1,5 @@
-import GovernanceIntro from "@/components/GovernanceIntro";
-import GovernanceSections from "@/components/GovernanceSections";
+import GovernanceIntro from "../components/GovernanceIntro";
+import GovernanceSections from "../components/GovernanceSections";
 
 export default function GovernancePage() {
   return (
