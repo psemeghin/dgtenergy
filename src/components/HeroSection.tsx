@@ -1,9 +1,10 @@
 // src/components/HeroSection.tsx
+
 export default function HeroSection() {
   return (
     <section className="relative text-center text-white h-screen overflow-hidden">
       <video
-        className="absolute top-0 left-0 w-full h-full object-cover z-[-1]"
+        className="absolute inset-0 w-full h-full object-cover opacity-40 -z-10"
         autoPlay
         loop
         muted
