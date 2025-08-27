@@ -23,9 +23,9 @@ export default function TokenomicsSection() {
         </div>
         <div className="flex justify-center">
           <img
-            src="/images/tokenomics-chart.png"
-            alt="Tokenomics Pie Chart"
-            className="max-w-full h-auto rounded"
+            src="/icons/icon-doc-tokenomics.svg"
+            alt="Tokenomics Icon"
+            className="h-40 w-auto"
           />
         </div>
       </div>
