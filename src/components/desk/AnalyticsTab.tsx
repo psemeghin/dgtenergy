@@ -1,13 +1,12 @@
-// src/components/desk/AnalyticsTab.tsx
 export default function AnalyticsTab() {
   return (
-    <div>
-      <h2 className="text-2xl font-semibold mb-4 font-display">Protocol Analytics</h2>
-      <p className="text-sm text-gray-600 mb-6 font-sans">
-        Real-time transparency: track KPIs, staking yield, treasury allocation and protocol health.
+    <div className="p-6 bg-white rounded-lg shadow border border-gray-200">
+      <h2 className="text-xl font-bold mb-2">Performance Analytics</h2>
+      <p className="text-gray-600 text-sm mb-4">
+        Transparency by design: follow protocol allocations, yields and benchmarks in real time.
       </p>
-      <div className="text-center text-gray-400 font-mono">
-        [ Charts and metrics coming soon ]
+      <div className="text-center py-12">
+        <p className="text-gray-500 italic">[Placeholder for Chart: DGTEnergy Yield vs Benchmarks]</p>
       </div>
     </div>
   );
