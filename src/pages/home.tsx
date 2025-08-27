@@ -5,7 +5,7 @@ import HeroSection from "../components/HeroSection";
 import AboutSection from "../components/AboutSection";
 import UtilitySection from "../components/UtilitySection";
 import DashboardSection from "../components/DashboardSection";
-import GovernanceSection from "../components/GovernanceSection";
+import GovernanceSections from "../components/GovernanceSections";
 import RoadmapSection from "../components/RoadmapSection";
 import FAQSection from "../components/FAQSection";
 
@@ -27,7 +27,7 @@ export default function HomePage() {
           <DashboardSection />
         </section>
         <section id="governance" className="w-full bg-[#F5F5F5] py-20 px-6">
-          <GovernanceSection />
+          <GovernanceSections />
         </section>
         <section id="roadmap" className="w-full bg-white py-20 px-6">
           <RoadmapSection />
