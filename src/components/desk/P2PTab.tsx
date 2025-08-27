@@ -1,13 +1,12 @@
-// src/components/desk/P2PTab.tsx
 export default function P2PTab() {
   return (
-    <div>
-      <h2 className="text-2xl font-semibold mb-4 font-display">Peer-to-Peer Trading & Escrow</h2>
-      <p className="text-sm text-gray-600 mb-6 font-sans">
-        Trade DGTEnergy tokens directly with other users using on-chain escrow protection.
+    <div className="p-6 bg-white rounded-lg shadow border border-gray-200">
+      <h2 className="text-xl font-bold mb-2">P2P Trading & Escrow</h2>
+      <p className="text-gray-600 text-sm mb-4">
+        DGTEnergy enables peer-to-peer trading with escrow, offering transparent and secure secondary liquidity for holders.
       </p>
-      <div className="text-center text-gray-400 font-mono">
-        [ Coming soon: P2P order book and transaction flow ]
+      <div className="text-center py-12">
+        <p className="text-gray-500 italic">[Placeholder for Order Book & Escrow integration]</p>
       </div>
     </div>
   );
