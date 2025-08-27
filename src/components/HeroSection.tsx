@@ -1,5 +1,4 @@
 // src/components/HeroSection.tsx
-
 export default function HeroSection() {
   return (
     <section className="relative text-center text-white h-screen overflow-hidden">
@@ -23,10 +22,7 @@ export default function HeroSection() {
           <div className="font-semibold">💰 Seed Round Open</div>
           <div>Target: 420k USDT · Price: 0.036 USDT/DGTE</div>
           <div className="w-full bg-white rounded-full h-2 overflow-hidden">
-            <div
-              className="bg-energy-green h-full transition-all duration-500"
-              style={{ width: "48%" }}
-            />
+            <div className="bg-energy-green h-full transition-all duration-500" style={{ width: "48%" }} />
           </div>
           <div className="text-right text-xs text-gray-200">48% Raised</div>
         </div>
