@@ -11,10 +11,12 @@ export default function HeroSection() {
         playsInline
         src="/media/earth-moon.mp4"
       />
+
       <div className="flex flex-col justify-center items-center h-full px-4 space-y-6">
         <h1 className="text-4xl md:text-6xl font-display">
           A New Gateway to Energy Finance
         </h1>
+
         <p className="text-lg md:text-xl text-gray-200 font-sans">
           Utility Token for Real-World Energy Assets
         </p>
