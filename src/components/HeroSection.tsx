@@ -8,7 +8,7 @@ export default function HeroSection() {
         playsInline
         className="absolute inset-0 w-full h-full object-cover opacity-70"
       >
-        <source src="/media/earth-lights.webm" type="video/webm" />
+        <source src="/media/eearth-moon.mp4" type="video/mp4" />
       </video>
       <div className="relative z-10 max-w-3xl px-6">
         <h1 className="text-4xl md:text-6xl font-display font-bold text-white">
