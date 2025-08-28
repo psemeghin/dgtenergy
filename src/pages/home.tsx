@@ -13,8 +13,7 @@ export default function HomePage() {
   return (
     <>
       <MetaHead />
-      <main className="flex flex-col items-center justify-center scroll-smooth bg-[#FAFAFA] text-gray-900">
-        <section id="hero" className="w-full">
+      <main className="flex flex-col items-center scroll-smooth bg-[#FAFAFA] text-gray-900">
           <HeroSection />
         </section>
         <section id="about" className="w-full bg-white py-20 px-6">
