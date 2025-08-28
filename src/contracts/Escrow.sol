@@ -1,55 +1,60 @@
-
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.20;
+
+interface IERC20 {
+    function transfer(address to, uint256 value) external returns (bool);
+    function balanceOf(address account) external view returns (uint256);
+}
 
 contract Escrow {
-    address public buyer;
-    address public seller;
-    address public arbiter;
+    address public owner;
+    address public beneficiary;
+    IERC20 public token; // Ex: USDT
 
-    enum State { AWAITING_PAYMENT, AWAITING_DELIVERY, COMPLETE, DISPUTED }
-    State public currentState;
+    uint256 public totalDeposited;
+    bool public released;
 
-    modifier onlyBuyer() {
-        require(msg.sender == buyer, "Only buyer can call this");
+    event Deposited(address indexed from, uint256 amount);
+    event Released(address indexed to, uint256 amount);
+    event Cancelled(address indexed to, uint256 amount);
+
+    modifier onlyOwner() {
+        require(msg.sender == owner, "Not authorized");
         _;
     }
 
-    modifier onlyArbiter() {
-        require(msg.sender == arbiter, "Only arbiter can call this");
-        _;
+    constructor(address _token, address _beneficiary) {
+        require(_token != address(0), "Invalid token");
+        require(_beneficiary != address(0), "Invalid beneficiary");
+        owner = msg.sender;
+        token = IERC20(_token);
+        beneficiary = _beneficiary;
     }
 
-    constructor(address _buyer, address _seller, address _arbiter) {
-        buyer = _buyer;
-        seller = _seller;
-        arbiter = _arbiter;
-        currentState = State.AWAITING_PAYMENT;
+    function deposit(uint256 amount) external {
+        require(!released, "Funds already released");
+        require(token.transferFrom(msg.sender, address(this), amount), "Transfer failed");
+        totalDeposited += amount;
+        emit Deposited(msg.sender, amount);
     }
 
-    function deposit() external payable onlyBuyer {
-        require(currentState == State.AWAITING_PAYMENT, "Already paid");
-        currentState = State.AWAITING_DELIVERY;
+    function release() external onlyOwner {
+        require(!released, "Already released");
+        uint256 balance = token.balanceOf(address(this));
+        require(token.transfer(beneficiary, balance), "Transfer failed");
+        released = true;
+        emit Released(beneficiary, balance);
     }
 
-    function confirmDelivery() external onlyBuyer {
-        require(currentState == State.AWAITING_DELIVERY, "Cannot confirm");
-        currentState = State.COMPLETE;
-        payable(seller).transfer(address(this).balance);
+    function cancel(address refundTo) external onlyOwner {
+        require(!released, "Already released");
+        uint256 balance = token.balanceOf(address(this));
+        require(token.transfer(refundTo, balance), "Refund failed");
+        released = true;
+        emit Cancelled(refundTo, balance);
     }
 
-    function raiseDispute() external onlyBuyer {
-        require(currentState == State.AWAITING_DELIVERY, "Invalid state");
-        currentState = State.DISPUTED;
-    }
-
-    function resolveDispute(bool releaseToSeller) external onlyArbiter {
-        require(currentState == State.DISPUTED, "No dispute raised");
-        currentState = State.COMPLETE;
-        if (releaseToSeller) {
-            payable(seller).transfer(address(this).balance);
-        } else {
-            payable(buyer).transfer(address(this).balance);
-        }
+    function balance() public view returns (uint256) {
+        return token.balanceOf(address(this));
     }
 }
