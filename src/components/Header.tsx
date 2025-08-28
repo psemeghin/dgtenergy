@@ -1,4 +1,3 @@
-// src/components/Header.tsx
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -13,8 +12,8 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 bg-black/80 backdrop-blur-md px-4 py-3 shadow-sm transition-all duration-300">
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-        {/* Logo (ícone e texto) */}
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:justify-between md:items-center gap-y-4">
+        {/* Logo e texto */}
         <div className="flex items-center space-x-2 justify-center md:justify-start">
           <Link href="/home">
             <a>
@@ -34,8 +33,8 @@ export default function Header() {
           />
         </div>
 
-        {/* Menu responsivo */}
-        <nav className="mt-3 md:mt-0 flex flex-col md:flex-row md:space-x-6 space-y-2 md:space-y-0 items-center text-white font-sans text-sm text-center">
+        {/* Menu responsivo corrigido */}
+        <nav className="flex flex-col items-center md:flex-row md:space-x-6 text-white font-sans text-sm space-y-2 md:space-y-0">
           <Link href="/rounds"><a>Rounds</a></Link>
           <Link href="/desk"><a>Desk</a></Link>
           <Link href="/data"><a>Data</a></Link>
