@@ -9,7 +9,7 @@ export default function HeroSection() {
   className="absolute inset-0 w-full h-full object-cover opacity-70"
 >
   <source src="/media/earth-lights.webm" type="video/webm" />
-  <source src="/media/earth-lights.mp4" type="video/mp4" />
+  <source src="/media/earth-moon.mp4" type="video/mp4" />
   Seu navegador não suporta vídeo HTML5.
 </video>
       <div className="relative z-10 max-w-3xl px-6">
