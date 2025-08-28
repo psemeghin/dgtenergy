@@ -36,5 +36,4 @@ jobs:
           pip3 install slither-analyzer
 
       - name: Run Slither on contracts
-        run: |
-          slither ./src/contracts --solc-remaps "@openzeppelin=node_modules/@openzeppelin"
+        run: slither ./src/contracts --solc-remaps "@openzeppelin=node_modules/@openzeppelin"
