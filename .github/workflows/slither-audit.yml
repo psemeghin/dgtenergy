@@ -1,3 +1,4 @@
+# .github/workflows/slither-audit.yml
 name: Slither Audit
 
 on:
@@ -8,10 +9,6 @@ jobs:
     name: Run Slither
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: ./dgtenergy
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -21,19 +18,17 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install system dependencies
+      - name: Install Slither dependencies
         run: |
           sudo apt update
-          sudo apt install -y python3-pip solc npm
+          sudo apt install -y python3-pip solc
 
-      - name: Install Node dependencies (OpenZeppelin)
-        run: |
-          npm init -y
-          npm install @openzeppelin/contracts
+      - name: Install OpenZeppelin (optional, se importar contratos OZ)
+        run: npm install @openzeppelin/contracts
 
       - name: Install Slither
-        run: |
-          pip3 install slither-analyzer
+        run: pip install slither-analyzer
 
       - name: Run Slither on contracts
+        working-directory: .
         run: slither ./src/contracts --solc-remaps "@openzeppelin=node_modules/@openzeppelin"
