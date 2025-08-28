@@ -9,7 +9,7 @@ export default function HeroSection() {
   loop
   muted
   playsInline
-  poster="/media/fallback.jpg"
+  poster="/medias/fallback.jpg"
 >
   <source src="/medias/eearth-moon.mp4" type="video/mp4" />
   Seu navegador não suporta vídeo HTML5.
