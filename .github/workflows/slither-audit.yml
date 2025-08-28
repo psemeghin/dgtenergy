@@ -1,32 +1,29 @@
+# .github/workflows/slither.yml
 name: Slither Audit
 
 on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+  workflow_dispatch:
 
 jobs:
-  audit:
+  slither:
+    name: Run Slither
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
+      - name: Checkout repository
         uses: actions/checkout@v3
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.x'
+          python-version: '3.11'
 
       - name: Install Slither
         run: |
+          sudo apt update
+          sudo apt install -y python3-pip solc
           pip install slither-analyzer
 
-      - name: Install Node Dependencies
+      - name: Run Slither on contracts
         run: |
-          npm install
-
-      - name: Run Slither
-        run: |
-          slither src/contracts/
+          slither ./src/contracts
