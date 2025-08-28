@@ -17,15 +17,11 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install Slither dependencies
-        run: |
-          sudo apt update
-          sudo apt install -y python3-pip
-          pip install slither-analyzer
+      - name: Install Slither
+        run: pip install slither-analyzer
 
-      - name: Install solc (Solidity compiler)
-        run: |
-          npm install -g solc
+      - name: Install Solidity Compiler (solc)
+        run: npm install -g solc
 
       - name: Run Slither on contracts
         run: slither ./src/contracts
