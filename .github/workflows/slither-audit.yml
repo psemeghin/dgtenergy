@@ -1,4 +1,3 @@
-# .github/workflows/slither-audit.yml
 name: Slither Audit
 
 on:
@@ -21,11 +20,15 @@ jobs:
       - name: Install system dependencies
         run: |
           sudo apt update
-          sudo apt install -y python3-pip solc
+          sudo apt install -y python3-pip solc npm
+
+      - name: Install Node dependencies (OpenZeppelin)
+        run: |
+          npm install @openzeppelin/contracts
 
       - name: Install Slither
         run: |
-          pip install slither-analyzer
+          pip3 install slither-analyzer
 
       - name: Run Slither on contracts
         run: |
