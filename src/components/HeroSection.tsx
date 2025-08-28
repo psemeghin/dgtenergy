@@ -9,7 +9,7 @@ export default function HeroSection() {
         muted
         playsInline
       >
-        <source src="/media/earth-moon.mp4" type="video/mp4" />
+        <source src="https://dgte.s3.eu-west-1.amazonaws.com/media/earth-moon.mp4" type="video/mp4" />
       </video>
 
       <div className="flex flex-col justify-center items-center h-full px-4 space-y-6">
