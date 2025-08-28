@@ -1,3 +1,5 @@
+// src/pages/home.tsx
+
 import MetaHead from "../components/MetaHead";
 import HeroSection from "../components/HeroSection";
 import AboutSection from "../components/AboutSection";
