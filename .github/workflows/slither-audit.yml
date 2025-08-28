@@ -22,10 +22,16 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Install Slither
+      - name: Install Slither + solc
         run: |
-          sudo pip install slither-analyzer
+          pip install slither-analyzer
           npm install -g solc
 
+      - name: Show solc version
+        run: solc --version
+
+      - name: List contracts
+        run: ls -R ./src/contracts
+
       - name: Run Slither
-        run: slither ./src/contracts
+        run: slither ./src/contracts --filter-paths "node_modules"
