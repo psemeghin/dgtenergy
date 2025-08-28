@@ -4,16 +4,16 @@ export default function HeroSection() {
   return (
     <section className="relative text-center text-white h-screen overflow-hidden">
       <video
-        className="absolute inset-0 w-full h-full object-cover opacity-40 -z-10"
-        autoPlay
-        loop
-        muted
-        playsInline
-        poster="/medias/eearth-moon.mp4"
-      >
-        <source src="/medias/eearth-moon.mp4" type="video/mp4" />
-        Seu navegador não suporta vídeo HTML5.
-      </video>
+  className="absolute inset-0 w-full h-full object-cover opacity-40 -z-10"
+  autoPlay
+  loop
+  muted
+  playsInline
+  poster="/media/fallback.jpg"
+>
+  <source src="/medias/eearth-moon.mp4" type="video/mp4" />
+  Seu navegador não suporta vídeo HTML5.
+</video>
 
       <div className="flex flex-col justify-center items-center h-full px-4 space-y-6">
         <h1 className="text-4xl md:text-6xl font-display">
