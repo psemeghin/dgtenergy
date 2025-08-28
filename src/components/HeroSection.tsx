@@ -10,7 +10,6 @@ export default function HeroSection() {
         poster="/media/fallback.jpg"
       >
         <source src="/_next/static/media/earth-lights.webm" type="video/webm" />
-        <source src="/_next/static/media/earth-moon.mp4" type="video/mp4" />
         Seu navegador não suporta vídeo HTML5.
       </video>
 
