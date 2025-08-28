@@ -17,11 +17,15 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
       - name: Install Slither
-        run: pip install slither-analyzer
+        run: |
+          sudo pip install slither-analyzer
+          npm install -g solc
 
-      - name: Install Solidity Compiler (solc)
-        run: npm install -g solc
-
-      - name: Run Slither on contracts
+      - name: Run Slither
         run: slither ./src/contracts
