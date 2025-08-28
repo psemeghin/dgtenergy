@@ -2,7 +2,16 @@
 export default function HeroSection() {
   return (
     <section className="relative text-center text-white h-screen overflow-hidden">
-      https://streamable.com
+      <video
+        className="absolute inset-0 w-full h-full object-cover opacity-40 -z-10"
+        autoPlay
+        loop
+        muted
+        playsInline
+      >
+        <source src="/media/earth-moon.mp4" type="video/mp4" />
+      </video>
+
       <div className="flex flex-col justify-center items-center h-full px-4 space-y-6">
         <h1 className="text-4xl md:text-6xl font-display">
           A New Gateway to Energy Finance
@@ -15,7 +24,10 @@ export default function HeroSection() {
           <div className="font-semibold">💰 Seed Round Open</div>
           <div>Target: 420k USDT · Price: 0.036 USDT/DGTE</div>
           <div className="w-full bg-white rounded-full h-2 overflow-hidden">
-            <div className="bg-energy-green h-full transition-all duration-500" style={{ width: "48%" }} />
+            <div
+              className="bg-energy-green h-full transition-all duration-500"
+              style={{ width: "48%" }}
+            />
           </div>
           <div className="text-right text-xs text-gray-200">48% Raised</div>
         </div>
