@@ -1,3 +1,5 @@
+// src/components/HeroSection.tsx
+
 export default function HeroSection() {
   return (
     <section className="relative text-center text-white h-screen overflow-hidden">
@@ -7,10 +9,9 @@ export default function HeroSection() {
         loop
         muted
         playsInline
-        poster="/media/fallback.jpg"
+        poster="/medias/eearth-moon.mp4"
       >
-        <source src="/_next/static/media/earth-lights.webm" type="video/webm" />
-        <source src="/_next/static/media/earth-moon.mp4" type="video/mp4" />
+        <source src="/medias/eearth-moon.mp4" type="video/mp4" />
         Seu navegador não suporta vídeo HTML5.
       </video>
 
