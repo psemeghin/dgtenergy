@@ -1,4 +1,4 @@
-# .github/workflows/slither.yml
+# .github/workflows/slither-audit.yml
 name: Slither Audit
 
 on:
@@ -18,12 +18,15 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install Slither
+      - name: Install system dependencies
         run: |
           sudo apt update
           sudo apt install -y python3-pip solc
+
+      - name: Install Slither
+        run: |
           pip install slither-analyzer
 
       - name: Run Slither on contracts
         run: |
-          slither ./src/contracts
+          slither ./src/contracts --solc-remaps "@openzeppelin=node_modules/@openzeppelin"
