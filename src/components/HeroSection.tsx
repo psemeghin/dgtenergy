@@ -1,18 +1,16 @@
 // src/components/HeroSection.tsx
+
 export default function HeroSection() {
   return (
     <section className="relative text-center text-white h-screen overflow-hidden">
-      {/* Vídeo embutido via iframe do Streamable */}
-      <div className="absolute inset-0 w-full h-full -z-10">
-        <iframe
-          src="https://streamable.com/e/yp034z"
-          frameBorder="0"
-          allow="autoplay; fullscreen"
-          allowFullScreen
-          className="w-full h-full object-cover opacity-40"
-        ></iframe>
-      </div>
-
+      <video
+        className="absolute inset-0 w-full h-full object-cover opacity-40 -z-10"
+        autoPlay
+        loop
+        muted
+        playsInline
+        src="/media/earth-moon.mp4"
+      />
       <div className="flex flex-col justify-center items-center h-full px-4 space-y-6">
         <h1 className="text-4xl md:text-6xl font-display">
           A New Gateway to Energy Finance
