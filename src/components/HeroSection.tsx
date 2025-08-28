@@ -12,6 +12,7 @@ export default function HeroSection() {
         poster="/media/fallback.jpg"
       >
         <source src="/media/earth-lights.webm" type="video/webm" />
+        <source src="/media/earth-moon.mp4" type="video/mp4" />
         Seu navegador não suporta vídeo HTML5.
       </video>
 
@@ -27,7 +28,10 @@ export default function HeroSection() {
           <div className="font-semibold">💰 Seed Round Open</div>
           <div>Target: 420k USDT · Price: 0.036 USDT/DGTE</div>
           <div className="w-full bg-white rounded-full h-2 overflow-hidden">
-            <div className="bg-energy-green h-full transition-all duration-500" style={{ width: "48%" }} />
+            <div
+              className="bg-energy-green h-full transition-all duration-500"
+              style={{ width: "48%" }}
+            />
           </div>
           <div className="text-right text-xs text-gray-200">48% Raised</div>
         </div>
