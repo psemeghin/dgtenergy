@@ -1,17 +1,17 @@
 // src/pages/_app.tsx
-import "../styles/globals.css";
-import type { AppProps } from "next/app";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import '../styles/globals.css';
+import type { AppProps } from 'next/app';
+import { WagmiConfig } from 'wagmi';
+import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
+import { wagmiConfig, chains } from '../lib/wallet';
+import '@rainbow-me/rainbowkit/styles.css';
 
-export default function MyApp({ Component, pageProps }: AppProps) {
+export default function App({ Component, pageProps }: AppProps) {
   return (
-    <>
-      <Header />
-      <main className="min-h-screen bg-white text-gray-900">
+    <WagmiConfig config={wagmiConfig}>
+      <RainbowKitProvider chains={chains}>
         <Component {...pageProps} />
-      </main>
-      <Footer />
-    </>
+      </RainbowKitProvider>
+    </WagmiConfig>
   );
 }
