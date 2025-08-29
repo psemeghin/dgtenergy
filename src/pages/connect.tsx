@@ -1,6 +1,7 @@
 // src/pages/connect.tsx
 import Head from 'next/head';
 import ConnectButton from '../components/ConnectButton';
+import WalletOverview from '../components/WalletOverview';
 
 export default function Connect() {
   return (
@@ -16,6 +17,7 @@ export default function Connect() {
           Secure access to your DGTEnergy balance and tools.
         </p>
         <ConnectButton />
+        <WalletOverview />
         <div className="mt-8 text-sm text-center text-gray-500 max-w-md">
           For your security, always verify you are on the official DGTEnergy domain
           (<strong>dgte.energy</strong>). Never share your private keys or seed phrase.
