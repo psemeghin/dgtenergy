@@ -1,94 +1,56 @@
-
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
 contract DGTEnergyStaking is Ownable, ReentrancyGuard {
-    IERC20 public immutable dgtToken;
-    IERC20 public immutable rewardToken;
+    IERC20 public stakingToken;
 
-    uint256 public rewardRatePerBlock;
-    uint256 public lastUpdateBlock;
+    struct StakeInfo {
+        uint256 amount;
+        uint256 timestamp;
+    }
 
-    mapping(address => uint256) public stakedAmount;
-    mapping(address => uint256) public rewardDebt;
-    mapping(address => uint256) public pendingRewards;
-
+    mapping(address => StakeInfo) public stakes;
     uint256 public totalStaked;
-    uint256 public accRewardPerToken; // scaled by 1e18
 
     event Staked(address indexed user, uint256 amount);
     event Unstaked(address indexed user, uint256 amount);
-    event Claimed(address indexed user, uint256 amount);
 
-    constructor(
-        address _dgtToken,
-        address _rewardToken,
-        uint256 _rewardRatePerBlock
-    ) {
-        dgtToken = IERC20(_dgtToken);
-        rewardToken = IERC20(_rewardToken);
-        rewardRatePerBlock = _rewardRatePerBlock;
-        lastUpdateBlock = block.number;
+    constructor(address _stakingToken) {
+        require(_stakingToken != address(0), "Invalid token address");
+        stakingToken = IERC20(_stakingToken);
     }
 
-    modifier updateReward(address user) {
-        _updatePool();
-        if (user != address(0)) {
-            pendingRewards[user] = earned(user);
-            rewardDebt[user] = (stakedAmount[user] * accRewardPerToken) / 1e18;
-        }
-        _;
+    function stake(uint256 _amount) external nonReentrant {
+        require(_amount > 0, "Amount must be > 0");
+        require(stakingToken.transferFrom(msg.sender, address(this), _amount), "Transfer failed");
+
+        StakeInfo storage userStake = stakes[msg.sender];
+        userStake.amount += _amount;
+        userStake.timestamp = block.timestamp;
+
+        totalStaked += _amount;
+
+        emit Staked(msg.sender, _amount);
     }
 
-    function _updatePool() internal {
-        if (block.number > lastUpdateBlock && totalStaked > 0) {
-            uint256 blocks = block.number - lastUpdateBlock;
-            uint256 reward = blocks * rewardRatePerBlock;
-            accRewardPerToken += (reward * 1e18) / totalStaked;
-        }
-        lastUpdateBlock = block.number;
+    function unstake(uint256 _amount) external nonReentrant {
+        StakeInfo storage userStake = stakes[msg.sender];
+        require(userStake.amount >= _amount, "Insufficient stake");
+
+        userStake.amount -= _amount;
+        totalStaked -= _amount;
+
+        require(stakingToken.transfer(msg.sender, _amount), "Transfer failed");
+
+        emit Unstaked(msg.sender, _amount);
     }
 
-    function earned(address user) public view returns (uint256) {
-        uint256 currentAcc = accRewardPerToken;
-        if (block.number > lastUpdateBlock && totalStaked > 0) {
-            uint256 blocks = block.number - lastUpdateBlock;
-            uint256 reward = blocks * rewardRatePerBlock;
-            currentAcc += (reward * 1e18) / totalStaked;
-        }
-        return (stakedAmount[user] * currentAcc) / 1e18 - rewardDebt[user] + pendingRewards[user];
-    }
-
-    function stake(uint256 amount) external nonReentrant updateReward(msg.sender) {
-        require(amount > 0, "Amount must be greater than 0");
-        dgtToken.transferFrom(msg.sender, address(this), amount);
-        stakedAmount[msg.sender] += amount;
-        totalStaked += amount;
-        emit Staked(msg.sender, amount);
-    }
-
-    function unstake(uint256 amount) external nonReentrant updateReward(msg.sender) {
-        require(amount > 0 && amount <= stakedAmount[msg.sender], "Invalid amount");
-        stakedAmount[msg.sender] -= amount;
-        totalStaked -= amount;
-        dgtToken.transfer(msg.sender, amount);
-        emit Unstaked(msg.sender, amount);
-    }
-
-    function claim() external nonReentrant updateReward(msg.sender) {
-        uint256 reward = pendingRewards[msg.sender];
-        require(reward > 0, "No rewards to claim");
-        pendingRewards[msg.sender] = 0;
-        rewardToken.transfer(msg.sender, reward);
-        emit Claimed(msg.sender, reward);
-    }
-
-    function setRewardRate(uint256 _newRate) external onlyOwner {
-        _updatePool();
-        rewardRatePerBlock = _newRate;
+    function getStake(address _user) external view returns (uint256 amount, uint256 timestamp) {
+        StakeInfo memory userStake = stakes[_user];
+        return (userStake.amount, userStake.timestamp);
     }
 }
