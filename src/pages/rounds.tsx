@@ -1,190 +1,99 @@
-// /src/pages/rounds.tsx
-import Head from "next/head";
+// src/pages/rounds.tsx
+import React from 'react';
+import { useAccount } from 'wagmi';
+import Head from 'next/head';
+import Link from 'next/link';
 
-export default function RoundsPage() {
+export default function Rounds() {
+  const { isConnected } = useAccount();
+
   return (
     <>
       <Head>
-        <title>DGTEnergy — Token Sale Portal</title>
-        <meta
-          name="description"
-          content="Participate in the DGTEnergy Token Sale. Transparent rounds with progressive valuation and real-world energy backing."
-        />
+        <title>DGT Energy - Rounds</title>
       </Head>
 
-      <main className="max-w-6xl mx-auto px-6 py-16">
-        {/* Hero Section */}
-        <section className="text-center mb-16">
-  <h1 className="font-display text-4xl md:text-5xl mb-4">
-    DGTEnergy Token Sale Portal
-  </h1>
-  <p className="font-sans text-lg text-gray-500 mb-6">
-    Progressive rounds with fixed supply and valuation step-up.
-  </p>
-
-  <div className="bg-energy-sand p-6 rounded-lg max-w-xl mx-auto shadow-md">
-    <div className="text-sm text-white font-semibold mb-2">
-      <span className="block">💰 Seed Round Open</span>
-      <span className="block">Target: 420k USDT · Price: 0.036 USDT/DGTE</span>
-    </div>
-
-    {/* Barra de progresso */}
-    <div className="w-full bg-gray-300 rounded-full h-3 overflow-hidden mb-1">
-      <div
-        className="bg-energy-green h-full transition-all duration-500"
-        style={{ width: "48%" }} // <== ajuste aqui conforme a captação real
-      ></div>
-    </div>
-    <div className="text-xs text-white text-right">48% Raised</div>
-  </div>
-</section>
-
-        {/* Token Sale Cards */}
-        <section className="grid md:grid-cols-3 gap-8 mb-20">
-          {/* Seed */}
-          <div className="bg-white shadow-md p-6 rounded-lg border border-gray-200 hover:shadow-xl transition">
-            <h2 className="font-display text-xl mb-2">Seed Round (Open)</h2>
-            <p className="text-sm text-gray-600 mb-4">
-              Fixed price at <strong>0.036</strong> USDT/DGTE, targeting{" "}
-              <strong>420k</strong> USDT. Unsold tokens remain locked.
-            </p>
-            <a
-              href="/connect"
-              className="inline-block mt-2 bg-energy-green text-black font-semibold px-4 py-2 rounded-md"
-            >
-              Join the Seed
-            </a>
-          </div>
-
-          {/* Private */}
-          <div className="bg-white shadow-md p-6 rounded-lg border border-gray-200 hover:shadow-xl transition">
-            <h2 className="font-display text-xl mb-2">Private Round (Upcoming)</h2>
-            <p className="text-sm text-gray-600 mb-4">
-              Price step-up to <strong>0.038</strong> USDT/DGTE. Whitelist only.
-              Strategic partner allocation.
-            </p>
-            <a
-              href="#"
-              className="inline-block mt-2 bg-energy-blue text-white font-semibold px-4 py-2 rounded-md"
-            >
-              Join Whitelist
-            </a>
-          </div>
-
-          {/* Pre-Sale */}
-          <div className="bg-white shadow-md p-6 rounded-lg border border-gray-200 hover:shadow-xl transition">
-            <h2 className="font-display text-xl mb-2">Pre-Sale (Planned)</h2>
-            <p className="text-sm text-gray-600 mb-4">
-              Public participation at <strong>0.041</strong> USDT/DGTE. Limited
-              allocation. Compliance may apply.
-            </p>
-            <a
-              href="#"
-              className="inline-block mt-2 bg-energy-gray text-white font-semibold px-4 py-2 rounded-md"
-            >
-              View Details
-            </a>
-          </div>
-        </section>
-
-        {/* Step-Up Chart */}
-        <section className="text-center mb-20">
-          <h3 className="font-display text-2xl mb-2">Valuation Step-Up</h3>
-          <p className="text-gray-500 mb-4">
-            Early participants benefit from progressive increase.
+      <section className="bg-white text-gray-800 py-16 px-6">
+        <div className="max-w-5xl mx-auto text-center">
+          <h1 className="text-4xl font-bold mb-4">Participar da Venda de Tokens</h1>
+          <p className="text-lg mb-6">
+            Acompanhe as fases e oportunidades de compra do token DGT-Energy.
           </p>
-          <img
-            src="/media/stepup_chart_placeholder.png"
-            alt="Step-Up Price Chart"
-            className="mx-auto max-w-md"
-          />
-        </section>
-{/* Whitelist & Wallet Connect */}
-<section className="max-w-3xl mx-auto mb-20">
-  <h3 className="font-display text-2xl text-center mb-6">
-    Private Round Whitelist & Wallet Access
-  </h3>
 
-  {/* Whitelist Form */}
-  <div className="bg-white rounded-lg shadow-md p-6 border border-gray-200 mb-8">
-    <h4 className="font-sans text-lg font-medium mb-4 text-gray-700">
-      Join the Whitelist
-    </h4>
-    <form className="grid gap-4 md:grid-cols-2">
-      <input
-        type="text"
-        placeholder="Full Name"
-        className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-energy-green"
-      />
-      <input
-        type="email"
-        placeholder="Email Address"
-        className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-energy-green"
-      />
-      <select
-        className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-energy-green col-span-2"
-      >
-        <option>Select Country</option>
-        <option>Brazil</option>
-        <option>Italy</option>
-        <option>USA</option>
-        <option>Germany</option>
-        <option>Singapore</option>
-        <option>Other</option>
-      </select>
-      <button
-        type="submit"
-        className="bg-energy-green text-black font-semibold px-6 py-2 rounded-md mt-2 hover:opacity-90 col-span-2"
-      >
-        Join Whitelist
-      </button>
-    </form>
-  </div>
+          {isConnected ? (
+            <div className="bg-gray-100 rounded-lg p-6 shadow-lg mb-6">
+              <h2 className="text-xl font-semibold mb-2">Comprar Tokens DGT</h2>
+              <p className="mb-4">Use USDT para adquirir seus tokens DGTEnergy.</p>
+              <button className="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded">
+                Comprar agora
+              </button>
+            </div>
+          ) : (
+            <p className="text-gray-600 italic">Conecte sua carteira para comprar tokens.</p>
+          )}
 
-  {/* Wallet Connect Placeholder */}
-  <div className="bg-gray-100 rounded-lg p-6 border border-gray-300 text-center">
-    <h4 className="font-sans text-lg font-medium mb-2 text-gray-700">
-      Connect Your Wallet
-    </h4>
-    <p className="text-sm text-gray-500 mb-4">
-      This feature is currently in placeholder mode for the MVP. No wallet data is collected.
-    </p>
-    <button
-      className="bg-energy-blue text-white font-semibold px-6 py-2 rounded-md hover:opacity-90"
-    >
-      Connect Wallet
-    </button>
-  </div>
-</section>
-{/* Compliance Notes */}
-<section className="text-sm text-gray-600 max-w-3xl mx-auto leading-relaxed px-4 mt-20">
-  <p className="mb-2">
-    <strong>Disclaimer:</strong> DGTEnergy is a utility token. It does not represent equity, debt or profit-sharing rights. 
-    Rewards via staking are discretionary and based on performance. 
-    Participation may require KYC/AML in some jurisdictions.
-  </p>
-  <ul className="list-disc pl-5 space-y-1 text-gray-500">
-    <li>Unsold tokens remain locked in treasury.</li>
-    <li>Staking rewards are non-guaranteed and vary with protocol results.</li>
-    <li>Participation is subject to regulatory frameworks of each region.</li>
-    <li>Always verify you are using the official DGT-Energy domain.</li>
-  </ul>
-  <div className="mt-4 flex gap-4 flex-wrap text-sm text-energy-blue">
-    <a href="/docs/whitepaper.pdf" target="_blank" className="underline hover:opacity-80">
-      Whitepaper
-    </a>
-    <a href="/docs/tokenomics.pdf" target="_blank" className="underline hover:opacity-80">
-      Tokenomics
-    </a>
-    <a href="/docs/legal_terms.pdf" target="_blank" className="underline hover:opacity-80">
-      Legal Terms
-    </a>
-    <a href="/docs/product1_factsheet.pdf" target="_blank" className="underline hover:opacity-80">
-      Product 1 Factsheet
-    </a>
-  </div>
-</section>
-      </main>
+          <div className="bg-white border border-gray-200 rounded-lg p-6 mb-8 mt-10 shadow">
+            <h3 className="text-2xl font-semibold text-green-800 mb-4">Etapa Atual: Whitelist</h3>
+            <ul className="text-left text-gray-700 space-y-2">
+              <li><strong>Objetivo:</strong> 350.000 USDT</li>
+              <li><strong>Tokens disponíveis:</strong> 18.000.000</li>
+              <li><strong>Preço por token:</strong> 0.030 USDT</li>
+              <li><strong>Status:</strong> Aberta</li>
+              <li><strong>Incentivo:</strong> Early Bird</li>
+            </ul>
+          </div>
+
+          <div className="mb-6">
+            <a
+              href="/LaminaWhitelist.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 underline"
+            >
+              Baixar Lâmina da Whitelist
+            </a>
+          </div>
+
+          <div className="bg-blue-50 border border-blue-200 rounded-md p-4 mb-10 text-sm text-blue-900">
+            <p>
+              <strong>Por que Early Bird?</strong> Comprar antecipadamente garante acesso ao menor preço, com tokens bloqueados e possibilidade de valorização no mercado secundário (P2P). Cada rodada futura representa contratos reais com empresas do setor energético.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div className="bg-white border border-gray-300 rounded-lg p-4 shadow">
+              <h4 className="text-xl font-semibold mb-2">Whitelist</h4>
+              <p className="text-gray-600 mb-1">Implementação inicial do projeto.</p>
+              <p className="text-gray-700"><strong>Preço:</strong> 0.030 USDT</p>
+              <Link href="/LaminaWhitelist.pdf" className="text-blue-600 underline text-sm">
+                Ver lâmina
+              </Link>
+            </div>
+
+            <div className="bg-white border border-gray-300 rounded-lg p-4 shadow">
+              <h4 className="text-xl font-semibold mb-2">Seed</h4>
+              <p className="text-gray-600 mb-1">Investimento em empresa do setor energético.</p>
+              <p className="text-gray-700"><strong>Preço:</strong> 0.036 USDT</p>
+              <Link href="/LaminaSeed.pdf" className="text-blue-600 underline text-sm">
+                Ver lâmina
+              </Link>
+            </div>
+
+            <div className="bg-white border border-gray-300 rounded-lg p-4 shadow">
+              <h4 className="text-xl font-semibold mb-2">Rounds</h4>
+              <p className="text-gray-600 mb-1">Contratos com valor e token fixos.</p>
+              <p className="text-gray-700"><strong>Preço:</strong> 0.040 USDT</p>
+              <Link href="/LaminaRound1.pdf" className="text-blue-600 underline text-sm">
+                Ver lâmina
+              </Link>
+            </div>
+          </div>
+
+          <div className="text-sm text-gray-500 italic">
+            Todas as compras exigem verificação KYC/AML. Tokens comprados são liberados automaticamente.
+          </div>
+        </div>
+      </section>
     </>
   );
 }
