@@ -6,67 +6,66 @@ import Link from 'next/link';
 import { parseUnits } from 'viem';
 
 const USDT_ADDRESS = '0x55d398326f99059fF775485246999027B3197955';
-const TOKENSALE_ADDRESS = '0x0f9483E001e4911BAF7c6Fc46ad269B05001F5C7';
-const TOKEN_PRICE = 0.03; // USDT por DGT
-const DECIMALS = 18;
+const DGTSALE_ADDRESS = '0x0f9483E001e4911BAF7c6Fc46ad269B05001F5C7';
+const DGTOKEN_ADDRESS = '0xD3Aec5eC20bE340944d5D3003E420798c2b128Dc';
+
+const usdtAbi = [
+  {
+    name: 'approve',
+    type: 'function',
+    stateMutability: 'nonpayable',
+    inputs: [
+      { name: 'spender', type: 'address' },
+      { name: 'amount', type: 'uint256' }
+    ],
+    outputs: [{ name: '', type: 'bool' }]
+  }
+];
+
+const saleAbi = [
+  {
+    name: 'buyTokens',
+    type: 'function',
+    stateMutability: 'nonpayable',
+    inputs: [{ name: 'usdtAmount', type: 'uint256' }],
+    outputs: []
+  }
+];
 
 export default function Rounds() {
-  const { address, isConnected } = useAccount();
-  const [amount, setAmount] = useState("1000"); // USDT, valor inicial
+  const { isConnected } = useAccount();
+  const [amount, setAmount] = useState("1000");
   const [txStatus, setTxStatus] = useState("");
 
-  const usdtAmount = parseUnits(amount || "0", DECIMALS); // valor em wei
-  const dgtAmount = parseUnits((parseFloat(amount || "0") / TOKEN_PRICE).toFixed(18), DECIMALS);
+  const parsedAmount = parseUnits(amount, 18);
 
-  // Aprovar USDT
   const { config: approveConfig } = usePrepareContractWrite({
     address: USDT_ADDRESS,
-    abi: [
-      {
-        name: 'approve',
-        type: 'function',
-        stateMutability: 'nonpayable',
-        inputs: [
-          { name: 'spender', type: 'address' },
-          { name: 'amount', type: 'uint256' },
-        ],
-        outputs: [{ name: '', type: 'bool' }],
-      },
-    ],
+    abi: usdtAbi,
     functionName: 'approve',
-    args: [TOKENSALE_ADDRESS, usdtAmount],
-    enabled: isConnected,
+    args: [DGTSALE_ADDRESS, parsedAmount],
+    enabled: isConnected
   });
 
-  const { write: approve, data: approveTx } = useContractWrite(approveConfig);
-  const { isLoading: isApproving, isSuccess: approved } = useWaitForTransaction({
-    hash: approveTx?.hash,
-    onSuccess: () => setTxStatus("✅ USDT aprovado com sucesso."),
-    onError: () => setTxStatus("❌ Falha ao aprovar USDT."),
-  });
-
-  // Comprar Tokens
   const { config: buyConfig } = usePrepareContractWrite({
-    address: TOKENSALE_ADDRESS,
-    abi: [
-      {
-        name: 'buyTokens',
-        type: 'function',
-        stateMutability: 'nonpayable',
-        inputs: [{ name: 'usdAmount', type: 'uint256' }],
-        outputs: [],
-      },
-    ],
+    address: DGTSALE_ADDRESS,
+    abi: saleAbi,
     functionName: 'buyTokens',
-    args: [usdtAmount],
-    enabled: approved,
+    args: [parsedAmount],
+    enabled: isConnected
   });
 
-  const { write: buyTokens, data: buyTx } = useContractWrite(buyConfig);
-  const { isLoading: isBuying, isSuccess: bought } = useWaitForTransaction({
+  const { write: approveWrite, data: approveTx } = useContractWrite(approveConfig);
+  const { write: buyWrite, data: buyTx } = useContractWrite(buyConfig);
+
+  useWaitForTransaction({
     hash: buyTx?.hash,
-    onSuccess: () => setTxStatus("✅ Compra de DGT realizada com sucesso."),
-    onError: () => setTxStatus("❌ Erro ao comprar tokens."),
+    onSuccess() {
+      setTxStatus("✅ Compra realizada com sucesso!");
+    },
+    onError() {
+      setTxStatus("❌ Falha ao comprar tokens.");
+    },
   });
 
   return (
@@ -78,46 +77,46 @@ export default function Rounds() {
       <section className="bg-white text-gray-800 py-16 px-6">
         <div className="max-w-5xl mx-auto text-center">
           <h1 className="text-4xl font-bold mb-4">Participar da Venda de Tokens</h1>
-          <p className="text-lg mb-6">
-            Acompanhe as fases e oportunidades de compra do token DGT-Energy.
-          </p>
+          <p className="text-lg mb-6">Acompanhe as fases e oportunidades de compra do token DGT-Energy.</p>
 
-          {isConnected ? (
+          {isConnected && (
             <div className="bg-gray-100 rounded-lg p-6 shadow-lg mb-6">
               <h2 className="text-xl font-semibold mb-2">Comprar Tokens DGT</h2>
-              <p className="mb-4">Use USDT para adquirir seus tokens DGTEnergy.</p>
+              <p className="mb-4">Use USDT (BEP-20) para adquirir seus tokens DGTEnergy.</p>
 
-              <div className="flex flex-col gap-4 items-center">
-                <input
-                  type="number"
-                  value={amount}
-                  onChange={(e) => setAmount(e.target.value)}
-                  className="w-48 px-4 py-2 border border-gray-300 rounded-md text-center"
-                />
-                <div className="flex gap-4">
-                  <button
-                    onClick={() => approve?.()}
-                    className="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-6 py-2 rounded disabled:opacity-50"
-                    disabled={!approve || isApproving}
-                  >
-                    {isApproving ? 'Aprovando...' : 'Aprovar'}
-                  </button>
-                  <button
-                    onClick={() => buyTokens?.()}
-                    className="bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-2 rounded disabled:opacity-50"
-                    disabled={!buyTokens || isBuying}
-                  >
-                    {isBuying ? 'Comprando...' : 'Comprar'}
-                  </button>
-                </div>
-                {txStatus && <p className="text-sm text-gray-600 mt-2">{txStatus}</p>}
+              <input
+                className="px-4 py-2 border rounded text-center mb-4"
+                value={amount}
+                onChange={(e) => setAmount(e.target.value)}
+                placeholder="Quantidade em USDT"
+              />
+
+              <div className="flex flex-col md:flex-row justify-center gap-4">
+                <button
+                  onClick={() => approveWrite?.()}
+                  disabled={!approveWrite}
+                  className="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded"
+                >
+                  Aprovar
+                </button>
+                <button
+                  onClick={() => buyWrite?.()}
+                  disabled={!buyWrite}
+                  className="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded"
+                >
+                  Comprar
+                </button>
               </div>
+
+              {txStatus && <p className="mt-4 text-sm font-medium">{txStatus}</p>}
             </div>
-          ) : (
+          )}
+
+          {!isConnected && (
             <p className="text-gray-600 italic">Conecte sua carteira para comprar tokens.</p>
           )}
 
-          {/* Card da Etapa Whitelist */}
+          {/* Card de status da Whitelist */}
           <div className="bg-white border border-gray-200 rounded-lg p-6 mb-8 mt-10 shadow">
             <h3 className="text-2xl font-semibold text-green-800 mb-4">Etapa Atual: Whitelist</h3>
             <ul className="text-left text-gray-700 space-y-2">
@@ -130,20 +129,38 @@ export default function Rounds() {
           </div>
 
           <div className="mb-6">
-            <a
-              href="/LaminaWhitelist.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 underline"
-            >
+            <a href="/LaminaWhitelist.pdf" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">
               Baixar Lâmina da Whitelist
             </a>
           </div>
 
           <div className="bg-blue-50 border border-blue-200 rounded-md p-4 mb-10 text-sm text-blue-900">
             <p>
-              <strong>Por que Early Bird?</strong> Comprar antecipadamente garante acesso ao menor preço, com tokens bloqueados e possibilidade de valorização no mercado secundário (P2P). Cada rodada futura representa contratos reais com empresas do setor energético.
+              <strong>Por que Early Bird?</strong> Comprar antecipadamente garante acesso ao menor preço,
+              com tokens bloqueados e valorização no mercado secundário. Cada rodada futura representa contratos
+              reais com empresas do setor energético.
             </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div className="bg-white border border-gray-300 rounded-lg p-4 shadow">
+              <h4 className="text-xl font-semibold mb-2">Whitelist</h4>
+              <p className="text-gray-600 mb-1">Implementação inicial do projeto.</p>
+              <p className="text-gray-700"><strong>Preço:</strong> 0.030 USDT</p>
+              <Link href="/LaminaWhitelist.pdf" className="text-blue-600 underline text-sm">Ver lâmina</Link>
+            </div>
+            <div className="bg-white border border-gray-300 rounded-lg p-4 shadow">
+              <h4 className="text-xl font-semibold mb-2">Seed</h4>
+              <p className="text-gray-600 mb-1">Investimento em empresa do setor energético.</p>
+              <p className="text-gray-700"><strong>Preço:</strong> 0.036 USDT</p>
+              <Link href="/LaminaSeed.pdf" className="text-blue-600 underline text-sm">Ver lâmina</Link>
+            </div>
+            <div className="bg-white border border-gray-300 rounded-lg p-4 shadow">
+              <h4 className="text-xl font-semibold mb-2">Rounds</h4>
+              <p className="text-gray-600 mb-1">Contratos com valor e token fixos.</p>
+              <p className="text-gray-700"><strong>Preço:</strong> 0.040 USDT</p>
+              <Link href="/LaminaRound1.pdf" className="text-blue-600 underline text-sm">Ver lâmina</Link>
+            </div>
           </div>
 
           <div className="text-sm text-gray-500 italic">
