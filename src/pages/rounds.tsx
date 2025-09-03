@@ -1,11 +1,60 @@
 // src/pages/rounds.tsx
-import React from 'react';
+import React, { useState } from 'react';
 import { useAccount } from 'wagmi';
 import Head from 'next/head';
 import Link from 'next/link';
+import { ethers } from 'ethers';
 
 export default function Rounds() {
   const { isConnected } = useAccount();
+  const [amount, setAmount] = useState("1000"); // valor inicial pré-preenchido
+  const [txStatus, setTxStatus] = useState(""); // mensagem de status
+
+  // Endereços
+  const USDT_ADDRESS = "0x55d398326f99059fF775485246999027B3197955";
+  const TOKENSALE_ADDRESS = "0x0f9483E001e4911BAF7c6Fc46ad269B05001F5C7";
+
+  const handleApprove = async () => {
+    try {
+      setTxStatus("Aprovando USDT...");
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+
+      const usdt = new ethers.Contract(
+        USDT_ADDRESS,
+        ["function approve(address spender, uint256 amount) public returns (bool)"],
+        signer
+      );
+
+      const tx = await usdt.approve(TOKENSALE_ADDRESS, ethers.utils.parseUnits(amount, 18));
+      await tx.wait();
+      setTxStatus("✅ USDT aprovado com sucesso.");
+    } catch (err) {
+      console.error(err);
+      setTxStatus("❌ Erro ao aprovar USDT.");
+    }
+  };
+
+  const handleBuyTokens = async () => {
+    try {
+      setTxStatus("Processando compra...");
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+
+      const tokenSale = new ethers.Contract(
+        TOKENSALE_ADDRESS,
+        ["function buyTokens(uint256 usdtAmount) public"],
+        signer
+      );
+
+      const tx = await tokenSale.buyTokens(ethers.utils.parseUnits(amount, 18));
+      await tx.wait();
+      setTxStatus("✅ Tokens comprados com sucesso!");
+    } catch (err) {
+      console.error(err);
+      setTxStatus("❌ Erro ao comprar tokens.");
+    }
+  };
 
   return (
     <>
@@ -24,9 +73,33 @@ export default function Rounds() {
             <div className="bg-gray-100 rounded-lg p-6 shadow-lg mb-6">
               <h2 className="text-xl font-semibold mb-2">Comprar Tokens DGT</h2>
               <p className="mb-4">Use USDT para adquirir seus tokens DGTEnergy.</p>
-              <button className="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded">
-                Comprar agora
-              </button>
+
+              <input
+                type="number"
+                value={amount}
+                onChange={(e) => setAmount(e.target.value)}
+                className="border border-gray-300 rounded-md px-4 py-2 mb-4 text-center"
+                placeholder="Valor em USDT"
+              />
+
+              <div className="flex justify-center gap-4">
+                <button
+                  onClick={handleApprove}
+                  className="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded"
+                >
+                  Aprovar
+                </button>
+                <button
+                  onClick={handleBuyTokens}
+                  className="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded"
+                >
+                  Comprar agora
+                </button>
+              </div>
+
+              {txStatus && (
+                <p className="text-sm mt-4 text-gray-700 italic">{txStatus}</p>
+              )}
             </div>
           ) : (
             <p className="text-gray-600 italic">Conecte sua carteira para comprar tokens.</p>
