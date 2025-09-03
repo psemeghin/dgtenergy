@@ -1,96 +1,68 @@
 // src/pages/rounds.tsx
-import React, { useState } from 'react';
-import { useAccount, useConnect, useDisconnect } from 'wagmi';
-import { InjectedConnector } from 'wagmi/connectors/injected';
-import Head from 'next/head';
-import Link from 'next/link';
+import Head from "next/head";
+import { useAccount } from "wagmi";
+import Link from "next/link";
 
-export default function Rounds() {
-  const [amount, setAmount] = useState("1000");
-  const [txStatus, setTxStatus] = useState("");
-
-  const { address, isConnected } = useAccount();
-  const { connect } = useConnect({ connector: new InjectedConnector() });
-  const { disconnect } = useDisconnect();
-
-  const handleApprove = async () => {
-    setTxStatus("Solicitando aprovação...");
-    try {
-      // simulação: substituir pela lógica real de aprovação
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      setTxStatus("✅ Aprovado com sucesso!");
-    } catch (error) {
-      setTxStatus("❌ Falha na aprovação.");
-    }
-  };
-
-  const handleBuy = async () => {
-    setTxStatus("Processando compra...");
-    try {
-      // simulação: substituir pela lógica real de compra
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      setTxStatus("✅ Compra concluída com sucesso!");
-    } catch (error) {
-      setTxStatus("❌ Falha na compra.");
-    }
-  };
+export default function RoundsPage() {
+  const { isConnected } = useAccount();
 
   return (
     <>
       <Head>
-        <title>DGT Energy - Rounds</title>
+        <title>DGTEnergy — Token Sale Portal</title>
+        <meta
+          name="description"
+          content="Participe da venda do token DGT-Energy. Etapas transparentes com acesso antecipado e vantagens para investidores estratégicos."
+        />
       </Head>
 
-      <section className="bg-white text-gray-800 py-16 px-6">
-        <div className="max-w-5xl mx-auto text-center">
-          <h1 className="text-4xl font-bold mb-4">Participar da Venda de Tokens</h1>
-          <p className="text-lg mb-6">
+      <main className="max-w-6xl mx-auto px-6 py-16 text-gray-800 bg-white">
+        {/* Hero Section com painel de compra */}
+        <section className="text-center mb-16">
+          <h1 className="font-display text-4xl md:text-5xl mb-4">
+            Participar da Venda de Tokens
+          </h1>
+          <p className="font-sans text-lg text-gray-600 mb-6">
             Acompanhe as fases e oportunidades de compra do token DGT-Energy.
           </p>
 
-          {!isConnected ? (
-            <button
-              onClick={() => connect()}
-              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded mb-6"
-            >
-              Conectar Carteira
-            </button>
-          ) : (
-            <div className="bg-gray-100 rounded-lg p-6 shadow-lg mb-8">
-              <h2 className="text-xl font-semibold mb-2">Comprar Tokens DGT</h2>
-              <p className="mb-4">Use USDT (BEP-20) para adquirir seus tokens DGTEnergy.</p>
-
+          {/* Painel de Compra */}
+          {isConnected ? (
+            <div className="bg-gray-100 p-6 rounded-lg max-w-xl mx-auto shadow-md mb-6">
+              <p className="mb-2 text-sm font-medium text-gray-700">
+                Comprar Tokens DGT
+              </p>
+              <p className="text-sm text-gray-500 mb-4">
+                Use USDT (BEP-20) para adquirir seus tokens DGTEnergy.
+              </p>
               <input
                 type="number"
-                value={amount}
-                onChange={(e) => setAmount(e.target.value)}
-                className="border border-gray-300 rounded px-4 py-2 mb-4 w-40 text-center"
+                placeholder="1000"
+                className="w-full mb-4 px-4 py-2 rounded-md border border-gray-300"
               />
-
-              <div className="flex justify-center gap-4">
-                <button
-                  onClick={handleApprove}
-                  className="bg-yellow-400 hover:bg-yellow-500 text-white font-semibold py-2 px-6 rounded"
-                >
+              <div className="flex gap-4 justify-center">
+                <button className="bg-yellow-400 hover:opacity-90 px-6 py-2 font-semibold rounded-md">
                   Aprovar
                 </button>
-                <button
-                  onClick={handleBuy}
-                  className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-6 rounded"
-                >
+                <button className="bg-green-500 hover:opacity-90 text-white px-6 py-2 font-semibold rounded-md">
                   Comprar
                 </button>
               </div>
-
-              {txStatus && (
-                <p className="mt-4 text-sm text-gray-700">{txStatus}</p>
-              )}
             </div>
+          ) : (
+            <p className="text-sm text-gray-500">
+              Conecte sua carteira para comprar tokens.
+            </p>
           )}
+        </section>
 
-          <div className="bg-white border border-gray-200 rounded-lg p-6 mb-8 mt-10 shadow">
-            <h3 className="text-2xl font-semibold text-green-800 mb-4">Etapa Atual: Whitelist</h3>
-            <ul className="text-left text-gray-700 space-y-2">
+        {/* Progress Card da Etapa Ativa */}
+        <section className="max-w-xl mx-auto mb-12">
+          <div className="bg-white shadow p-6 border border-gray-200 rounded-lg">
+            <h2 className="text-lg font-semibold text-green-700 mb-2">
+              Etapa Atual: Whitelist
+            </h2>
+            <ul className="text-sm text-gray-700 space-y-1">
               <li><strong>Objetivo:</strong> 350.000 USDT</li>
               <li><strong>Tokens disponíveis:</strong> 18.000.000</li>
               <li><strong>Preço por token:</strong> 0.030 USDT</li>
@@ -99,57 +71,83 @@ export default function Rounds() {
             </ul>
           </div>
 
-          <div className="mb-6">
+          {/* Lâmina PDF */}
+          <div className="text-center mt-4">
             <a
-              href="/LaminaWhitelist.pdf"
+              href="/docs/LaminaExample1.pdf"
+              className="text-blue-600 underline text-sm"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-600 underline"
             >
-              Baixar Lâmina da Whitelist
+              Baixar Lâmina da Etapa
             </a>
           </div>
+        </section>
 
-          <div className="bg-blue-50 border border-blue-200 rounded-md p-4 mb-10 text-sm text-blue-900">
-            <p>
-              <strong>Por que Early Bird?</strong> Comprar antecipadamente garante acesso ao menor preço, com tokens bloqueados e possibilidade de valorização no mercado secundário (P2P). Cada rodada futura representa contratos reais com empresas do setor energético.
+        {/* Cards das Etapas */}
+        <section className="mb-20">
+          <div className="text-center mb-4">
+            <p className="text-gray-600 text-sm max-w-2xl mx-auto">
+              As etapas Early Bird garantem tokens a preço fixo, valorização progressiva no mercado secundário (P2P), tokens bloqueados para estabilidade de preço, e conexão direta com contratos reais no setor energético.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            <div className="bg-white border border-gray-300 rounded-lg p-4 shadow">
-              <h4 className="text-xl font-semibold mb-2">Whitelist</h4>
-              <p className="text-gray-600 mb-1">Implementação inicial do projeto.</p>
-              <p className="text-gray-700"><strong>Preço:</strong> 0.030 USDT</p>
-              <Link href="/LaminaWhitelist.pdf" className="text-blue-600 underline text-sm">
-                Ver lâmina
+          <div className="grid md:grid-cols-3 gap-6">
+            {/* Etapa 1 - Whitelist */}
+            <div className="bg-white shadow-md border border-gray-200 p-6 rounded-lg">
+              <h3 className="text-xl font-semibold mb-2">Whitelist (Aberta)</h3>
+              <p className="text-sm text-gray-600 mb-4">
+                Preço: <strong>0.030</strong> USDT/DGTE<br />
+                Tokens: <strong>18.000.000</strong><br />
+                Incentivo Early Bird
+              </p>
+              <Link href="/connect">
+                <span className="inline-block bg-green-500 text-white font-semibold px-4 py-2 rounded-md hover:opacity-90">
+                  Participar
+                </span>
               </Link>
             </div>
 
-            <div className="bg-white border border-gray-300 rounded-lg p-4 shadow">
-              <h4 className="text-xl font-semibold mb-2">Seed</h4>
-              <p className="text-gray-600 mb-1">Investimento em empresa do setor energético.</p>
-              <p className="text-gray-700"><strong>Preço:</strong> 0.036 USDT</p>
-              <Link href="/LaminaSeed.pdf" className="text-blue-600 underline text-sm">
-                Ver lâmina
-              </Link>
+            {/* Etapa 2 - Seed */}
+            <div className="bg-white shadow-md border border-gray-200 p-6 rounded-lg">
+              <h3 className="text-xl font-semibold mb-2">Seed (Em breve)</h3>
+              <p className="text-sm text-gray-600 mb-4">
+                Preço: <strong>0.036</strong> USDT/DGTE<br />
+                Tokens: <strong>14.500.000</strong><br />
+                Incentivo Early Bird
+              </p>
+              <span className="inline-block bg-yellow-400 font-semibold px-4 py-2 rounded-md cursor-default opacity-70">
+                M.O.U. Assinado
+              </span>
             </div>
 
-            <div className="bg-white border border-gray-300 rounded-lg p-4 shadow">
-              <h4 className="text-xl font-semibold mb-2">Rounds</h4>
-              <p className="text-gray-600 mb-1">Contratos com valor e token fixos.</p>
-              <p className="text-gray-700"><strong>Preço:</strong> 0.040 USDT</p>
-              <Link href="/LaminaRound1.pdf" className="text-blue-600 underline text-sm">
-                Ver lâmina
-              </Link>
+            {/* Etapa 3 - Rounds */}
+            <div className="bg-white shadow-md border border-gray-200 p-6 rounded-lg">
+              <h3 className="text-xl font-semibold mb-2">Rounds (Aguardando)</h3>
+              <p className="text-sm text-gray-600 mb-4">
+                Preço: <strong>0.040</strong> USDT/DGTE<br />
+                Tokens: Variável por rodada<br />
+                Valor conforme contrato fechado
+              </p>
+              <span className="inline-block bg-gray-400 text-white font-semibold px-4 py-2 rounded-md cursor-default opacity-60">
+                Em Hold
+              </span>
             </div>
           </div>
+        </section>
 
-          <div className="text-sm text-gray-500 italic">
-            Todas as compras exigem verificação KYC/AML. Tokens comprados são liberados automaticamente.
-          </div>
-        </div>
-      </section>
+        {/* Conectar Carteira */}
+        {!isConnected && (
+          <section className="text-center mt-12">
+            <p className="text-gray-500 text-sm">Conecte sua carteira para participar da compra de tokens.</p>
+            <Link href="/connect">
+              <span className="inline-block mt-4 bg-blue-600 text-white px-6 py-2 rounded-md font-semibold hover:opacity-90">
+                Conectar Carteira
+              </span>
+            </Link>
+          </section>
+        )}
+      </main>
     </>
   );
 }
