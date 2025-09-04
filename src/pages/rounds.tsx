@@ -1,189 +1,129 @@
 // src/pages/rounds.tsx
+import { useEffect, useState } from "react";
 import Head from "next/head";
-import { useAccount, useContractWrite, usePrepareContractWrite } from "wagmi";
-import Link from "next/link";
-import { useState } from "react";
+import { useAccount, useContractWrite, useNetwork, useSwitchNetwork, usePrepareContractWrite, useWaitForTransaction } from "wagmi";
 import { parseUnits } from "viem";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { formatEther } from "ethers";
 
-// Constantes do contrato
-const CONTRACT_ADDRESS = "0xd68f72a2bd8eb57f88b977781199d88ce7624984";
-const CONTRACT_ABI = [
-  {
-    name: "approve",
-    type: "function",
-    stateMutability: "nonpayable",
-    inputs: [
-      { name: "spender", type: "address" },
-      { name: "amount", type: "uint256" }
-    ],
-    outputs: []
-  },
-  {
-    name: "buy",
-    type: "function",
-    stateMutability: "nonpayable",
-    inputs: [
-      { name: "usdtAmount", type: "uint256" }
-    ],
-    outputs: []
-  }
+const USDT_ADDRESS = "0x55d398326f99059fF775485246999027B3197955";
+const TOKEN_SALE_ADDRESS = "0xd68f72a2bd8eb57f88b977781199d88ce7624984";
+const DGT_PRICE = "0.03"; // Em USDT
+
+// ABIs mínimos necessários
+const USDT_ABI = [
+  "function approve(address spender, uint256 amount) public returns (bool)",
+  "function allowance(address owner, address spender) public view returns (uint256)",
+  "function decimals() view returns (uint8)"
+];
+
+const SALE_ABI = [
+  "function buy(uint256 usdtAmount) public",
 ];
 
 export default function RoundsPage() {
-  const { isConnected, address } = useAccount();
-  const [amount, setAmount] = useState("");
+  const { address, isConnected } = useAccount();
+  const { chain } = useNetwork();
+  const { switchNetwork } = useSwitchNetwork();
 
-  const { config: buyConfig } = usePrepareContractWrite({
-    address: CONTRACT_ADDRESS,
-    abi: CONTRACT_ABI,
-    functionName: "buy",
-    args: [amount ? parseUnits(amount, 6) : undefined],
-    enabled: !!amount,
+  const [usdtAmount, setUsdtAmount] = useState("100");
+  const [isApproved, setIsApproved] = useState(false);
+
+  const usdtParsed = parseUnits(usdtAmount, 18); // Assume 18 decimais — ajustar para 6 se USDT na BNB for 6
+
+  // ───── PREPARE: APPROVE ─────
+  const { config: approveConfig } = usePrepareContractWrite({
+    address: USDT_ADDRESS,
+    abi: USDT_ABI,
+    functionName: "approve",
+    args: [TOKEN_SALE_ADDRESS, usdtParsed],
+    enabled: isConnected,
   });
 
-  const { write: buyTokens, isLoading: isBuying } = useContractWrite(buyConfig);
+  const { write: approve, isLoading: approving, data: approveTx } = useContractWrite(approveConfig);
+  const { isSuccess: approved } = useWaitForTransaction({ hash: approveTx?.hash });
+
+  // Detecta aprovação (simples, sem uso de allowance real ainda)
+  useEffect(() => {
+    if (approved) setIsApproved(true);
+  }, [approved]);
+
+  // ───── PREPARE: BUY ─────
+  const { config: buyConfig } = usePrepareContractWrite({
+    address: TOKEN_SALE_ADDRESS,
+    abi: SALE_ABI,
+    functionName: "buy",
+    args: [usdtParsed],
+    enabled: isApproved && isConnected,
+  });
+
+  const { write: buy, isLoading: buying, data: buyTx } = useContractWrite(buyConfig);
 
   return (
     <>
       <Head>
         <title>DGTEnergy — Token Sale Portal</title>
-        <meta
-          name="description"
-          content="Participe da venda do token DGT-Energy. Etapas transparentes com acesso antecipado e vantagens para investidores estratégicos."
-        />
       </Head>
 
-      <main className="max-w-6xl mx-auto px-6 py-16 text-gray-800 bg-white">
-        <section className="text-center mb-16">
-          <h1 className="font-display text-4xl md:text-5xl mb-4">
-            Participar da Venda de Tokens
-          </h1>
-          <p className="font-sans text-lg text-gray-600 mb-6">
-            Acompanhe as fases e oportunidades de compra do token DGT-Energy.
-          </p>
+      <main className="max-w-4xl mx-auto px-4 py-12 text-gray-800 bg-white">
+        <section className="text-center mb-10">
+          <h1 className="text-4xl font-bold mb-2">Participar da Venda de Tokens</h1>
+          <p className="text-gray-600 mb-4">Compre DGT-Energy usando USDT na rede BNB</p>
 
-          {isConnected ? (
-            <div className="bg-gray-100 p-6 rounded-lg max-w-xl mx-auto shadow-md mb-6">
-              <p className="mb-2 text-sm font-medium text-gray-700">
-                Comprar Tokens DGT
-              </p>
-              <p className="text-sm text-gray-500 mb-4">
-                Use USDT (BEP-20) para adquirir seus tokens DGTEnergy.
-              </p>
-              <input
-                type="number"
-                placeholder="1000"
-                value={amount}
-                onChange={(e) => setAmount(e.target.value)}
-                className="w-full mb-4 px-4 py-2 rounded-md border border-gray-300"
-              />
-              <div className="flex gap-4 justify-center">
-                <button
-                  className="bg-yellow-400 hover:opacity-90 px-6 py-2 font-semibold rounded-md"
-                  disabled
-                >
-                  Aprovar
-                </button>
-                <button
-                  onClick={() => buyTokens?.()}
-                  className="bg-green-500 hover:opacity-90 text-white px-6 py-2 font-semibold rounded-md"
-                  disabled={!buyTokens || isBuying}
-                >
-                  {isBuying ? "Comprando..." : "Comprar"}
-                </button>
-              </div>
+          {!isConnected && (
+            <div className="mt-6">
+              <ConnectButton />
             </div>
-          ) : (
-            <p className="text-sm text-gray-500">
-              Conecte sua carteira para comprar tokens.
-            </p>
+          )}
+
+          {isConnected && (
+            <>
+              {chain?.id !== 56 && (
+                <div className="bg-yellow-100 text-yellow-800 p-3 rounded mb-4">
+                  ⚠️ Você está conectado à rede errada.{" "}
+                  <button
+                    onClick={() => switchNetwork?.(56)}
+                    className="underline font-semibold"
+                  >
+                    Mudar para BNB
+                  </button>
+                </div>
+              )}
+
+              <div className="bg-gray-100 p-6 rounded-lg shadow-md">
+                <label className="block mb-2 text-sm font-medium text-gray-700">
+                  Quantidade de USDT:
+                </label>
+                <input
+                  type="number"
+                  value={usdtAmount}
+                  onChange={(e) => setUsdtAmount(e.target.value)}
+                  className="w-full mb-4 px-4 py-2 rounded-md border border-gray-300"
+                />
+
+                <div className="flex gap-4 justify-center">
+                  {!isApproved ? (
+                    <button
+                      onClick={() => approve?.()}
+                      disabled={approving}
+                      className="bg-yellow-400 hover:opacity-90 px-6 py-2 font-semibold rounded-md"
+                    >
+                      {approving ? "Aprovando..." : "Aprovar"}
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => buy?.()}
+                      disabled={buying}
+                      className="bg-green-500 hover:opacity-90 text-white px-6 py-2 font-semibold rounded-md"
+                    >
+                      {buying ? "Comprando..." : "Comprar Tokens"}
+                    </button>
+                  )}
+                </div>
+              </div>
+            </>
           )}
         </section>
-
-        <section className="max-w-xl mx-auto mb-12">
-          <div className="bg-white shadow p-6 border border-gray-200 rounded-lg">
-            <h2 className="text-lg font-semibold text-green-700 mb-2">
-              Etapa Atual: Whitelist
-            </h2>
-            <ul className="text-sm text-gray-700 space-y-1">
-              <li><strong>Objetivo:</strong> 350.000 USDT</li>
-              <li><strong>Tokens disponíveis:</strong> 18.000.000</li>
-              <li><strong>Preço por token:</strong> 0.030 USDT</li>
-              <li><strong>Status:</strong> Aberta</li>
-              <li><strong>Incentivo:</strong> Early Bird</li>
-            </ul>
-          </div>
-
-          <div className="text-center mt-4">
-            <a
-              href="/docs/LaminaExample1.pdf"
-              className="text-blue-600 underline text-sm"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Baixar Lâmina da Etapa
-            </a>
-          </div>
-        </section>
-
-        <section className="mb-20">
-          <div className="text-center mb-4">
-            <p className="text-gray-600 text-sm max-w-2xl mx-auto">
-              As etapas Early Bird garantem tokens a preço fixo, valorização progressiva no mercado secundário (P2P), tokens bloqueados para estabilidade de preço, e conexão direta com contratos reais no setor energético.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-white shadow-md border border-gray-200 p-6 rounded-lg">
-              <h3 className="text-xl font-semibold mb-2">Whitelist (Aberta)</h3>
-              <p className="text-sm text-gray-600 mb-4">
-                Preço: <strong>0.030</strong> USDT/DGTE<br />
-                Tokens: <strong>18.000.000</strong><br />
-                Incentivo Early Bird
-              </p>
-              <Link href="/connect">
-                <span className="inline-block bg-green-500 text-white font-semibold px-4 py-2 rounded-md hover:opacity-90">
-                  Participar
-                </span>
-              </Link>
-            </div>
-
-            <div className="bg-white shadow-md border border-gray-200 p-6 rounded-lg">
-              <h3 className="text-xl font-semibold mb-2">Seed (Em breve)</h3>
-              <p className="text-sm text-gray-600 mb-4">
-                Preço: <strong>0.036</strong> USDT/DGTE<br />
-                Tokens: <strong>14.500.000</strong><br />
-                Incentivo Early Bird
-              </p>
-              <span className="inline-block bg-yellow-400 font-semibold px-4 py-2 rounded-md cursor-default opacity-70">
-                M.O.U. Assinado
-              </span>
-            </div>
-
-            <div className="bg-white shadow-md border border-gray-200 p-6 rounded-lg">
-              <h3 className="text-xl font-semibold mb-2">Rounds (Aguardando)</h3>
-              <p className="text-sm text-gray-600 mb-4">
-                Preço: <strong>0.040</strong> USDT/DGTE<br />
-                Tokens: Variável por rodada<br />
-                Valor conforme contrato fechado
-              </p>
-              <span className="inline-block bg-gray-400 text-white font-semibold px-4 py-2 rounded-md cursor-default opacity-60">
-                Em Hold
-              </span>
-            </div>
-          </div>
-        </section>
-
-        {!isConnected && (
-          <section className="text-center mt-12">
-            <p className="text-gray-500 text-sm">Conecte sua carteira para participar da compra de tokens.</p>
-            <Link href="/connect">
-              <span className="inline-block mt-4 bg-blue-600 text-white px-6 py-2 rounded-md font-semibold hover:opacity-90">
-                Conectar Carteira
-              </span>
-            </Link>
-          </section>
-        )}
       </main>
     </>
   );
