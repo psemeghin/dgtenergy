@@ -1,10 +1,47 @@
 // src/pages/rounds.tsx
 import Head from "next/head";
-import { useAccount } from "wagmi";
+import { useAccount, useContractWrite, usePrepareContractWrite } from "wagmi";
 import Link from "next/link";
+import { useState } from "react";
+import { parseUnits } from "viem";
+
+// Constantes do contrato
+const CONTRACT_ADDRESS = "0xd68f72a2bd8eb57f88b977781199d88ce7624984";
+const CONTRACT_ABI = [
+  {
+    name: "approve",
+    type: "function",
+    stateMutability: "nonpayable",
+    inputs: [
+      { name: "spender", type: "address" },
+      { name: "amount", type: "uint256" }
+    ],
+    outputs: []
+  },
+  {
+    name: "buy",
+    type: "function",
+    stateMutability: "nonpayable",
+    inputs: [
+      { name: "usdtAmount", type: "uint256" }
+    ],
+    outputs: []
+  }
+];
 
 export default function RoundsPage() {
-  const { isConnected } = useAccount();
+  const { isConnected, address } = useAccount();
+  const [amount, setAmount] = useState("");
+
+  const { config: buyConfig } = usePrepareContractWrite({
+    address: CONTRACT_ADDRESS,
+    abi: CONTRACT_ABI,
+    functionName: "buy",
+    args: [amount ? parseUnits(amount, 6) : undefined],
+    enabled: !!amount,
+  });
+
+  const { write: buyTokens, isLoading: isBuying } = useContractWrite(buyConfig);
 
   return (
     <>
@@ -17,7 +54,6 @@ export default function RoundsPage() {
       </Head>
 
       <main className="max-w-6xl mx-auto px-6 py-16 text-gray-800 bg-white">
-        {/* Hero Section com painel de compra */}
         <section className="text-center mb-16">
           <h1 className="font-display text-4xl md:text-5xl mb-4">
             Participar da Venda de Tokens
@@ -26,7 +62,6 @@ export default function RoundsPage() {
             Acompanhe as fases e oportunidades de compra do token DGT-Energy.
           </p>
 
-          {/* Painel de Compra */}
           {isConnected ? (
             <div className="bg-gray-100 p-6 rounded-lg max-w-xl mx-auto shadow-md mb-6">
               <p className="mb-2 text-sm font-medium text-gray-700">
@@ -38,14 +73,23 @@ export default function RoundsPage() {
               <input
                 type="number"
                 placeholder="1000"
+                value={amount}
+                onChange={(e) => setAmount(e.target.value)}
                 className="w-full mb-4 px-4 py-2 rounded-md border border-gray-300"
               />
               <div className="flex gap-4 justify-center">
-                <button className="bg-yellow-400 hover:opacity-90 px-6 py-2 font-semibold rounded-md">
+                <button
+                  className="bg-yellow-400 hover:opacity-90 px-6 py-2 font-semibold rounded-md"
+                  disabled
+                >
                   Aprovar
                 </button>
-                <button className="bg-green-500 hover:opacity-90 text-white px-6 py-2 font-semibold rounded-md">
-                  Comprar
+                <button
+                  onClick={() => buyTokens?.()}
+                  className="bg-green-500 hover:opacity-90 text-white px-6 py-2 font-semibold rounded-md"
+                  disabled={!buyTokens || isBuying}
+                >
+                  {isBuying ? "Comprando..." : "Comprar"}
                 </button>
               </div>
             </div>
@@ -56,7 +100,6 @@ export default function RoundsPage() {
           )}
         </section>
 
-        {/* Progress Card da Etapa Ativa */}
         <section className="max-w-xl mx-auto mb-12">
           <div className="bg-white shadow p-6 border border-gray-200 rounded-lg">
             <h2 className="text-lg font-semibold text-green-700 mb-2">
@@ -71,7 +114,6 @@ export default function RoundsPage() {
             </ul>
           </div>
 
-          {/* Lâmina PDF */}
           <div className="text-center mt-4">
             <a
               href="/docs/LaminaExample1.pdf"
@@ -84,7 +126,6 @@ export default function RoundsPage() {
           </div>
         </section>
 
-        {/* Cards das Etapas */}
         <section className="mb-20">
           <div className="text-center mb-4">
             <p className="text-gray-600 text-sm max-w-2xl mx-auto">
@@ -93,7 +134,6 @@ export default function RoundsPage() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
-            {/* Etapa 1 - Whitelist */}
             <div className="bg-white shadow-md border border-gray-200 p-6 rounded-lg">
               <h3 className="text-xl font-semibold mb-2">Whitelist (Aberta)</h3>
               <p className="text-sm text-gray-600 mb-4">
@@ -108,7 +148,6 @@ export default function RoundsPage() {
               </Link>
             </div>
 
-            {/* Etapa 2 - Seed */}
             <div className="bg-white shadow-md border border-gray-200 p-6 rounded-lg">
               <h3 className="text-xl font-semibold mb-2">Seed (Em breve)</h3>
               <p className="text-sm text-gray-600 mb-4">
@@ -121,7 +160,6 @@ export default function RoundsPage() {
               </span>
             </div>
 
-            {/* Etapa 3 - Rounds */}
             <div className="bg-white shadow-md border border-gray-200 p-6 rounded-lg">
               <h3 className="text-xl font-semibold mb-2">Rounds (Aguardando)</h3>
               <p className="text-sm text-gray-600 mb-4">
@@ -136,7 +174,6 @@ export default function RoundsPage() {
           </div>
         </section>
 
-        {/* Conectar Carteira */}
         {!isConnected && (
           <section className="text-center mt-12">
             <p className="text-gray-500 text-sm">Conecte sua carteira para participar da compra de tokens.</p>
