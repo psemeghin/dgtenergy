@@ -33,7 +33,7 @@ export default function RoundsPage() {
   const [usdtAmount, setUsdtAmount] = useState("1000");
   const [isApproved, setIsApproved] = useState(false);
 
-  const usdtParsed = parseUnits(usdtAmount, 6); // USDT da BNB tem 6 decimais
+  const usdtParsed = parseUnits(usdtAmount, 6); // USDT na BNB usa 6 decimais
 
   const { config: approveConfig } = usePrepareContractWrite({
     address: USDT_ADDRESS,
@@ -67,6 +67,7 @@ export default function RoundsPage() {
       </Head>
 
       <main className="bg-white text-gray-800 min-h-screen px-6 py-12">
+        {/* Hero Section: Painel de Compra */}
         <section className="text-center mb-12">
           <h1 className="text-4xl font-bold mb-2">Participar da Venda de Tokens</h1>
           <p className="text-gray-600">Compre DGT-Energy usando USDT na rede BNB</p>
@@ -83,12 +84,12 @@ export default function RoundsPage() {
             <>
               {chain?.id !== 56 && (
                 <div className="bg-yellow-100 text-yellow-800 p-3 rounded mb-4 text-sm">
-                  ⚠️ Você está conectado à rede errada.{" "}
+                  ⚠️ Rede incorreta.{" "}
                   <button
                     onClick={() => switchNetwork?.(56)}
                     className="underline font-semibold"
                   >
-                    Mudar para BNB
+                    Mudar para BNB Chain
                   </button>
                 </div>
               )}
@@ -126,13 +127,14 @@ export default function RoundsPage() {
           )}
         </section>
 
+        {/* Explicação Early Bird */}
         <section className="max-w-4xl mx-auto text-center mb-10 px-4">
           <div className="bg-green-100 text-green-800 p-4 rounded mb-6 text-sm">
-            🐣 <strong>Early Bird:</strong> quem compra agora, compra com vantagem. Tokens bloqueados e negociáveis via P2P, com valorização progressiva. Cada rodada representa um negócio real no setor energético.
+            <strong>🐣 Early Bird:</strong> quem entra agora tem o melhor preço. Tokens são bloqueados e negociáveis via P2P, com valorização natural. Cada rodada representa um contrato real no setor energético — o preço do token na rodada é fixo, mas sua valorização no mercado secundário será progressiva.
           </div>
 
+          {/* Cards das Etapas */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            {/* WHITELIST */}
             <div className="bg-gray-50 border rounded-lg p-4 shadow">
               <h3 className="text-xl font-semibold mb-1">Whitelist</h3>
               <p className="text-sm mb-1">Preço: 0.030 USDT</p>
@@ -141,7 +143,6 @@ export default function RoundsPage() {
               <p className="text-xs mt-2 text-gray-600">Setup Cost com KYC obrigatório</p>
             </div>
 
-            {/* SEED */}
             <div className="bg-gray-50 border rounded-lg p-4 shadow">
               <h3 className="text-xl font-semibold mb-1">Seed</h3>
               <p className="text-sm mb-1">Preço: 0.036 USDT</p>
@@ -150,7 +151,6 @@ export default function RoundsPage() {
               <p className="text-xs mt-2 text-gray-600">Lâmina disponível (M.O.U. assinado)</p>
             </div>
 
-            {/* ROUNDS */}
             <div className="bg-gray-50 border rounded-lg p-4 shadow">
               <h3 className="text-xl font-semibold mb-1">Rounds</h3>
               <p className="text-sm mb-1">Preço: 0.040 USDT</p>
@@ -160,6 +160,7 @@ export default function RoundsPage() {
             </div>
           </div>
 
+          {/* Lâmina PDF */}
           <div className="mb-6">
             <a
               href="/LaminaExample1.pdf"
