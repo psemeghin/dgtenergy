@@ -7,7 +7,7 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { formatEther } from "ethers";
 
 const USDT_ADDRESS = "0x55d398326f99059fF775485246999027B3197955";
-const TOKEN_SALE_ADDRESS = "0xd68f72a2bd8eb57f88b977781199d88ce7624984";
+const TOKEN_SALE_ADDRESS = "0x6a9b64d39cf2543f80c752a9670a8477c1a6db5c";
 const DGT_PRICE = "0.03"; // Em USDT
 
 // ABIs mínimos necessários
@@ -18,7 +18,7 @@ const USDT_ABI = [
 ];
 
 const SALE_ABI = [
-  "function buy(uint256 usdtAmount) public",
+  "function buyTokens(uint256 usdtAmount) external",
 ];
 
 export default function RoundsPage() {
@@ -26,10 +26,10 @@ export default function RoundsPage() {
   const { chain } = useNetwork();
   const { switchNetwork } = useSwitchNetwork();
 
-  const [usdtAmount, setUsdtAmount] = useState("100");
+  const [usdtAmount, setUsdtAmount] = useState("1000");
   const [isApproved, setIsApproved] = useState(false);
 
-  const usdtParsed = parseUnits(usdtAmount, 18); // Assume 18 decimais — ajustar para 6 se USDT na BNB for 6
+  const usdtParsed = parseUnits(usdtAmount, 6); // Assume 18 decimais — ajustar para 6 se USDT na BNB for 6
 
   // ───── PREPARE: APPROVE ─────
   const { config: approveConfig } = usePrepareContractWrite({
