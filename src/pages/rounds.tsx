@@ -1,24 +1,28 @@
 // src/pages/rounds.tsx
 import { useEffect, useState } from "react";
 import Head from "next/head";
-import { useAccount, useContractWrite, useNetwork, useSwitchNetwork, usePrepareContractWrite, useWaitForTransaction } from "wagmi";
+import {
+  useAccount,
+  useContractWrite,
+  useNetwork,
+  useSwitchNetwork,
+  usePrepareContractWrite,
+  useWaitForTransaction,
+} from "wagmi";
 import { parseUnits } from "viem";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import { formatEther } from "ethers";
 
-const USDT_ADDRESS = "0x55d398326f99059fF775485246999027B3197955";
+const USDT_ADDRESS = "0x55d398326f99059fF775485246999027B3197955"; // BEP-20 USDT
 const TOKEN_SALE_ADDRESS = "0x6a9b64d39cf2543f80c752a9670a8477c1a6db5c";
-const DGT_PRICE = "0.03"; // Em USDT
 
-// ABIs mínimos necessários
 const USDT_ABI = [
   "function approve(address spender, uint256 amount) public returns (bool)",
   "function allowance(address owner, address spender) public view returns (uint256)",
-  "function decimals() view returns (uint8)"
+  "function decimals() view returns (uint8)",
 ];
 
 const SALE_ABI = [
-  "function buyTokens(uint256 usdtAmount) external",
+  "function buyTokens(uint256 usdtAmount)",
 ];
 
 export default function RoundsPage() {
@@ -29,9 +33,8 @@ export default function RoundsPage() {
   const [usdtAmount, setUsdtAmount] = useState("1000");
   const [isApproved, setIsApproved] = useState(false);
 
-  const usdtParsed = parseUnits(usdtAmount, 6); // Assume 18 decimais — ajustar para 6 se USDT na BNB for 6
+  const usdtParsed = parseUnits(usdtAmount, 6); // USDT BEP-20 = 6 casas decimais
 
-  // ───── PREPARE: APPROVE ─────
   const { config: approveConfig } = usePrepareContractWrite({
     address: USDT_ADDRESS,
     abi: USDT_ABI,
@@ -43,49 +46,47 @@ export default function RoundsPage() {
   const { write: approve, isLoading: approving, data: approveTx } = useContractWrite(approveConfig);
   const { isSuccess: approved } = useWaitForTransaction({ hash: approveTx?.hash });
 
-  // Detecta aprovação (simples, sem uso de allowance real ainda)
   useEffect(() => {
     if (approved) setIsApproved(true);
   }, [approved]);
 
-  // ───── PREPARE: BUY ─────
   const { config: buyConfig } = usePrepareContractWrite({
     address: TOKEN_SALE_ADDRESS,
     abi: SALE_ABI,
-    functionName: "buy",
+    functionName: "buyTokens",
     args: [usdtParsed],
     enabled: isApproved && isConnected,
   });
 
-  const { write: buy, isLoading: buying, data: buyTx } = useContractWrite(buyConfig);
+  const { write: buy, isLoading: buying } = useContractWrite(buyConfig);
 
   return (
     <>
       <Head>
-        <title>DGTEnergy — Token Sale Portal</title>
+        <title>DGT-Energy — Venda de Tokens</title>
       </Head>
 
-      <main className="max-w-4xl mx-auto px-4 py-12 text-gray-800 bg-white">
-        <section className="text-center mb-10">
-          <h1 className="text-4xl font-bold mb-2">Participar da Venda de Tokens</h1>
-          <p className="text-gray-600 mb-4">Compre DGT-Energy usando USDT na rede BNB</p>
+      <main className="bg-white text-gray-900 min-h-screen py-12 px-6">
+        <div className="max-w-3xl mx-auto">
+          <h1 className="text-4xl font-bold text-center mb-2">Participar da Venda de Tokens</h1>
+          <p className="text-center text-gray-600 mb-8">
+            Compre DGT-Energy usando USDT na rede BNB
+          </p>
 
-          {!isConnected && (
-            <div className="mt-6">
+          {!isConnected ? (
+            <div className="flex justify-center">
               <ConnectButton />
             </div>
-          )}
-
-          {isConnected && (
+          ) : (
             <>
               {chain?.id !== 56 && (
-                <div className="bg-yellow-100 text-yellow-800 p-3 rounded mb-4">
-                  ⚠️ Você está conectado à rede errada.{" "}
+                <div className="bg-yellow-100 text-yellow-800 p-4 rounded mb-4 text-center">
+                  ⚠️ Rede incorreta.{" "}
                   <button
                     onClick={() => switchNetwork?.(56)}
                     className="underline font-semibold"
                   >
-                    Mudar para BNB
+                    Clique aqui para mudar para BNB Smart Chain.
                   </button>
                 </div>
               )}
@@ -114,7 +115,7 @@ export default function RoundsPage() {
                     <button
                       onClick={() => buy?.()}
                       disabled={buying}
-                      className="bg-green-500 hover:opacity-90 text-white px-6 py-2 font-semibold rounded-md"
+                      className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 font-semibold rounded-md"
                     >
                       {buying ? "Comprando..." : "Comprar Tokens"}
                     </button>
@@ -123,7 +124,7 @@ export default function RoundsPage() {
               </div>
             </>
           )}
-        </section>
+        </div>
       </main>
     </>
   );
