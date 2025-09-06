@@ -1,5 +1,5 @@
 // pages/connect.tsx
-import { useAccount, useBalance, useNetwork } from 'wagmi'
+import { useAccount, useBalance, useNetwork } from 'wagmi/hooks'
 import Head from 'next/head'
 
 const USDT_ADDRESS = '0x55d398326f99059fF775485246999027B3197955' // BEP-20
