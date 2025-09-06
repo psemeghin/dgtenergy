@@ -34,7 +34,7 @@ export default function RoundsPage() {
 
   const [usdtAmount, setUsdtAmount] = useState("1000");
   const [isApproved, setIsApproved] = useState(false);
-  const [approvalHash, setApprovalHash] = useState<string | null>(null);
+  const [approvalHash, setApprovalHash] = useState<`0x${string}` | undefined>(undefined);
 
   const usdtParsed = parseUnits(usdtAmount, 6); // USDT BEP-20 = 6 decimais
 
