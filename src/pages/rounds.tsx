@@ -36,39 +36,28 @@ export default function RoundsPage() {
   const [isApproved, setIsApproved] = useState(false);
   const [approvalHash, setApprovalHash] = useState<`0x${string}` | undefined>(undefined);
 
-  const usdtParsed = parseUnits(usdtAmount, 6); // USDT BEP-20 = 6 decimais
+  const usdtParsed = parseUnits(usdtAmount || "0", 6);
 
-  // ──────────────── PREPARE: APPROVE ────────────────
+  // ───── APPROVE CONFIG ─────
   const { config: approveConfig } = usePrepareContractWrite({
-  address: USDT_ADDRESS,
-  abi: USDT_ABI,
-  functionName: "approve",
-  args: [TOKEN_SALE_ADDRESS, usdtParsed],
-  enabled: Boolean(address && usdtAmount), // <- Evita prepare "lazy"
-  cacheTime: 0,
+    address: USDT_ADDRESS,
+    abi: USDT_ABI,
+    functionName: "approve",
+    args: [TOKEN_SALE_ADDRESS, usdtParsed],
+    enabled: Boolean(address && usdtAmount),
+    cacheTime: 0,
   });
 
   const { write: approve, isLoading: approving } = useContractWrite({
-  ...approveConfig,
-  onSuccess(data) {
-    console.log("✅ approveConfig", approveConfig);
-    setApprovalHash(data.hash);
-  },
-  onError(error) {
-    console.error("❌ Erro no approve:", error);
+    ...approveConfig,
+    onSuccess(data) {
+      console.log("✅ Transação de approve enviada:", data.hash);
+      setApprovalHash(data.hash);
+    },
+    onError(error) {
+      console.error("❌ Erro ao aprovar:", error);
     },
   });
-
-  <button
-  onClick={() => {
-    console.log("🟡 Clicado em Aprovar");
-    approve?.();
-  }}
-  disabled={approving}
-  className="bg-yellow-400 hover:opacity-90 px-6 py-2 font-semibold rounded-md"
->
-  {approving ? "Aprovando..." : "Aprovar"}
-</button>
 
   const { isSuccess: approvalSuccess } = useWaitForTransaction({
     hash: approvalHash,
@@ -77,18 +66,19 @@ export default function RoundsPage() {
 
   useEffect(() => {
     if (approvalSuccess) {
-      console.log("Aprovação confirmada on-chain");
+      console.log("✅ Aprovação confirmada");
       setIsApproved(true);
     }
   }, [approvalSuccess]);
 
-  // ──────────────── PREPARE: BUY ────────────────
+  // ───── BUY CONFIG ─────
   const { config: buyConfig } = usePrepareContractWrite({
     address: TOKEN_SALE_ADDRESS,
     abi: SALE_ABI,
     functionName: "buyTokens",
     args: [usdtParsed],
-    enabled: isApproved && isConnected,
+    enabled: isApproved && Boolean(address),
+    cacheTime: 0,
   });
 
   const { write: buy, isLoading: buying } = useContractWrite(buyConfig);
@@ -139,7 +129,10 @@ export default function RoundsPage() {
               <div className="flex gap-4 justify-center">
                 {!isApproved ? (
                   <button
-                    onClick={() => approve?.()}
+                    onClick={() => {
+                      console.log("🟡 Clicado em Aprovar");
+                      approve?.();
+                    }}
                     disabled={approving}
                     className="bg-yellow-400 hover:opacity-90 px-6 py-2 font-semibold rounded-md"
                   >
@@ -147,7 +140,10 @@ export default function RoundsPage() {
                   </button>
                 ) : (
                   <button
-                    onClick={() => buy?.()}
+                    onClick={() => {
+                      console.log("🟢 Clicado em Comprar");
+                      buy?.();
+                    }}
                     disabled={buying}
                     className="bg-green-500 hover:opacity-90 text-white px-6 py-2 font-semibold rounded-md"
                   >
@@ -166,13 +162,13 @@ export default function RoundsPage() {
           )}
         </section>
 
+        {/* Cards e Lâmina (como antes) */}
         <section className="max-w-4xl mx-auto text-center mb-10 px-4">
           <div className="bg-green-100 text-green-800 p-4 rounded mb-6 text-sm">
             🐣 <strong>Early Bird:</strong> quem compra agora, compra com vantagem. Tokens bloqueados e negociáveis via P2P, com valorização progressiva. Cada rodada representa um negócio real no setor energético.
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            {/* WHITELIST */}
             <div className="bg-gray-50 border rounded-lg p-4 shadow">
               <h3 className="text-xl font-semibold mb-1">Whitelist</h3>
               <p className="text-sm mb-1">Preço: 0.030 USDT</p>
@@ -181,7 +177,6 @@ export default function RoundsPage() {
               <p className="text-xs mt-2 text-gray-600">Setup Cost com KYC obrigatório</p>
             </div>
 
-            {/* SEED */}
             <div className="bg-gray-50 border rounded-lg p-4 shadow">
               <h3 className="text-xl font-semibold mb-1">Seed</h3>
               <p className="text-sm mb-1">Preço: 0.036 USDT</p>
@@ -190,7 +185,6 @@ export default function RoundsPage() {
               <p className="text-xs mt-2 text-gray-600">Lâmina disponível (M.O.U. assinado)</p>
             </div>
 
-            {/* ROUNDS */}
             <div className="bg-gray-50 border rounded-lg p-4 shadow">
               <h3 className="text-xl font-semibold mb-1">Rounds</h3>
               <p className="text-sm mb-1">Preço: 0.040 USDT</p>
