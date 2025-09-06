@@ -1,8 +1,9 @@
+// src/components/WalletOptions.tsx
 'use client';
 
-import { useAccount } from 'wagmi/hooks';
+import { useAccount } from 'wagmi';
 
-export default function WalletOverview() {
+export default function WalletOptions() {
   const { address, isConnected } = useAccount();
 
   if (!isConnected) return null;
