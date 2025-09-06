@@ -40,17 +40,18 @@ export default function RoundsPage() {
 
   // ──────────────── PREPARE: APPROVE ────────────────
   const { config: approveConfig } = usePrepareContractWrite({
-    address: USDT_ADDRESS,
-    abi: USDT_ABI,
-    functionName: "approve",
-    args: [TOKEN_SALE_ADDRESS, usdtParsed],
-    enabled: isConnected,
+  address: USDT_ADDRESS,
+  abi: USDT_ABI,
+  functionName: "approve",
+  args: [TOKEN_SALE_ADDRESS, usdtParsed],
+  enabled: Boolean(address && usdtAmount), // <- Evita prepare "lazy"
+  cacheTime: 0,
   });
 
   const { write: approve, isLoading: approving } = useContractWrite({
   ...approveConfig,
   onSuccess(data) {
-    console.log("✅ Transação enviada:", data.hash);
+    console.log("✅ approveConfig", approveConfig);
     setApprovalHash(data.hash);
   },
   onError(error) {
