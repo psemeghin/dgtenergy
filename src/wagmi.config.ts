@@ -1,11 +1,14 @@
-import { getDefaultConfig } from '@rainbow-me/rainbowkit';
-import { configureChains, createConfig } from 'wagmi';
-import { mainnet, bsc } from 'wagmi/chains';
-import { publicProvider } from 'wagmi/providers/public';
+'use client';
 
-export const config = getDefaultConfig({
-  appName: 'DGT–Energy Token Sale',
-  projectId: 'a6bc7e0b017a6a0765d022bf838de533',
-  chains: [bsc],
-  ssr: false,
-});
+import { getDefaultConfig } from '@rainbow-me/rainbowkit';
+import { bsc } from 'wagmi/chains';
+import { createConfig } from 'wagmi';
+
+export const config = createConfig(
+  getDefaultConfig({
+    appName: 'DGT-Energy Token Sale',
+    projectId: 'a6b7ce0b017aa06765d022bf838de533',
+    chains: [bsc],
+    ssr: false,
+  })
+);
