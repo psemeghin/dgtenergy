@@ -1,7 +1,7 @@
 // src/components/WalletOverview.tsx
 'use client';
 
-import { useAccount } from 'wagmi/hooks';
+import { useAccount } from 'wagmi';
 
 export default function WalletOverview() {
   const { address, isConnected } = useAccount();
