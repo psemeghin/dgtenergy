@@ -1,4 +1,5 @@
 // src/pages/rounds.tsx
+
 import { useEffect, useState } from "react";
 import Head from "next/head";
 import {
@@ -18,8 +19,6 @@ const TOKEN_SALE_ADDRESS = "0x6a9b64d39cf2543f80c752a9670a8477c1a6db5c";
 
 const USDT_ABI = [
   "function approve(address spender, uint256 amount) public returns (bool)",
-  "function allowance(address owner, address spender) public view returns (uint256)",
-  "function decimals() view returns (uint8)"
 ];
 
 const SALE_ABI = [
@@ -36,9 +35,9 @@ export default function RoundsPage() {
   const [isApproved, setIsApproved] = useState(false);
   const [approvalHash, setApprovalHash] = useState<`0x${string}` | undefined>(undefined);
 
-  const usdtParsed = parseUnits(usdtAmount || "0", 6);
+  const usdtParsed = parseUnits(usdtAmount || "0", 6); // 6 decimais para USDT
 
-  // ───── APPROVE CONFIG ─────
+  // ───── APPROVE ─────
   const { config: approveConfig } = usePrepareContractWrite({
     address: USDT_ADDRESS,
     abi: USDT_ABI,
@@ -71,7 +70,7 @@ export default function RoundsPage() {
     }
   }, [approvalSuccess]);
 
-  // ───── BUY CONFIG ─────
+  // ───── BUY ─────
   const { config: buyConfig } = usePrepareContractWrite({
     address: TOKEN_SALE_ADDRESS,
     abi: SALE_ABI,
@@ -86,10 +85,10 @@ export default function RoundsPage() {
   return (
     <>
       <Head>
-        <title>DGTEnergy — Token Sale Portal</title>
+        <title>DGT-Energy — Token Sale Portal</title>
       </Head>
 
-      <main className="bg-white text-gray-800 min-h-screen px-6 py-12">
+      <main className="bg-white text-gray-900 min-h-screen px-6 py-12">
         <section className="text-center mb-12">
           <h1 className="text-4xl font-bold mb-2">Participar da Venda de Tokens</h1>
           <p className="text-gray-600">Compre DGT-Energy usando USDT na rede BNB</p>
@@ -162,7 +161,7 @@ export default function RoundsPage() {
           )}
         </section>
 
-        {/* Cards e Lâmina (como antes) */}
+        {/* Cards e PDF */}
         <section className="max-w-4xl mx-auto text-center mb-10 px-4">
           <div className="bg-green-100 text-green-800 p-4 rounded mb-6 text-sm">
             🐣 <strong>Early Bird:</strong> quem compra agora, compra com vantagem. Tokens bloqueados e negociáveis via P2P, com valorização progressiva. Cada rodada representa um negócio real no setor energético.
@@ -173,7 +172,9 @@ export default function RoundsPage() {
               <h3 className="text-xl font-semibold mb-1">Whitelist</h3>
               <p className="text-sm mb-1">Preço: 0.030 USDT</p>
               <p className="text-sm mb-1">Tokens: 18.000.000</p>
-              <p className="text-sm mb-1">Status: <span className="text-green-600 font-semibold">Aberta</span></p>
+              <p className="text-sm mb-1">
+                Status: <span className="text-green-600 font-semibold">Aberta</span>
+              </p>
               <p className="text-xs mt-2 text-gray-600">Setup Cost com KYC obrigatório</p>
             </div>
 
@@ -181,7 +182,9 @@ export default function RoundsPage() {
               <h3 className="text-xl font-semibold mb-1">Seed</h3>
               <p className="text-sm mb-1">Preço: 0.036 USDT</p>
               <p className="text-sm mb-1">Tokens: 14.500.000</p>
-              <p className="text-sm mb-1">Status: <span className="text-yellow-500 font-semibold">Em breve</span></p>
+              <p className="text-sm mb-1">
+                Status: <span className="text-yellow-500 font-semibold">Em breve</span>
+              </p>
               <p className="text-xs mt-2 text-gray-600">Lâmina disponível (M.O.U. assinado)</p>
             </div>
 
@@ -189,7 +192,9 @@ export default function RoundsPage() {
               <h3 className="text-xl font-semibold mb-1">Rounds</h3>
               <p className="text-sm mb-1">Preço: 0.040 USDT</p>
               <p className="text-sm mb-1">Tokens: Variável</p>
-              <p className="text-sm mb-1">Status: <span className="text-gray-500 font-semibold">Pausada</span></p>
+              <p className="text-sm mb-1">
+                Status: <span className="text-gray-500 font-semibold">Pausada</span>
+              </p>
               <p className="text-xs mt-2 text-gray-600">Ativadas por contratos fechados com investidas</p>
             </div>
           </div>
