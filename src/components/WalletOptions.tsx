@@ -1,6 +1,6 @@
 'use client';
 
-import { useAccount } from 'wagmi';
+import { useAccount } from 'wagmi/hooks';
 
 export default function WalletOverview() {
   const { address, isConnected } = useAccount();
