@@ -58,16 +58,16 @@ export default function RoundsPage() {
     },
   });
 
-  const { write: approve, isLoading: approving } = useContractWrite({
-  ...approveConfig,
-  onSuccess(data) {
-    console.log("✅ Transação enviada:", data.hash);
-    setApprovalHash(data.hash);
-  },
-  onError(error) {
-    console.error("❌ Erro no approve:", error);
-  },
-});
+  <button
+  onClick={() => {
+    console.log("🟡 Clicado em Aprovar");
+    approve?.();
+  }}
+  disabled={approving}
+  className="bg-yellow-400 hover:opacity-90 px-6 py-2 font-semibold rounded-md"
+>
+  {approving ? "Aprovando..." : "Aprovar"}
+</button>
 
   const { isSuccess: approvalSuccess } = useWaitForTransaction({
     hash: approvalHash,
