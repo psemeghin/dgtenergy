@@ -58,6 +58,17 @@ export default function RoundsPage() {
     },
   });
 
+  const { write: approve, isLoading: approving } = useContractWrite({
+  ...approveConfig,
+  onSuccess(data) {
+    console.log("✅ Transação enviada:", data.hash);
+    setApprovalHash(data.hash);
+  },
+  onError(error) {
+    console.error("❌ Erro no approve:", error);
+  },
+});
+
   const { isSuccess: approvalSuccess } = useWaitForTransaction({
     hash: approvalHash,
     enabled: !!approvalHash,
