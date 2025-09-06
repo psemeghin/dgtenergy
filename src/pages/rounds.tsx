@@ -10,7 +10,7 @@ import {
   usePrepareContractWrite,
   useWaitForTransaction,
   useDisconnect,
-} from "wagmi/hooks";
+} from "wagmi";
 import { parseUnits } from "viem";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 
