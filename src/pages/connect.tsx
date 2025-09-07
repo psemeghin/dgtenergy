@@ -1,65 +1,48 @@
-// src/pages/connect.tsx
 'use client';
 
-import { useAccount, useBalance, useNetwork } from 'wagmi/core';
-import Head from 'next/head';
-
-const USDT_ADDRESS = '0x55d398326f99059fF775485246999027B3197955';
-const DGT_ADDRESS = '0x0f9483E001e4911BAF7c6Fc46ad269B05001F5C7';
+import { useAccount, useDisconnect, useSwitchChain, useChainId } from 'wagmi';
 
 export default function ConnectPage() {
   const { address, isConnected } = useAccount();
-  const { chain } = useNetwork();
+  const { disconnect } = useDisconnect();
+  const { switchChain } = useSwitchChain();
+  const chainId = useChainId();
 
-  const { data: usdtBalance, isLoading: loadingUSDT } = useBalance({
-    address,
-    token: USDT_ADDRESS,
-    watch: true,
-  });
-
-  const { data: dgtBalance, isLoading: loadingDGT } = useBalance({
-    address,
-    token: DGT_ADDRESS,
-    watch: true,
-  });
+  const currentChainName = chainId === 56 ? 'BNB Smart Chain' : 'Desconhecida';
 
   return (
-    <>
-      <Head>
-        <title>Connect Wallet | DGTEnergy</title>
-      </Head>
+    <main className="min-h-screen flex flex-col items-center justify-center px-4">
+      <h1 className="text-3xl font-bold mb-6">Conectar Carteira</h1>
 
-      <main className="max-w-2xl mx-auto py-20 px-6 text-center">
-        <h1 className="text-3xl font-bold mb-2">Connect Your Wallet</h1>
-        <p className="text-gray-500 mb-6">Secure access to your DGTEnergy balance and tools.</p>
+      {isConnected ? (
+        <div className="text-center">
+          <p className="mb-4">Carteira conectada:</p>
+          <p className="mb-2 font-mono text-sm text-green-600">{address}</p>
+          <p className="mb-6 text-gray-600">
+            Rede atual: <strong>{currentChainName}</strong>
+          </p>
 
-        {isConnected ? (
-          <div className="space-y-4">
-            <div className="text-sm text-gray-600">
-              <strong>Connected Wallet:</strong><br />
-              <span className="break-words">{address}</span>
-            </div>
+          {chainId !== 56 && (
+            <button
+              className="bg-yellow-500 text-white px-6 py-2 rounded mb-4"
+              onClick={() => switchChain({ chainId: 56 })}
+            >
+              Mudar para BNB Chain
+            </button>
+          )}
 
-            <div className="text-sm">
-              <strong>USDT Balance:</strong>{' '}
-              {loadingUSDT ? 'Loading...' : `${usdtBalance?.formatted} ${usdtBalance?.symbol}`}
-            </div>
-
-            <div className="text-sm">
-              <strong>DGT Balance:</strong>{' '}
-              {loadingDGT ? 'Loading...' : `${dgtBalance?.formatted} ${dgtBalance?.symbol}`}
-            </div>
-
-            <div className="text-xs text-gray-400">
-              Network: {chain?.name || 'Unknown'} ({chain?.id})
-            </div>
-          </div>
-        ) : (
-          <div className="text-gray-600 text-sm">
-            Please connect your wallet to view balances.
-          </div>
-        )}
-      </main>
-    </>
+          <button
+            className="bg-red-600 text-white px-6 py-2 rounded"
+            onClick={() => disconnect()}
+          >
+            Desconectar
+          </button>
+        </div>
+      ) : (
+        <div className="text-gray-500">
+          Conecte sua carteira utilizando o botão acima.
+        </div>
+      )}
+    </main>
   );
 }

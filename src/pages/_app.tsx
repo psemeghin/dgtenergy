@@ -5,22 +5,21 @@ import '../styles/globals.css';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 
-import '@rainbow-me/rainbowkit/styles.css';
-
 import { WagmiProvider } from 'wagmi';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import {
-  RainbowKitProvider,
-  getDefaultWallets,
-  connectorsForWallets,
-  darkTheme,
-  lightTheme
-} from '@rainbow-me/rainbowkit';
+import { RainbowKitProvider, getDefaultConfig } from '@rainbow-me/rainbowkit';
+import { bsc } from 'wagmi/chains';
+import '@rainbow-me/rainbowkit/styles.css';
 
-import { config, chains } from '../wagmi.config';
 import Header from '../components/Header';
 
 const queryClient = new QueryClient();
+
+const config = getDefaultConfig({
+  appName: 'DGTEnergy',
+  projectId: 'a6bc7e0b017a6a0765d022bf838de533',
+  chains: [bsc],
+});
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -32,16 +31,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
       <WagmiProvider config={config}>
         <QueryClientProvider client={queryClient}>
-          <RainbowKitProvider
-            chains={chains}
-            theme={lightTheme({
-              accentColor: '#facc15', // amarelo padrão DGT (tailwind yellow-400)
-              accentColorForeground: 'black',
-              borderRadius: 'medium',
-            })}
-            modalSize="compact"
-            showRecentTransactions={true}
-          >
+          <RainbowKitProvider coolMode>
             <Header />
             <Component {...pageProps} />
           </RainbowKitProvider>
