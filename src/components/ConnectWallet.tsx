@@ -2,7 +2,7 @@
 
 import { useAccount, useWriteContract } from 'wagmi';
 import { parseUnits } from 'viem';
-import { USDT_ADDRESS, TOKEN_SALE_ADDRESS, USDT_ABI } from '../lib/constants';
+import { USDT_ADDRESS, TOKEN_SALE_ADDRESS, USDT_ABI } from '@/lib/constants';
 import { useState } from 'react';
 
 export default function RoundsPage() {
@@ -13,7 +13,7 @@ export default function RoundsPage() {
   const handleApprove = async () => {
     if (!isConnected || !amount) return;
     try {
-      const value = parseUnits(amount, 18); // USDT has 18 decimals on BNB
+      const value = parseUnits(amount, 18);
       const hash = await writeContractAsync({
         address: USDT_ADDRESS,
         abi: USDT_ABI,
