@@ -38,14 +38,22 @@ export default function Rounds() {
         placeholder="Quantidade de USDT"
       />
       <button
-        onClick={() =>
-          approve({
-            address: USDT_ADDRESS,
-            abi: ERC20_ABI,
-            functionName: 'approve',
-            args: [TOKEN_SALE_ADDRESS, usdtParsed],
-          })
-        }
+        onClick={async () => {
+          if (!usdtAmount || isNaN(Number(usdtAmount))) {
+            alert('Digite um valor válido de USDT.');
+            return;
+          }
+          try {
+            await approve({
+              address: USDT_ADDRESS,
+              abi: ERC20_ABI,
+              functionName: 'approve',
+              args: [TOKEN_SALE_ADDRESS, usdtParsed],
+            });
+          } catch (error) {
+            console.error('Erro ao tentar aprovar USDT:', error);
+          }
+        }}
         disabled={approveStatus === 'pending' || !isKycCompleted}
       >
         {approveStatus === 'pending' ? 'Pendente...' : isTxSuccess ? 'Concluído' : 'Aprovar USDT'}
