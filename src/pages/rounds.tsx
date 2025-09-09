@@ -223,16 +223,16 @@ export default function RoundsPage() {
                         args: [TOKEN_SALE_ADDRESS, usdtParsed],
                       })
                     }
-                    disabled={approveStatus === 'loading' || !isKycCompleted}
+                    disabled={approveStatus === 'pending' || !isKycCompleted}
                     className={`w-full py-3 rounded font-space-grotesk ${
-                      approveStatus === 'loading'
+                      approveStatus === 'pending'
                         ? 'bg-yellow-400 cursor-wait text-white'
                         : 'bg-yellow-400 hover:bg-yellow-500 text-white'
                     } ${
                       !isKycCompleted ? 'opacity-50 cursor-not-allowed' : ''
                     }`}
                   >
-                    {approveStatus === 'loading' ? 'Aprovando...' : 'Step 3: Aprovar USDT'}
+                    {approveStatus === 'pending' ? 'Aprovando...' : 'Step 3: Aprovar USDT'}
                   </button>
                   <div className="flex items-center mt-2 text-sm text-gray-700">
                     <span
@@ -263,10 +263,10 @@ export default function RoundsPage() {
                       })
                     }
                     disabled={
-                      buyStatus === 'loading' || !isUsdtApproved || !isKycCompleted
+                      buyStatus === 'pending' || !isUsdtApproved || !isKycCompleted
                     }
                     className={`w-full py-3 rounded font-space-grotesk ${
-                      buyStatus === 'loading'
+                      buyStatus === 'pending'
                         ? 'bg-green-600 cursor-wait text-white'
                         : 'bg-green-600 hover:bg-green-700 text-white'
                     } ${
@@ -275,7 +275,7 @@ export default function RoundsPage() {
                         : ''
                     }`}
                   >
-                    {buyStatus === 'loading' ? 'Comprando...' : 'Step 4: Comprar DGT'}
+                    {buyStatus === 'pending' ? 'Comprando...' : 'Step 4: Comprar DGT'}
                   </button>
                   <div className="flex items-center mt-2 text-sm text-gray-700">
                     <span
