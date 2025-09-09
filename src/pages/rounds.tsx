@@ -6,8 +6,8 @@ import { useAccount, useContractWrite, useWaitForTransactionReceipt } from 'wagm
 import ERC20_ABI from '../abis/ERC20.json';
 import TOKEN_SALE_ABI from '../abis/TOKEN_SALE.json';
 
-const USDT_ADDRESS = '0x55d398326f99059fF775485246999027B3197955';
-const TOKEN_SALE_ADDRESS = '0x6a9b64d39cf2543f80c752a9670a8477c1a6db5c';
+const USDT_ADDRESS = '0x55d398326f99059fF775485246999027B3197955' as `0x${string}`;
+const TOKEN_SALE_ADDRESS = '0x6a9b64d39cf2543f80c752a9670a8477c1a6db5c' as `0x${string}`;
 
 export default function Rounds() {
   const { address, isConnected } = useAccount();
