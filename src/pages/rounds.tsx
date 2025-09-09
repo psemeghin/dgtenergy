@@ -1,6 +1,5 @@
 'use client';
 
-import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import {
@@ -11,10 +10,7 @@ import {
   useSwitchChain,
 } from 'wagmi';
 import { parseUnits } from 'viem';
-
-const ConnectWallet = dynamic(() => import('../components/ConnectWallet'), {
-  ssr: false,
-});
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 const USDT_ADDRESS = '0x55d398326f99059fF775485246999027B3197955';
 const TOKEN_SALE_ADDRESS = '0x6a9b64d39cf2543f80c752a9670a8477c1a6db5c';
@@ -161,7 +157,7 @@ export default function RoundsPage() {
         >
           {!isConnected ? (
             <div className="text-center text-gray-500 mb-6">
-              <ConnectWallet />
+              <ConnectButton />
             </div>
           ) : (
             <>

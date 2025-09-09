@@ -1,6 +1,7 @@
 'use client';
 
 import { useAccount, useDisconnect, useSwitchChain, useChainId } from 'wagmi';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 export default function ConnectPage() {
   const { address, isConnected } = useAccount();
@@ -39,8 +40,11 @@ export default function ConnectPage() {
           </button>
         </div>
       ) : (
-        <div className="text-gray-500">
-          Conecte sua carteira utilizando o botão acima.
+        <div className="text-center">
+          <p className="text-gray-600 mb-4">Conecte sua carteira com o botão abaixo:</p>
+          <div className="flex justify-center">
+            <ConnectButton />
+          </div>
         </div>
       )}
     </main>
