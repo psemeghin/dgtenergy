@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import { formatUnits } from 'viem';
-import { useAccount, useBalance, useConnect, useDisconnect, useWriteContract } from 'wagmi';
-import { injected } from 'wagmi/connectors';
+import { useAccount, useBalance, useDisconnect, useWriteContract } from 'wagmi';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 import ERC20_ABI from '../abis/ERC20.json';
 import TOKEN_SALE_ABI from '../abis/TOKEN_SALE.json';
 
@@ -13,8 +13,6 @@ const DGT3_ADDRESS = TOKEN_SALE_ADDRESS; // Assuming DGT3 token address is the s
 
 export default function Rounds() {
   const { address, isConnected } = useAccount();
-  const { connect, connectors, status } = useConnect();
-  const isConnecting = status === 'pending';
   const { disconnect } = useDisconnect();
 
   const [usdtAmount, setUsdtAmount] = useState('');
@@ -86,18 +84,9 @@ export default function Rounds() {
         </h2>
 
         {/* Step 1: Connect Wallet */}
-        <button
-          onClick={() => connect({ connector: connectors[0] })}
-          disabled={isConnecting}
-          className={`w-full py-3 rounded-md font-semibold text-lg transition-colors shadow-md ring-1 ring-yellow-300 ${
-            isConnected
-              ? 'bg-red-600 hover:bg-red-700'
-              : 'bg-yellow-400 hover:bg-yellow-500 text-gray-900'
-          }`}
-          aria-label="Connect Wallet"
-        >
-          {isConnected ? '1. Disconnect Wallet (Connected)' : '1. Connect Wallet (Step 1)'}
-        </button>
+        <div className="w-full py-3 rounded-md font-semibold text-lg transition-colors shadow-md ring-1 ring-yellow-300">
+          <ConnectButton />
+        </div>
         {isConnected && (
           <button
             onClick={() => disconnect()}
