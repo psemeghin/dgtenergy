@@ -85,73 +85,89 @@ export default function RoundsPage() {
       </Head>
 
       <main>
-        <div className="bg-white text-gray-900 min-h-screen px-4 md:px-6 py-10">
-          <section className="text-center mb-10">
-            <h1 className="text-4xl font-bold mb-2">Participar da Venda de Tokens</h1>
-            <p className="text-gray-600 text-sm">Compre DGT-Energy usando USDT na rede BNB Smart Chain</p>
-          </section>
+        <section className="text-center mb-10">
+          <h1 className="text-4xl font-bold font-space-grotesk mb-2 text-[#005F73]">DGT3Energy Sales Portal</h1>
+          <p className="text-[#2F3E46] text-sm font-inter mb-4">Progressive rounds with fixed supply and Early Bird incentives</p>
+          <div className="bg-[#FAFAFA] border border-[#2F3E46] p-4 rounded-lg inline-block shadow-sm">
+            <h2 className="font-bold text-lg mb-1">Active Round: Whitelist</h2>
+            <p>Goal: 350,000 USDT · Price: 0.030 USDT</p>
+            <div className="w-full bg-gray-200 rounded-full h-3 mt-2 mb-2">
+              <div className="bg-[#005F73] h-3 rounded-full w-[20%]" />
+            </div>
+            <a href="/docs/LaminaExample1.pdf" target="_blank" className="text-sm underline text-[#005F73]">📄 Download PDF</a>
+          </div>
+        </section>
 
-          <ConnectWallet />
-
-          <section className="max-w-xl mx-auto mb-12 bg-white border border-gray-200 p-6 rounded-lg shadow-md">
-            {!isConnected ? (
-              <div className="text-center text-gray-500">
-                Conecte sua carteira para continuar.
-              </div>
-            ) : (
-              <>
-                {chainId !== 56 && (
-                  <div className="bg-yellow-100 text-yellow-800 p-3 rounded mb-4 text-sm">
-                    ⚠️ Você está conectado à rede errada.{" "}
-                    <button
-                      onClick={() => switchChain?.({ chainId: 56 })}
-                      className="underline font-semibold hover:text-yellow-700"
-                    >
-                      Mudar para BNB
-                    </button>
-                  </div>
-                )}
-
-                <label className="block mb-2 text-sm font-medium text-gray-700">
-                  Quantidade de USDT:
-                </label>
-                <input
-                  type="number"
-                  value={usdtAmount}
-                  onChange={(e) => setUsdtAmount(e.target.value)}
-                  className="w-full mb-4 px-4 py-2 rounded-md border border-gray-300"
-                />
-
-                <div className="flex gap-4 justify-center">
-                  {!isApproved ? (
-                    <button
-                      onClick={() => approve()}
-                      disabled={approving}
-                      className="bg-yellow-400 hover:bg-yellow-500 transition-all duration-200 px-6 py-2 font-semibold rounded-md text-white"
-                    >
-                      {approving ? "Aprovando..." : "Aprovar"}
-                    </button>
-                  ) : (
-                    <button
-                      onClick={() => buy()}
-                      disabled={buying}
-                      className="bg-green-600 hover:bg-green-700 transition-all duration-200 text-white px-6 py-2 font-semibold rounded-md"
-                    >
-                      {buying ? "Comprando..." : "Comprar Tokens"}
-                    </button>
-                  )}
+        <section className="max-w-xl mx-auto mb-12 bg-white border border-gray-200 p-6 rounded-lg shadow-md">
+          {!isConnected ? (
+            <div className="text-center text-gray-500">Conecte sua carteira para continuar.</div>
+          ) : (
+            <>
+              {chainId !== 56 && (
+                <div className="bg-yellow-100 text-yellow-800 p-3 rounded mb-4 text-sm">
+                  ⚠️ Você está conectado à rede errada.
+                  <button onClick={() => switchChain?.({ chainId: 56 })} className="underline font-semibold hover:text-yellow-700 ml-1">Mudar para BNB</button>
                 </div>
+              )}
 
-                <button
-                  onClick={() => disconnect()}
-                  className="mt-6 text-xs text-red-500 underline hover:text-red-600"
-                >
-                  Desconectar carteira
+              <div className="grid grid-cols-2 gap-4 mb-4">
+                <button className="hover:scale-105 hover:opacity-90 transition-transform duration-300 ease-in-out bg-[#005F73] text-white py-2 rounded font-space-grotesk">
+                  1. Connect Wallet
                 </button>
-              </>
-            )}
-          </section>
-        </div>
+                <button className="hover:scale-105 hover:opacity-90 transition-transform duration-300 ease-in-out bg-[#A67F59] text-white py-2 rounded font-space-grotesk">
+                  2. KYC (Simplified)
+                </button>
+                <button
+                  onClick={() => approve()}
+                  disabled={approving}
+                  className="hover:scale-105 hover:opacity-90 transition-transform duration-300 ease-in-out bg-yellow-400 text-white py-2 rounded font-space-grotesk"
+                >
+                  {approving ? "Aprovando..." : "3. Aprovar USDT"}
+                </button>
+                <button
+                  onClick={() => buy()}
+                  disabled={buying}
+                  className="hover:scale-105 hover:opacity-90 transition-transform duration-300 ease-in-out bg-green-600 text-white py-2 rounded font-space-grotesk"
+                >
+                  {buying ? "Comprando..." : "4. Comprar Tokens"}
+                </button>
+              </div>
+
+              <div className="text-sm text-gray-700 mb-4">
+                💳 Saldo em DGT3: — <br />
+                💰 Saldo em USDT: —
+              </div>
+            </>
+          )}
+        </section>
+
+        <section className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-12">
+          <div className="border border-gray-300 rounded-xl p-6 shadow-sm bg-white">
+            <h3 className="text-lg font-bold font-space-grotesk mb-2">Seed Round</h3>
+            <p className="text-sm text-[#2F3E46] mb-2">Initial allocation in energy receivables · Target: 500k USDT · Price: 0.036</p>
+            <p className="text-xs text-gray-500 mb-2">Status: Soon</p>
+            <a href="/docs/LaminaExample2.pdf" target="_blank" className="text-sm underline text-[#005F73]">📄 Download PDF</a>
+          </div>
+          <div className="border border-gray-300 rounded-xl p-6 shadow-sm bg-white">
+            <h3 className="text-lg font-bold font-space-grotesk mb-2">Public Rounds</h3>
+            <p className="text-sm text-[#2F3E46] mb-2">Price: 0.040 USDT · Status: On Hold</p>
+            <p className="text-xs text-gray-500 mb-2">Multiple rounds with PPA-linked investments</p>
+            <a href="/docs/LaminaExample3.pdf" target="_blank" className="text-sm underline text-[#005F73]">📄 Download PDF</a>
+          </div>
+        </section>
+
+        <section className="text-center max-w-2xl mx-auto text-xs text-[#2F3E46] px-4 pb-10">
+          <p className="mb-2">
+            DGTEnergy is a utility token. It does not represent equity, debt or profit-sharing rights.
+            Staking rewards are discretionary and performance-linked.
+            Participation may require KYC/AML depending on jurisdiction.
+          </p>
+          <div className="flex justify-center gap-4">
+            <a href="/docs/whitepaper.pdf" className="underline">Whitepaper</a>
+            <a href="/docs/legal.pdf" className="underline">Legal Terms</a>
+            <a href="/docs/product1_factsheet.pdf" className="underline">Product 1 Factsheet</a>
+          </div>
+        </section>
       </main>
     </>
   );
