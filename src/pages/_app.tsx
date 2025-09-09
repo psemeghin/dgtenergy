@@ -12,6 +12,7 @@ import { bsc } from 'wagmi/chains';
 import '@rainbow-me/rainbowkit/styles.css';
 
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const queryClient = new QueryClient();
 
@@ -34,6 +35,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <RainbowKitProvider coolMode>
             <Header />
             <Component {...pageProps} />
+            <Footer />
           </RainbowKitProvider>
         </QueryClientProvider>
       </WagmiProvider>

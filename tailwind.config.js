@@ -7,7 +7,7 @@ module.exports = {
     "./src/components/**/*.{js,ts,jsx,tsx}",
     "./public/**/*.html",
   ],
-  darkMode: "class", // permite usar temas escuros com 'dark:' em classes
+  darkMode: false,
   theme: {
     extend: {
       colors: {
