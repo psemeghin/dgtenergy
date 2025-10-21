@@ -1,23 +1,28 @@
 {
-  "rewrites": [
-    {
-      "source": "/",
-      "destination": "/home"
-    }
+  "redirects": [
+    { "source": "http://dgt.energy/:path*", "destination": "https://dgt.energy/:path*", "permanent": true },
+    { "source": "http://www.dgt.energy/:path*", "destination": "https://dgt.energy/:path*", "permanent": true },
+    { "source": "https://www.dgt.energy/:path*", "destination": "https://dgt.energy/:path*", "permanent": true }
   ],
-  "redirects": [],
+  "rewrites": [
+    { "source": "/", "destination": "/home" },
+
+    { "source": "/_next/:path*", "destination": "/_next/:path*" },
+    { "source": "/static/:path*", "destination": "/static/:path*" },
+    { "source": "/assets/:path*", "destination": "/assets/:path*" },
+    { "source": "/api/:path*", "destination": "/api/:path*" },
+
+    { "source": "/(.*)", "destination": "https://dgt-energy.webmaster/:match*" }
+  ],
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
-        {
-          "key": "Strict-Transport-Security",
-          "value": "max-age=63072000; includeSubDomains; preload"
-        },
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        }
+        { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload" },
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
       ]
     }
   ]
