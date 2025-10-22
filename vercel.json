@@ -12,6 +12,13 @@
     { "source": "/assets/:path*", "destination": "/assets/:path*" },
     { "source": "/api/:path*", "destination": "/api/:path*" },
 
+    { "source": "/home/:path*", "destination": "/home/:path*" },
+    { "source": "/connect/:path*", "destination": "/connect/:path*" },
+    { "source": "/rounds/:path*", "destination": "/rounds/:path*" },
+    { "source": "/desk/:path*", "destination": "/desk/:path*" },
+    { "source": "/data/:path*", "destination": "/data/:path*" },
+    { "source": "/governance/:path*", "destination": "/governance/:path*" },
+
     { "source": "/(.*)", "destination": "https://dgt-energy.webmaster/:match*" }
   ],
   "headers": [
