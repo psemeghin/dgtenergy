@@ -28,13 +28,5 @@
     "eslint-config-next": "15.5.2",
     "postcss": "8.4.31",
     "typescript": "5.9.2"
-  },
-  "overrides": {
-    "wagmi": "2.16.9",
-    "@wagmi/core": "2.16.9",
-    "@wagmi/connectors": "6.1.0",
-    "viem": "2.37.4",
-    "@rainbow-me/rainbowkit": "2.2.8",
-    "ethers": "6.15.0"
   }
 }
