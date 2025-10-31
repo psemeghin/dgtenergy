@@ -7,7 +7,6 @@ module.exports = {
     "./src/components/**/*.{js,ts,jsx,tsx}",
     "./public/**/*.html",
   ],
-  darkMode: false,
   theme: {
     extend: {
       colors: {
@@ -18,10 +17,13 @@ module.exports = {
           gray: "#2F3E46",    // Cinza-mineral
           sand: "#A67F59",    // Areia-dourada
         },
+        petroleum: '#005F73',
+        graphite: '#2F3E46',
+        basewhite: '#FAFAFA',
       },
       fontFamily: {
         sans: ["Inter", ...defaultTheme.fontFamily.sans],
-        display: ["Satoshi", ...defaultTheme.fontFamily.sans],
+        display: ["Space Grotesk", ...defaultTheme.fontFamily.sans],
       },
       spacing: {
         72: "18rem",
@@ -51,19 +53,11 @@ module.exports = {
         slideup: "slideup 0.6s ease-out",
       },
       keyframes: {
-        fade: {
-          "0%": { opacity: "0" },
-          "100%": { opacity: "1" },
-        },
-        slideup: {
-          "0%": { transform: "translateY(20px)", opacity: "0" },
-          "100%": { transform: "translateY(0)", opacity: "1" },
-        },
+        fade: { "0%": { opacity: "0" }, "100%": { opacity: "1" } },
+        slideup: { "0%": { transform: "translateY(20px)", opacity: "0" }, "100%": { transform: "translateY(0)", opacity: "1" } },
       },
     },
   },
   plugins: [],
-  corePlugins: {
-    preflight: true,
-  },
+  corePlugins: { preflight: true },
 };
