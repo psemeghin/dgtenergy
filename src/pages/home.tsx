@@ -1,6 +1,6 @@
 // src/pages/home.tsx
 
-import MetaHead from "../components/MetaHead";
+import Seo from "../components/Seo";
 import HeroSection from "../components/HeroSection";
 import AboutSection from "../components/AboutSection";
 import UtilitySection from "../components/UtilitySection";
@@ -12,7 +12,10 @@ import FAQSection from "../components/FAQSection";
 export default function HomePage() {
   return (
     <>
-      <MetaHead />
+      <Seo
+        title="DGTEnergy — A transparent utility gateway to energy operations"
+        description="Utility-token access to staking, governance, and verifiable performance data. Built for transparency, compliance, and on-chain auditability."
+      />
       <main className="flex flex-col items-center scroll-smooth bg-[#FAFAFA] text-gray-900">
         <section id="hero" className="w-full">
           <HeroSection />
