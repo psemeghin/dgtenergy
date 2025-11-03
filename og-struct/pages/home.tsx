@@ -17,7 +17,7 @@ export default function HomePage() {
         description="Utility-token access to staking, governance, and verifiable performance data. Built for transparency, compliance, and on-chain auditability."
       />
       <main className="flex flex-col items-center scroll-smooth bg-[#FAFAFA] text-gray-900">
-        <section id="hero" className="w-full">
+        {/* <section id="hero" className="w-full">
           <HeroSection />
         </section>
         <section id="about" className="w-full bg-white py-20 px-6">
@@ -37,7 +37,7 @@ export default function HomePage() {
         </section>
         <section id="faq" className="w-full bg-[#F5F5F5] py-20 px-6">
           <FAQSection />
-        </section>
+        </section> */}
       </main>
     </>
   );
