@@ -1,52 +1,152 @@
-// src/components/RoadmapSection.tsx
+import { motion, useScroll, useSpring, useTransform } from "framer-motion";
+import { useRef } from "react";
+
+import icon from "@/assets/logo-icon.svg";
+import Image from "next/image";
+
 export default function RoadmapSection() {
+  const sectionRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start center", "end center"],
+  });
+
+  const height = useTransform(scrollYProgress, (v) => `${v * 100}%`);
+  const smooth = useSpring(height, { stiffness: 120, damping: 20 });
+
   return (
-    <section className="bg-neutral-50 py-24 px-6 text-neutral-900">
-      <div className="max-w-5xl mx-auto text-center">
-        <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
-          DGT-Energy Roadmap
-        </h2>
-        <p className="text-lg text-neutral-600 font-sans mb-12 max-w-2xl mx-auto">
-          Structured milestones to build the most transparent and profitable real-world asset protocol in energy.
-        </p>
-
-        <div className="relative border-l-2 border-energy-blue pl-6 space-y-12 text-left">
-          {/* Step 1 */}
-          <div className="relative">
-            <div className="absolute -left-4 top-1 w-6 h-6 bg-energy-blue rounded-full border-4 border-white"></div>
-            <h3 className="font-semibold text-xl mb-1">Q3 2025 — Genesis & Seed Round</h3>
-            <p className="text-sm text-neutral-600 font-sans">
-              Project launch, brand definition, whitepaper release, tokenomics finalization. Seed round opens.
-            </p>
-          </div>
-
-          {/* Step 2 */}
-          <div className="relative">
-            <div className="absolute -left-4 top-1 w-6 h-6 bg-energy-sand rounded-full border-4 border-white"></div>
-            <h3 className="font-semibold text-xl mb-1">Q4 2025 — First Deals + Private Round</h3>
-            <p className="text-sm text-neutral-600 font-sans">
-              Initial operations with RWA energy receivables. Private round allocation with selected partners.
-            </p>
-          </div>
-
-          {/* Step 3 */}
-          <div className="relative">
-            <div className="absolute -left-4 top-1 w-6 h-6 bg-energy-gray rounded-full border-4 border-white"></div>
-            <h3 className="font-semibold text-xl mb-1">Q1 2026 — Public Pre-Sale</h3>
-            <p className="text-sm text-neutral-600 font-sans">
-              Pre-sale round with public access. Token listing, staking module and first performance dashboard.
-            </p>
-          </div>
-
-          {/* Step 4 */}
-          <div className="relative">
-            <div className="absolute -left-4 top-1 w-6 h-6 bg-energy-green rounded-full border-4 border-white"></div>
-            <h3 className="font-semibold text-xl mb-1">Q2–Q3 2026 — Scale & DAO Formation</h3>
-            <p className="text-sm text-neutral-600 font-sans">
-              DAO framework activation, expansion of token utility, cross-chain bridge and expansion of energy deals.
-            </p>
-          </div>
+    <section
+      ref={sectionRef}
+      className="relative flex flex-col bg-gray-50 py-2 text-gray-900 gap-8 lg:px-10 pl-10 pr-2 container mx-auto"
+    >
+      <motion.div
+        className="absolute lg:left-1/2 lg:-translate-x-1/2 left-2 top-0 w-2 bg-petroleum-900 rounded-full"
+        style={{ height: smooth }}
+      >
+        <div className="absolute bottom-0 bg-neutral-50 rounded-full -translate-x-1/2 left-1/2 lg:size-12 size-8">
+          <Image src={icon} alt="DGT Icon" className="scale-125" />
         </div>
+      </motion.div>
+      <div className="flex justify-between">
+        <div className="lg:flex hidden"></div>
+        <div className="lg:w-2/5 flex flex-col gap-2">
+          <div className="text-xs rounded-full py-0.5 px-2 text-white bg-petroleum-900 w-fit select-none">
+            Phase 1
+          </div>
+          <h1 className="text-2xl font-semibold">Launch & Whitelist (Q4 2025)</h1>
+          <p>
+            Deployment dos contratos DGT3Energy (BEP-20) e abertura do DApp
+            completo. Whitelist em <b>0.030 USDT/DGT3</b>, com foco em{" "}
+            <b>
+              validação on-chain, contratos auditados e estrutura de tesouraria
+              vinculada a operações e reservas verificáveis.
+            </b>
+          </p>
+          <p>
+            <b>Meta:</b> concluir whitelist com auditoria independente e
+            primeiro FDR publicado.
+          </p>
+        </div>
+      </div>
+      <div className="flex justify-between lg:pr-0 pr-6">
+        <div className="lg:w-2/5 flex flex-col gap-2">
+          <div className="text-xs rounded-full py-0.5 px-2 text-white bg-petroleum-900 w-fit select-none">
+            Phase 2
+          </div>
+          <h1 className="text-2xl font-semibold">
+            Progressive Rounds & Institutional Expansion (Q4 2025 → Q2 2026)
+          </h1>
+          <p>
+            Rodadas progressivas sob modelo <i>step-up</i>, permitindo expansão
+            institucional e governança auditável. Cada rodada reflete a
+            ampliação da tesouraria e o crescimento de contratos energéticos
+            verificados.
+          </p>
+          <p>
+            <b>Meta:</b> ampliar a participação global mantendo integridade e
+            transparência on-chain.
+          </p>
+        </div>
+        <div className="lg:flex hidden"></div>
+      </div>
+
+      <div className="flex justify-between">
+        <div className="lg:flex hidden"></div>
+        <div className="lg:w-2/5 flex flex-col gap-2">
+          <div className="text-xs rounded-full py-0.5 px-2 text-white bg-petroleum-900 w-fit select-none">
+            Phase 3
+          </div>
+          <h1 className="text-2xl font-semibold">P2P Desk & Treasury Liquidity (Q1 2026)</h1>
+          <p>
+            Lançamento do módulo <code>/desk</code>, ambiente de trocas P2P com
+            escrow e controle de liquidez. A tesouraria atua exclusivamente como
+            compradora, garantindo liquidez ordenada e previsível.
+          </p>
+          <p>
+            <b>Meta:</b> consolidar mercado secundário institucional, seguro e
+            transparente.
+          </p>
+        </div>
+      </div>
+
+      <div className="flex justify-between lg:pr-0 pr-6">
+        <div className="lg:w-2/5 flex flex-col gap-2">
+          <div className="text-xs rounded-full py-0.5 px-2 text-white bg-petroleum-900 w-fit select-none">
+            Phase 4
+          </div>
+          <h1 className="text-2xl font-semibold">Staking Launch (Q2 2026)</h1>
+          <p>
+            Ativação do módulo de staking sob a{" "}
+            <b>Full Deployment Rule (FDR)</b>. Distribuições proporcionais à
+            performance verificada, com todas as alocações publicadas on-chain.
+          </p>
+          <p>
+            <b>Meta:</b> iniciar ciclos mensais verificáveis de distribuição e
+            performance.
+          </p>
+        </div>
+        <div className="lg:flex hidden"></div>
+      </div>
+
+      <div className="flex justify-between">
+        <div className="lg:flex hidden"></div>
+        <div className="lg:w-2/5 flex flex-col gap-2">
+          <div className="text-xs rounded-full py-0.5 px-2 text-white bg-petroleum-900 w-fit select-none">
+            Phase 5
+          </div>
+          <h1 className="text-2xl font-semibold">
+            Reinvestment & Treasury Growth (Q3–Q4 2026)
+          </h1>
+          <p>
+            Execução da <b>Regra de Reinvestimento Condicional:</b> excedentes
+            de performance (≥ 1.2%) são reinvestidos ou redistribuídos conforme
+            governança multisig.
+          </p>
+          <p>
+            <b>Meta:</b> fortalecer sustentabilidade da tesouraria, mantendo
+            transparência e rastreabilidade integral.
+          </p>
+        </div>
+      </div>
+
+      <div className="flex justify-between lg:pr-0 pr-6">
+        <div className="lg:w-2/5 flex flex-col gap-2">
+          <div className="text-xs rounded-full py-0.5 px-2 text-white bg-petroleum-900 w-fit select-none">
+            Phase 6
+          </div>
+          <h1 className="text-2xl font-semibold">Completion & Expansion (2027 +)</h1>
+          <p>
+            Conclusão das 70 rodadas, atingindo o limite de 1 bilhão de DGT3
+            emitidos. Manutenção de ciclos contínuos de staking, reinvestimento
+            e auditoria. Possível expansão para cadeias EVM compatíveis e novas
+            jurisdições sob governança DAO.
+          </p>
+          <p>
+            <b>Meta:</b> consolidar a DGTEnergy como infraestrutura global de
+            confiança e transparência energética.
+          </p>
+        </div>
+        <div className="lg:flex hidden"></div>
       </div>
     </section>
   );

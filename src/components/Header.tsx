@@ -39,9 +39,8 @@ export default function Header() {
           </Link>
         </div>
 
-        {/* Navigation + Status (ConnectButton no canto direito) */}
         <div className="flex items-center gap-6">
-          <nav className="flex items-center gap-5 text-sm font-sans text-graphite-900">
+          <nav className="hidden lg:flex items-center gap-5 text-sm font-sans text-graphite-900">
             <Link href="/rounds" className="hover:text-petroleum-900 hover:opacity-90 transition">Rounds</Link>
             <Link href="/desk" className="hover:text-petroleum-900 hover:opacity-90 transition">Desk</Link>
             <Link href="/data" className="hover:text-petroleum-900 hover:opacity-90 transition">Data</Link>
@@ -49,7 +48,6 @@ export default function Header() {
             <Link href="/connect" className="hover:text-petroleum-900 hover:opacity-90 transition">Connect</Link>
           </nav>
 
-          {/* Único ícone/botão de status */}
           <div className="relative z-[100]">
             <ConnectButton
               label="Connect Wallet"
