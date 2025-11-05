@@ -5,11 +5,11 @@ export default function GovernanceIntro() {
         <h1 className="text-4xl md:text-5xl font-display font-bold text-energy-blue mb-4">
           DGTEnergy Governance Portal
         </h1>
-        <p className="text-lg text-gray-700 font-sans leading-relaxed">
+        <p className="text-lg text-neutral-700 font-sans leading-relaxed">
           Hybrid DAO model: transparency, accountability, and progressive decentralization.
         </p>
-        <p className="mt-6 text-base text-gray-600 font-sans">
-          DGTEnergy governance is designed as a hybrid DAO: protocol execution is handled by the core team with multisig controls, 
+        <p className="mt-6 text-base text-neutral-600 font-sans">
+          DGTEnergy governance is designed as a hybrid DAO: protocol execution is handled by the core team with multisig controls,
           while token holders engage through proposals, voting, and strategic input.
         </p>
       </div>

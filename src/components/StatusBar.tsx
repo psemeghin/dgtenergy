@@ -57,23 +57,23 @@ export default function StatusBar() {
       <div className="w-full bg-white/90 backdrop-blur border-b border-black/10">
         <div className="mx-auto max-w-7xl px-4 h-12 flex items-center justify-between">
           <div className="flex items-center gap-3 text-sm">
-            <span className="font-display font-medium tracking-wide text-petroleum">DGTEnergy</span>
-            <span className="text-gray-500">|</span>
-            <span className="text-gray-600">BNB Smart Chain (56)</span>
+            <span className="font-display font-medium tracking-wide text-petroleum-900">DGTEnergy</span>
+            <span className="text-neutral-500">|</span>
+            <span className="text-neutral-600">BNB Smart Chain (56)</span>
             {isConnected && address && (
               <>
-                <span className="text-gray-500">|</span>
-                <span className="text-gray-700">Wallet: {shortAddr(address)}</span>
+                <span className="text-neutral-500">|</span>
+                <span className="text-neutral-700">Wallet: {shortAddr(address)}</span>
               </>
             )}
             {isConnected && chainId === bsc.id && (
               <>
-                <span className="text-gray-500">|</span>
-                <span className="text-gray-700">
+                <span className="text-neutral-500">|</span>
+                <span className="text-neutral-700">
                   DGT3: <strong>{dgt3 ?? '—'}</strong>
                 </span>
-                <span className="text-gray-500">·</span>
-                <span className="text-gray-700">
+                <span className="text-neutral-500">·</span>
+                <span className="text-neutral-700">
                   USDT: <strong>{usdt ?? '—'}</strong>
                 </span>
               </>

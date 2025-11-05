@@ -12,14 +12,37 @@ module.exports = {
       colors: {
         // Cores institucionais
         energy: {
-          green: "#86CB67",   // Verde-energia
-          blue: "#005F73",    // Azul-pavão
-          gray: "#2F3E46",    // Cinza-mineral
-          sand: "#A67F59",    // Areia-dourada
+          green: "#86CB67", // Verde-energia
+          blue: "#005F73", // Azul-pavão
+          gray: "#2F3E46", // Cinza-mineral
+          sand: "#A67F59", // Areia-dourada
         },
-        petroleum: '#005F73',
-        graphite: '#2F3E46',
-        basewhite: '#FAFAFA',
+        petroleum: {
+          50: "#e7fffd",
+          100: "#c2fff9",
+          200: "#8cfff4",
+          300: "#3dffec",
+          400: "#00ffe7",
+          500: "#00f9ff",
+          600: "#00c5e3",
+          700: "#009bb5",
+          800: "#007a90",
+          900: "#005f73", // default
+          950: "#004255",
+        },
+        graphite: {
+          50: "#f3f8f8",
+          100: "#dfecee",
+          200: "#c3d9de",
+          300: "#99bec7",
+          400: "#689aa8",
+          500: "#4d7f8d",
+          600: "#436977",
+          700: "#3b5763",
+          800: "#364b54",
+          900: "#2f3e46", // default
+          950: "#1d292f",
+        }
       },
       fontFamily: {
         sans: ["Inter", ...defaultTheme.fontFamily.sans],
@@ -54,7 +77,10 @@ module.exports = {
       },
       keyframes: {
         fade: { "0%": { opacity: "0" }, "100%": { opacity: "1" } },
-        slideup: { "0%": { transform: "translateY(20px)", opacity: "0" }, "100%": { transform: "translateY(0)", opacity: "1" } },
+        slideup: {
+          "0%": { transform: "translateY(20px)", opacity: "0" },
+          "100%": { transform: "translateY(0)", opacity: "1" },
+        },
       },
     },
   },

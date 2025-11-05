@@ -52,14 +52,11 @@ export default function App({ Component, pageProps }: AppProps) {
 
       <WagmiProvider config={config}>
         <QueryClientProvider client={queryClient}>
-          <RainbowKitProvider theme={{ lightMode: lightTheme(), darkMode: darkTheme() } as any}>
+          <RainbowKitProvider theme={{ lightMode: lightTheme({accentColor: "#005F73"}), darkMode: darkTheme({accentColor: "#005F73"}) } as any}>
             <GlobalGuards />
             <Header />
-            {/* Só Header fixo no topo → compensação menor */}
-            <div className="pt-20 min-h-screen bg-basewhite">
-              <Component {...pageProps} />
-              <Footer />
-            </div>
+            <Component {...pageProps} />
+            <Footer />
           </RainbowKitProvider>
         </QueryClientProvider>
       </WagmiProvider>

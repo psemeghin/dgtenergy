@@ -2,6 +2,10 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
+import Image from 'next/image';
+
+import icon from '@/assets/logo-icon.svg'
+import logo from '@/assets/logo-full.svg'
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -16,19 +20,19 @@ export default function Header() {
     <header
       className={`fixed inset-x-0 top-0 z-[90] border-b border-black/5 ${
         scrolled
-          ? 'bg-basewhite/90 backdrop-blur supports-[backdrop-filter]:bg-basewhite/80 shadow-sm'
-          : 'bg-basewhite/95'
+          ? 'bg-neutral-50/60 backdrop-blur-lg supports-[backdrop-filter]:bg-neutral-50/60 shadow-sm'
+          : 'bg-neutral-50/60'
       }`}
     >
       <div className="mx-auto max-w-7xl px-4 py-3 flex items-center justify-between">
         {/* Brand */}
         <div className="flex items-center gap-2">
-          <Link href="/home" aria-label="DGTEnergy — Home" className="flex items-center gap-2">
-            <img src="/icons/logo-icon.svg" alt="DGTEnergy symbol" className="h-8 w-auto" />
-            <img
-              src="/icons/logo-full.svg"
+          <Link href="/" aria-label="DGTEnergy — Home" className="flex items-center gap-2">
+            <Image src={icon} alt="DGTEnergy symbol" className="size-12" />
+            <Image
+              src={logo}
               alt="DGTEnergy"
-              className={`hidden md:block h-6 transition-all duration-300 ${
+              className={`hidden lg:block h-10 w-auto transition-all duration-300 ${
                 scrolled ? 'opacity-0 scale-95' : 'opacity-100 scale-100'
               }`}
             />
@@ -37,12 +41,12 @@ export default function Header() {
 
         {/* Navigation + Status (ConnectButton no canto direito) */}
         <div className="flex items-center gap-6">
-          <nav className="flex items-center gap-5 text-sm font-sans text-graphite">
-            <Link href="/rounds" className="hover:text-petroleum hover:opacity-90 transition">Rounds</Link>
-            <Link href="/desk" className="hover:text-petroleum hover:opacity-90 transition">Desk</Link>
-            <Link href="/data" className="hover:text-petroleum hover:opacity-90 transition">Data</Link>
-            <Link href="/governance" className="hover:text-petroleum hover:opacity-90 transition">Governance</Link>
-            <Link href="/connect" className="hover:text-petroleum hover:opacity-90 transition">Connect</Link>
+          <nav className="flex items-center gap-5 text-sm font-sans text-graphite-900">
+            <Link href="/rounds" className="hover:text-petroleum-900 hover:opacity-90 transition">Rounds</Link>
+            <Link href="/desk" className="hover:text-petroleum-900 hover:opacity-90 transition">Desk</Link>
+            <Link href="/data" className="hover:text-petroleum-900 hover:opacity-90 transition">Data</Link>
+            <Link href="/governance" className="hover:text-petroleum-900 hover:opacity-90 transition">Governance</Link>
+            <Link href="/connect" className="hover:text-petroleum-900 hover:opacity-90 transition">Connect</Link>
           </nav>
 
           {/* Único ícone/botão de status */}

@@ -2,7 +2,7 @@ export default function RoadmapSection() {
   return (
     <section>
       <h2 className="text-2xl font-bold mb-6 text-center">Roadmap</h2>
-      <div className="max-w-4xl mx-auto space-y-4 text-gray-800">
+      <div className="max-w-4xl mx-auto space-y-4 text-neutral-800">
         <div>
           <h3 className="font-semibold">Phase 0 – Foundation</h3>
           <ul className="list-disc list-inside">

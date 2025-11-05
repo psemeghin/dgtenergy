@@ -46,7 +46,7 @@ export default function FAQSection() {
           {faqs.map((faq, index) => (
             <li
               key={index}
-              className="border border-gray-300 rounded-lg bg-white shadow-md transition-all"
+              className="border border-neutral-300 rounded-lg bg-white shadow-md transition-all"
             >
               <button
                 onClick={() => toggle(index)}
@@ -56,7 +56,7 @@ export default function FAQSection() {
                 <span>{openIndex === index ? "−" : "+"}</span>
               </button>
               {openIndex === index && (
-                <div className="px-6 pb-4 text-sm text-gray-600">
+                <div className="px-6 pb-4 text-sm text-neutral-600">
                   {faq.answer}
                 </div>
               )}

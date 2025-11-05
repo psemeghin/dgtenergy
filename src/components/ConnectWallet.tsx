@@ -55,7 +55,7 @@ export default function RoundsPage() {
           </div>
         </>
       ) : (
-        <p className="text-center text-gray-600">Conecte sua carteira para continuar.</p>
+        <p className="text-center text-neutral-600">Conecte sua carteira para continuar.</p>
       )}
     </div>
   );

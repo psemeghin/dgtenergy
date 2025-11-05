@@ -2,13 +2,13 @@
 
 export default function GovernanceSections() {
   return (
-    <section className="py-16 px-6 bg-white text-gray-900">
+    <section className="py-16 px-6 bg-white text-neutral-900">
       <div className="max-w-5xl mx-auto space-y-16">
 
         {/* Snapshot & Voting */}
-        <div className="bg-white p-8 shadow border border-gray-200 rounded-lg">
+        <div className="bg-white p-8 shadow border border-neutral-200 rounded-lg">
           <h2 className="text-2xl font-bold text-energy-blue mb-2">Proposal & Voting</h2>
-          <p className="text-gray-700 font-sans mb-4">
+          <p className="text-neutral-700 font-sans mb-4">
             Proposals are created by the community, discussed in forum, and voted on Snapshot. One token equals one vote.
           </p>
           <a
@@ -22,9 +22,9 @@ export default function GovernanceSections() {
         </div>
 
         {/* Governance Framework */}
-        <div className="bg-white p-8 shadow border border-gray-200 rounded-lg">
+        <div className="bg-white p-8 shadow border border-neutral-200 rounded-lg">
           <h2 className="text-2xl font-bold text-energy-blue mb-4">Governance Framework</h2>
-          <ul className="list-disc list-inside text-gray-700 font-sans space-y-2">
+          <ul className="list-disc list-inside text-neutral-700 font-sans space-y-2">
             <li>Proposal Lifecycle → Forum → Draft → Voting (5 days) → Execution</li>
             <li>Voting Mechanics → One-token-one-vote, delegation supported</li>
             <li>Treasury Control → Hybrid multisig + DAO oversight</li>
@@ -33,10 +33,10 @@ export default function GovernanceSections() {
         </div>
 
         {/* Compliance & Legal Notes */}
-        <div className="bg-white p-8 shadow border border-gray-200 rounded-lg">
+        <div className="bg-white p-8 shadow border border-neutral-200 rounded-lg">
           <h2 className="text-2xl font-bold text-energy-blue mb-2">Compliance & Legal Notes</h2>
-          <p className="text-gray-700 font-sans leading-relaxed">
-            DGTEnergy is a utility token, not equity, debt or profit-sharing. Governance is consultative and progressively decentralized. 
+          <p className="text-neutral-700 font-sans leading-relaxed">
+            DGTEnergy is a utility token, not equity, debt or profit-sharing. Governance is consultative and progressively decentralized.
             DAO activities are conducted under compliant legal wrappers in crypto-friendly jurisdictions.
           </p>
           <div className="mt-4 space-x-4">

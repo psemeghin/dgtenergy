@@ -9,7 +9,7 @@ export default function WalletOptions() {
   if (!isConnected) return null;
 
   return (
-    <div className="text-sm text-gray-600 mt-4">
+    <div className="text-sm text-neutral-600 mt-4">
       Conectado: <span className="font-mono">{address}</span>
     </div>
   );

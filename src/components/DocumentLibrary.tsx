@@ -1,6 +1,6 @@
 export default function DocumentLibrary() {
   return (
-    <section className="max-w-4xl mx-auto text-gray-800">
+    <section className="max-w-4xl mx-auto text-neutral-800">
       <h2 className="text-2xl font-bold mb-6 text-center">Document Library</h2>
       <ul className="space-y-4">
         <li>

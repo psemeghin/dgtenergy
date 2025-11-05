@@ -18,9 +18,9 @@ export default function MobileMenu() {
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-48 bg-[#1a1a1a] border border-gray-700 rounded-lg shadow-lg z-50">
+        <div className="absolute right-0 mt-2 w-48 bg-[#1a1a1a] border border-neutral-700 rounded-lg shadow-lg z-50">
           <ul className="flex flex-col text-white text-sm font-sans p-2 space-y-2">
-            <li><Link href="/home"><a onClick={toggleMenu}>Home</a></Link></li>
+            <li><Link href="/"><a onClick={toggleMenu}>Home</a></Link></li>
             <li><Link href="/rounds"><a onClick={toggleMenu}>Rounds</a></Link></li>
             <li><Link href="/desk"><a onClick={toggleMenu}>Desk</a></Link></li>
             <li><Link href="/data"><a onClick={toggleMenu}>Data</a></Link></li>
