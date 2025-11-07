@@ -1,7 +1,7 @@
 // src/components/DashboardSection.tsx
 export default function DashboardSection() {
   return (
-    <section className="bg-neutral-100 py-24 px-6 text-neutral-900">
+    <section className="bg-neutral-100 py-24 px-6 text-graphite-900">
       <div className="max-w-6xl mx-auto text-center">
         <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
           Protocol Dashboard

@@ -10,7 +10,7 @@ export default function DataPage() {
   return (
     <>
       <MetaHead />
-      <main className="flex flex-col items-center justify-center scroll-smooth bg-[#FAFAFA] text-neutral-900">
+      <main className="flex flex-col items-center justify-center scroll-smooth bg-[#FAFAFA] text-graphite-900">
         <section id="tokenomics" className="w-full bg-white py-20 px-6">
           <TokenomicsSection />
         </section>

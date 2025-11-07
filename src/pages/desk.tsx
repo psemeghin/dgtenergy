@@ -5,7 +5,7 @@ import StakingTab from "../components/desk/StakingTab";
 
 export default function DeskPage() {
   return (
-    <main className="flex flex-col items-center justify-center scroll-smooth bg-[#FAFAFA] text-neutral-900 py-16 px-4">
+    <main className="flex flex-col items-center justify-center scroll-smooth bg-[#FAFAFA] text-graphite-900 py-16 px-4">
       <section className="max-w-6xl w-full space-y-12">
         <StakingTab />
         <P2PTab />

@@ -1,6 +1,6 @@
 export default function SecurityNotes() {
   return (
-    <section className="py-16 px-6 bg-white text-neutral-900">
+    <section className="py-16 px-6 bg-white text-graphite-900">
       <div className="max-w-2xl mx-auto">
         <h2 className="text-xl font-bold mb-4">Security Notes</h2>
         <ul className="list-disc list-inside text-sm text-neutral-700">

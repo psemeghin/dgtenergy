@@ -29,18 +29,16 @@ export default function Header() {
         <div className="flex items-center gap-2">
           <Link href="/" aria-label="DGTEnergy — Home" className="flex items-center gap-2">
             <Image src={icon} alt="DGTEnergy symbol" className="size-12" />
-            <Image
-              src={logo}
-              alt="DGTEnergy"
-              className={`hidden lg:block h-10 w-auto transition-all duration-300 ${
-                scrolled ? 'opacity-0 scale-95' : 'opacity-100 scale-100'
+            <h1
+              className={`hidden lg:flex text-lg transition-all duration-300 text-petroleum-900 font-display font-bold ${
+                scrolled ? 'opacity-0' : 'opacity-100 scale-100'
               }`}
-            />
+            >DGTEnergy</h1>
           </Link>
         </div>
 
         <div className="flex items-center gap-6">
-          <nav className="hidden lg:flex items-center gap-5 text-sm font-sans text-graphite-900">
+          <nav className="hidden lg:flex items-center gap-5 text-sm font-display text-graphite-900 font-semibold">
             <Link href="/rounds" className="hover:text-petroleum-900 hover:opacity-90 transition">Rounds</Link>
             <Link href="/desk" className="hover:text-petroleum-900 hover:opacity-90 transition">Desk</Link>
             <Link href="/data" className="hover:text-petroleum-900 hover:opacity-90 transition">Data</Link>

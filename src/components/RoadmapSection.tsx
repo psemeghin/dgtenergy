@@ -33,7 +33,7 @@ export default function RoadmapSection() {
           <div className="text-xs rounded-full py-0.5 px-2 text-white bg-petroleum-900 w-fit select-none">
             Phase 1
           </div>
-          <h1 className="text-2xl font-semibold">Launch & Whitelist (Q4 2025)</h1>
+          <h1 className="font-display text-2xl font-semibold">Launch & Whitelist (Q4 2025)</h1>
           <p>
             Deployment dos contratos DGT3Energy (BEP-20) e abertura do DApp
             completo. Whitelist em <b>0.030 USDT/DGT3</b>, com foco em{" "}
@@ -53,7 +53,7 @@ export default function RoadmapSection() {
           <div className="text-xs rounded-full py-0.5 px-2 text-white bg-petroleum-900 w-fit select-none">
             Phase 2
           </div>
-          <h1 className="text-2xl font-semibold">
+          <h1 className="font-display text-2xl font-semibold">
             Progressive Rounds & Institutional Expansion (Q4 2025 → Q2 2026)
           </h1>
           <p>
@@ -76,7 +76,7 @@ export default function RoadmapSection() {
           <div className="text-xs rounded-full py-0.5 px-2 text-white bg-petroleum-900 w-fit select-none">
             Phase 3
           </div>
-          <h1 className="text-2xl font-semibold">P2P Desk & Treasury Liquidity (Q1 2026)</h1>
+          <h1 className="font-display text-2xl font-semibold">P2P Desk & Treasury Liquidity (Q1 2026)</h1>
           <p>
             Lançamento do módulo <code>/desk</code>, ambiente de trocas P2P com
             escrow e controle de liquidez. A tesouraria atua exclusivamente como
@@ -94,7 +94,7 @@ export default function RoadmapSection() {
           <div className="text-xs rounded-full py-0.5 px-2 text-white bg-petroleum-900 w-fit select-none">
             Phase 4
           </div>
-          <h1 className="text-2xl font-semibold">Staking Launch (Q2 2026)</h1>
+          <h1 className="font-display text-2xl font-semibold">Staking Launch (Q2 2026)</h1>
           <p>
             Ativação do módulo de staking sob a{" "}
             <b>Full Deployment Rule (FDR)</b>. Distribuições proporcionais à
@@ -114,7 +114,7 @@ export default function RoadmapSection() {
           <div className="text-xs rounded-full py-0.5 px-2 text-white bg-petroleum-900 w-fit select-none">
             Phase 5
           </div>
-          <h1 className="text-2xl font-semibold">
+          <h1 className="font-display text-2xl font-semibold">
             Reinvestment & Treasury Growth (Q3–Q4 2026)
           </h1>
           <p>
@@ -134,7 +134,7 @@ export default function RoadmapSection() {
           <div className="text-xs rounded-full py-0.5 px-2 text-white bg-petroleum-900 w-fit select-none">
             Phase 6
           </div>
-          <h1 className="text-2xl font-semibold">Completion & Expansion (2027 +)</h1>
+          <h1 className="font-display text-2xl font-semibold">Completion & Expansion (2027 +)</h1>
           <p>
             Conclusão das 70 rodadas, atingindo o limite de 1 bilhão de DGT3
             emitidos. Manutenção de ciclos contínuos de staking, reinvestimento

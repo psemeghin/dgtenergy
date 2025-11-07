@@ -66,10 +66,10 @@ export default function Rounds() {
   ];
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-neutral-50 via-neutral-300 to-neutral-50 text-neutral-900 p-6 md:p-12 font-sans">
+    <main className="min-h-screen bg-gradient-to-b from-neutral-50 via-neutral-300 to-neutral-50 text-graphite-900 p-6 md:p-12 font-sans">
       {/* Highlight Section */}
       <section className="max-w-4xl mx-auto mb-12 text-center">
-        <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 text-petroleum-900 drop-shadow-lg">
+        <h1 className="font-display text-4xl md:text-5xl font-extrabold tracking-tight mb-4 text-petroleum-900 drop-shadow-lg">
           DGT3 Token Sale - Participate Now!
         </h1>
         <p className="text-lg md:text-xl max-w-3xl mx-auto text-graphite-900">
@@ -142,8 +142,8 @@ export default function Rounds() {
           }
           className={`w-full py-3 rounded-md font-semibold text-lg transition-colors shadow-md ${
             isApproving
-              ? 'bg-petroleum-300 cursor-wait text-neutral-900'
-              : 'bg-petroleum-900 hover:brightness-90 text-neutral-900'
+              ? 'bg-petroleum-300 cursor-wait text-graphite-900'
+              : 'bg-petroleum-900 hover:brightness-90 text-graphite-900'
           } disabled:opacity-50 disabled:cursor-not-allowed`}
           aria-label="Approve USDT"
         >
@@ -169,7 +169,7 @@ export default function Rounds() {
           }
           className={`w-full py-3 rounded-md font-semibold text-lg transition-colors shadow-md ${
             isBuying
-              ? 'bg-petroleum-300 cursor-wait text-neutral-900'
+              ? 'bg-petroleum-300 cursor-wait text-graphite-900'
               : 'bg-petroleum-500 hover:bg-petroleum-600'
           } disabled:opacity-50 disabled:cursor-not-allowed`}
           aria-label="Buy DGT3 tokens"

@@ -2,7 +2,7 @@ export default function GovernanceIntro() {
   return (
     <section className="bg-white py-20 px-6 text-center">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl md:text-5xl font-display font-bold text-energy-blue mb-4">
+        <h1 className="font-display text-4xl md:text-5xl font-bold text-energy-blue mb-4">
           DGTEnergy Governance Portal
         </h1>
         <p className="text-lg text-neutral-700 font-sans leading-relaxed">

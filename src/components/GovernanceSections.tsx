@@ -2,7 +2,7 @@
 
 export default function GovernanceSections() {
   return (
-    <section className="py-16 px-6 bg-white text-neutral-900">
+    <section className="py-16 px-6 bg-white text-graphite-900">
       <div className="max-w-5xl mx-auto space-y-16">
 
         {/* Snapshot & Voting */}

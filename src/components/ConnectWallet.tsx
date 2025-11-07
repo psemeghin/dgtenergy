@@ -28,7 +28,7 @@ export default function RoundsPage() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-white text-black px-4">
-      <h1 className="text-3xl font-bold mb-2 text-center">Participar da Venda de Tokens</h1>
+      <h1 className="font-display text-3xl font-bold mb-2 text-center">Participar da Venda de Tokens</h1>
       <p className="mb-6 text-center">Compre DGT-Energy usando USDT na rede BNB Smart Chain</p>
 
       {isConnected ? (
