@@ -4,8 +4,23 @@ import { useEffect, useState } from 'react';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import Image from 'next/image';
 
+import { StaggeredMenu } from '@/components/ui/staggered-menu';
 import icon from '@/assets/logo-icon.svg'
-import logo from '@/assets/logo-full.svg'
+
+const menuItems = [
+  { label: 'Home', ariaLabel: 'Go to home page', link: '/' },
+  { label: 'Rounds', ariaLabel: 'Rounds', link: '/rounds' },
+  { label: 'desk', ariaLabel: 'Desk', link: '/desk' },
+  { label: 'data', ariaLabel: 'Data', link: '/data' },
+  { label: 'governance', ariaLabel: 'Governance', link: '/governance' },
+  { label: 'connect', ariaLabel: 'Connect', link: '/connect' },
+];
+
+const socialItems = [
+  { label: 'Telegram', link: 'https://t.me/DgtEnergy' },
+  { label: 'X (Twitter)', link: 'https://x.com/DgtEnergy' },
+  { label: 'LinkedIn', link: 'https://linkedin.com' }
+];
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -46,12 +61,26 @@ export default function Header() {
             <Link href="/connect" className="hover:text-petroleum-900 hover:opacity-90 transition">Connect</Link>
           </nav>
 
-          <div className="relative z-[100]">
+          <div className="relative">
             <ConnectButton
               label="Connect Wallet"
               accountStatus={{ smallScreen: 'avatar', largeScreen: 'full' }}
               showBalance={false}
               chainStatus="icon"
+            />
+          </div>
+          <div className='flex items-center justify-center lg:hidden'>
+            <StaggeredMenu
+              position="right"
+              items={menuItems}
+              isFixed={true}
+              socialItems={socialItems}
+              displaySocials
+              menuButtonColor="#fff"
+              openMenuButtonColor="#fff"
+              changeMenuColorOnOpen={true}
+              onMenuOpen={() => console.log('Menu opened')}
+              onMenuClose={() => console.log('Menu closed')}
             />
           </div>
         </div>
