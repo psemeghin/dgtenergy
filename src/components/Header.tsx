@@ -33,13 +33,13 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-[90] border-b border-black/5 ${
+      className={`fixed inset-x-0 top-0 z-50 flex flex-col ${
         scrolled
           ? 'bg-neutral-50/60 backdrop-blur-lg supports-[backdrop-filter]:bg-neutral-50/60 shadow-sm'
           : 'bg-neutral-50/60'
       }`}
     >
-      <div className="mx-auto max-w-7xl px-4 py-3 flex items-center justify-between">
+      <div className="mx-auto container px-4 py-3 flex items-center justify-between">
         {/* Brand */}
         <div className="flex items-center gap-2">
           <Link href="/" aria-label="DGTEnergy — Home" className="flex items-center gap-2">
@@ -69,7 +69,7 @@ export default function Header() {
               chainStatus="icon"
             />
           </div>
-          <div className='flex items-center justify-center lg:hidden'>
+          <div className='items-center justify-center hidden'>
             <StaggeredMenu
               position="right"
               items={menuItems}
@@ -84,6 +84,15 @@ export default function Header() {
             />
           </div>
         </div>
+      </div>
+      <div className='lg:hidden flex items-center justify-center border-t border-graphite-900/40 py-2 px-1'>
+          <nav className="flex items-center gap-5 text-sm font-display text-graphite-900 font-semibold">
+            <Link href="/rounds" className="hover:text-petroleum-900 hover:opacity-90 transition">Rounds</Link>
+            <Link href="/desk" className="hover:text-petroleum-900 hover:opacity-90 transition">Desk</Link>
+            <Link href="/data" className="hover:text-petroleum-900 hover:opacity-90 transition">Data</Link>
+            <Link href="/governance" className="hover:text-petroleum-900 hover:opacity-90 transition">Governance</Link>
+            <Link href="/connect" className="hover:text-petroleum-900 hover:opacity-90 transition">Connect</Link>
+          </nav>
       </div>
     </header>
   );

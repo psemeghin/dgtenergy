@@ -33,38 +33,37 @@ export default function RoadmapSection() {
           <div className="text-xs rounded-full py-0.5 px-2 text-white bg-petroleum-900 w-fit select-none">
             Phase 1
           </div>
-          <h1 className="font-display text-2xl font-semibold">Launch & Whitelist (Q4 2025)</h1>
+          <h1 className="font-display text-2xl font-semibold">
+            Launch & Whitelist (Q4 2025)
+          </h1>
           <p>
-            Deployment dos contratos DGT3Energy (BEP-20) e abertura do DApp
-            completo. Whitelist em <b>0.030 USDT/DGT3</b>, com foco em{" "}
-            <b>
-              validação on-chain, contratos auditados e estrutura de tesouraria
-              vinculada a operações e reservas verificáveis.
-            </b>
+            Deployment of all smart contracts (DGT3Token, TokenSale, Treasury)
+            and DApp. Whitelist launch at 0.030 USDT/DGT3, with validation
+            on-chain, contracts audited, and treasury structure linked to
+            operations and verifiable reserves.
           </p>
           <p>
-            <b>Meta:</b> concluir whitelist com auditoria independente e
-            primeiro FDR publicado.
+            <b>Meta:</b> Complete Whitelist with independent audit and first FDR
+            published
           </p>
         </div>
       </div>
       <div className="flex justify-between lg:pr-0 pr-6">
         <div className="lg:w-2/5 flex flex-col gap-2">
-          <div className="text-xs rounded-full py-0.5 px-2 text-white bg-petroleum-900 w-fit select-none">
+          <div className="text-xs rounded-full py-0.5 px-2 text-petroleum-900 border border-petroleum-900 bg-transparent w-fit select-none">
             Phase 2
           </div>
           <h1 className="font-display text-2xl font-semibold">
-            Progressive Rounds & Institutional Expansion (Q4 2025 → Q2 2026)
+            Progressive Rounds & Expansion (Q4 2025 → Q2 2026)
           </h1>
           <p>
-            Rodadas progressivas sob modelo <i>step-up</i>, permitindo expansão
-            institucional e governança auditável. Cada rodada reflete a
-            ampliação da tesouraria e o crescimento de contratos energéticos
-            verificados.
+            Progressive rounds under step-up model, enabling institutional
+            expansion and auditable governance. Each round reflects treasury
+            growth and verified energy contract expansion.
           </p>
           <p>
-            <b>Meta:</b> ampliar a participação global mantendo integridade e
-            transparência on-chain.
+            <b>Meta:</b> Expand global participation while maintaining on-chain
+            integrity and transparency.
           </p>
         </div>
         <div className="lg:flex hidden"></div>
@@ -73,36 +72,40 @@ export default function RoadmapSection() {
       <div className="flex justify-between">
         <div className="lg:flex hidden"></div>
         <div className="lg:w-2/5 flex flex-col gap-2">
-          <div className="text-xs rounded-full py-0.5 px-2 text-white bg-petroleum-900 w-fit select-none">
+          <div className="text-xs rounded-full py-0.5 px-2 text-petroleum-900 border border-petroleum-900 bg-transparent w-fit select-none">
             Phase 3
           </div>
-          <h1 className="font-display text-2xl font-semibold">P2P Desk & Treasury Liquidity (Q1 2026)</h1>
+          <h1 className="font-display text-2xl font-semibold">
+            P2P Desk & Treasury Liquidity (Q1 2026)
+          </h1>
           <p>
-            Lançamento do módulo <code>/desk</code>, ambiente de trocas P2P com
-            escrow e controle de liquidez. A tesouraria atua exclusivamente como
-            compradora, garantindo liquidez ordenada e previsível.
+            Launch of <code>/desk</code> module — KYC-gated peer-to-peer
+            environment with escrow and liquidity controls. Treasury acts
+            exclusively as buyer, ensuring orderly and predictable secondary
+            liquidity.
           </p>
           <p>
-            <b>Meta:</b> consolidar mercado secundário institucional, seguro e
-            transparente.
+            <b>Meta:</b> Consolidate institutional secondary market — secure and
+            transparent.
           </p>
         </div>
       </div>
 
       <div className="flex justify-between lg:pr-0 pr-6">
         <div className="lg:w-2/5 flex flex-col gap-2">
-          <div className="text-xs rounded-full py-0.5 px-2 text-white bg-petroleum-900 w-fit select-none">
+          <div className="text-xs rounded-full py-0.5 px-2 text-petroleum-900 border border-petroleum-900 bg-transparent w-fit select-none">
             Phase 4
           </div>
-          <h1 className="font-display text-2xl font-semibold">Staking Launch (Q2 2026)</h1>
+          <h1 className="font-display text-2xl font-semibold">
+            Staking Launch (Q2 2026)
+          </h1>
           <p>
-            Ativação do módulo de staking sob a{" "}
-            <b>Full Deployment Rule (FDR)</b>. Distribuições proporcionais à
-            performance verificada, com todas as alocações publicadas on-chain.
+            Activation of staking module under Full Deployment Rule (FDR).
+            Performance-based allocations in USDT, proportional to verified
+            Treasury operations, with all distributions published on-chain.
           </p>
           <p>
-            <b>Meta:</b> iniciar ciclos mensais verificáveis de distribuição e
-            performance.
+            <b>Meta:</b> Begin verifiable distribution and performance cycles.
           </p>
         </div>
         <div className="lg:flex hidden"></div>
@@ -111,39 +114,40 @@ export default function RoadmapSection() {
       <div className="flex justify-between">
         <div className="lg:flex hidden"></div>
         <div className="lg:w-2/5 flex flex-col gap-2">
-          <div className="text-xs rounded-full py-0.5 px-2 text-white bg-petroleum-900 w-fit select-none">
+          <div className="text-xs rounded-full py-0.5 px-2 text-petroleum-900 border border-petroleum-900 bg-transparent w-fit select-none">
             Phase 5
           </div>
           <h1 className="font-display text-2xl font-semibold">
             Reinvestment & Treasury Growth (Q3–Q4 2026)
           </h1>
           <p>
-            Execução da <b>Regra de Reinvestimento Condicional:</b> excedentes
-            de performance (≥ 1.2%) são reinvestidos ou redistribuídos conforme
-            governança multisig.
+            Execution of Conditional Reinvestment Rule: verified excess &gt;1.2%
+            reallocated or redistributed per multisig governance, maintaining
+            transparency and capital integrity.
           </p>
           <p>
-            <b>Meta:</b> fortalecer sustentabilidade da tesouraria, mantendo
-            transparência e rastreabilidade integral.
+            <b>Meta:</b> Strengthen treasury sustainability while preserving
+            traceability.
           </p>
         </div>
       </div>
 
       <div className="flex justify-between lg:pr-0 pr-6">
         <div className="lg:w-2/5 flex flex-col gap-2">
-          <div className="text-xs rounded-full py-0.5 px-2 text-white bg-petroleum-900 w-fit select-none">
+          <div className="text-xs rounded-full py-0.5 px-2 text-petroleum-900 border border-petroleum-900 bg-transparent w-fit select-none">
             Phase 6
           </div>
-          <h1 className="font-display text-2xl font-semibold">Completion & Expansion (2027 +)</h1>
+          <h1 className="font-display text-2xl font-semibold">
+            Completion & Expansion (2027+)
+          </h1>
           <p>
-            Conclusão das 70 rodadas, atingindo o limite de 1 bilhão de DGT3
-            emitidos. Manutenção de ciclos contínuos de staking, reinvestimento
-            e auditoria. Possível expansão para cadeias EVM compatíveis e novas
-            jurisdições sob governança DAO.
+            Completion of 70 rounds (1B DGT3 supply cap). Ongoing staking,
+            reinvestment, and audits. Potential DAO-approved exchange listings
+            and multichain expansion under compliant jurisdictions.
           </p>
           <p>
-            <b>Meta:</b> consolidar a DGTEnergy como infraestrutura global de
-            confiança e transparência energética.
+            <b>Meta:</b> Consolidate DGTEnergy as global infrastructure for
+            trust and energy transparency.
           </p>
         </div>
         <div className="lg:flex hidden"></div>

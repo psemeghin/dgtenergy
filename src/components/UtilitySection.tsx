@@ -7,8 +7,9 @@ export default function UtilitySection() {
           Token Utility
         </h2>
         <p className="text-lg font-sans text-neutral-200 mb-12 max-w-3xl mx-auto leading-relaxed">
-          DGTEnergy is not just a token — it's a real asset access key.
-          Every DGT token unlocks functions connected to the performance of clean energy assets, treasury growth, and user governance.
+          DGTEnergy is not just a token — it's a real asset access key. Every
+          DGT token unlocks functions connected to the performance of clean
+          energy assets, treasury growth, and user governance.
         </p>
 
         <div className="grid md:grid-cols-3 gap-8">
@@ -23,7 +24,9 @@ export default function UtilitySection() {
               DAO Governance
             </h3>
             <p className="text-sm text-neutral-300 leading-relaxed">
-              Token holders vote on proposals and treasury management decisions via smart contracts.
+              Token holders vote on proposals and treasury management decisions
+              via smart contracts. One token equals one vote — delegation
+              supported.
             </p>
           </div>
 
@@ -35,10 +38,12 @@ export default function UtilitySection() {
               className="w-10 h-10 mb-4"
             />
             <h3 className="text-xl font-display font-semibold mb-2">
-              Yield Access
+              Performance Access
             </h3>
             <p className="text-sm text-neutral-300 leading-relaxed">
-              Staking rewards distributed in USDT, linked to real revenue of energy operations.
+              Staking unlocks performance-based USDT distributions linked to
+              verified energy operations. Accruals are discretionary and
+              transparent on-chain.
             </p>
           </div>
 
@@ -53,7 +58,8 @@ export default function UtilitySection() {
               Treasury Transparency
             </h3>
             <p className="text-sm text-neutral-300 leading-relaxed">
-              The treasury holds real-world assets and is visible via public dashboards, including staking pools.
+              The treasury holds verified assets and is visible via public
+              dashboards, including staking pools and deployment records.
             </p>
           </div>
         </div>

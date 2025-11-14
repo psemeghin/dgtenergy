@@ -66,7 +66,7 @@ export default function Rounds() {
   ];
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-neutral-50 via-neutral-300 to-neutral-50 text-graphite-900 p-6 md:p-12 font-sans">
+    <main className="min-h-screen bg-gradient-to-b from-neutral-50 via-neutral-300 to-neutral-50 text-graphite-900 p-6 pt-24 md:p-12 font-sans">
       {/* Highlight Section */}
       <section className="max-w-4xl mx-auto mb-12 text-center">
         <h1 className="font-display text-4xl md:text-5xl font-extrabold tracking-tight mb-4 text-petroleum-900 drop-shadow-lg">

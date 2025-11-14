@@ -5,27 +5,32 @@ const faqs = [
   {
     question: "What is DGT-Energy?",
     answer:
-      "DGT-Energy is a utility token anchored in real-world energy receivables, offering staking rewards and governance participation.",
+      "DGTEnergy is a utility-token protocol connecting participants with verified energy receivables. Token holders access staking, governance, and transparency features — not equity or debt.",
   },
   {
     question: "Is DGT-Energy a security?",
     answer:
-      "No. DGT-Energy is a utility token. It does not represent equity, debt or profit-sharing rights. It grants access to the ecosystem and governance participation.",
+      "No. DGT3 is a utility token providing access to protocol features only — staking, governance, and data visibility. It does not represent equity, debt, or financial instruments.",
   },
   {
     question: "How do I participate in the token sale?",
     answer:
-      "You can join the Seed Round via the Rounds page. Connect your wallet and follow the instructions for whitelist or direct purchase.",
+      "Connect your wallet at dgte.energy/rounds, complete KYC, approve USDT, and participate in the Whitelist (SAFT) or Progressive Rounds. All steps are outlined on-chain.",
   },
   {
     question: "How is the treasury managed?",
     answer:
-      "The protocol treasury is controlled via smart contracts, with partial DAO oversight and predefined allocation rules.",
+      "The treasury is controlled by a 2-of-3 multisig (Karine + Pedro) with board oversight for divergence resolution. All movements are disclosed in /data with transaction hashes and verifiable proof.",
   },
   {
     question: "Can I stake DGT-Energy tokens?",
     answer:
-      "Yes. Staking will be available in the official dApp. Rewards are distributed in USDT based on protocol performance.",
+      "Yes, once the Full Deployment Rule (FDR) is met for your purchase phase. Staking provides access to performance-based USDT distributions derived from verified energy operations.",
+  },
+  {
+    question: "What are the risks?",
+    answer:
+      "DGT3 participation involves smart contract risk, regulatory uncertainty, execution risk, and market volatility. Allocations are variable and discretionary. Read full risk disclosure in /rounds.",
   },
 ];
 

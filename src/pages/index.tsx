@@ -6,6 +6,7 @@ import DashboardSection from "../components/DashboardSection";
 import GovernanceSections from "../components/GovernanceSections";
 import RoadmapSection from "../components/RoadmapSection";
 import FAQSection from "../components/FAQSection";
+import { WhoWeAre } from "@/components/WhoWeAre";
 
 export default function HomePage() {
   return (
@@ -20,6 +21,9 @@ export default function HomePage() {
         </section>
         <section id="about" className="w-full lg:pt-10 -mt-4 lg:mt-0 pb-20">
           <AboutSection />
+        </section>
+        <section id="who" className="w-full bg-neutral-100 py-8">
+          <WhoWeAre />
         </section>
         <section id="utility" className="w-full bg-energy-gray py-20">
           <UtilitySection />

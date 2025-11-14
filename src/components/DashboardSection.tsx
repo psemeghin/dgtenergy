@@ -11,56 +11,59 @@ export default function DashboardSection() {
         </p>
 
         <div className="grid md:grid-cols-4 gap-6 text-left">
-          {/* Metric 1 */}
-          <div className="p-6 border border-neutral-200 rounded-lg bg-neutral-50 hover:shadow transition">
+          <div className="p-6 border border-neutral-200 rounded-lg bg-neutral-50 hover:shadow transition flex flex-col">
             <img
               src="/icons/icon-treasury.svg"
               alt="Treasury"
               className="w-8 h-8 mb-3"
             />
-            <h3 className="text-2xl font-bold text-energy-blue mb-1">$4.2M</h3>
-            <p className="text-sm text-neutral-500 font-sans">
+            <h3 className="text-2xl font-bold text-petroleum-900 font-display">$0</h3>
+            <p className="text-sm text-graphite-900 font-sans font-semibold">
               Real-World Assets Under Management
             </p>
+            <small className="text-xs text-petroleum-900 mt-auto">Target (2026): $35M+ (Rounds 1-70)</small>
           </div>
 
           {/* Metric 2 */}
-          <div className="p-6 border border-neutral-200 rounded-lg bg-neutral-50 hover:shadow transition">
+          <div className="p-6 border border-neutral-200 rounded-lg bg-neutral-50 hover:shadow transition flex flex-col">
             <img
               src="/icons/icon-seed.svg"
               alt="Seed Round"
               className="w-8 h-8 mb-3"
             />
-            <h3 className="text-2xl font-bold text-energy-blue mb-1">11,111,111</h3>
-            <p className="text-sm text-neutral-500 font-sans">
-              DGTE Tokens in Seed Round
+            <h3 className="text-2xl font-bold text-petroleum-900 font-display">0 DGT3</h3>
+            <p className="text-sm text-graphite-900 font-sans font-semibold">
+              Tokens in Staking
             </p>
+            <small className="text-xs text-petroleum-900 mt-auto">Whitelist Target: 33.3M (3.3% supply)</small>
           </div>
 
           {/* Metric 3 */}
-          <div className="p-6 border border-neutral-200 rounded-lg bg-neutral-50 hover:shadow transition">
+          <div className="p-6 border border-neutral-200 rounded-lg bg-neutral-50 hover:shadow transition flex flex-col">
             <img
               src="/icons/icon-staking.svg"
               alt="Staking"
               className="w-8 h-8 mb-3"
             />
-            <h3 className="text-2xl font-bold text-energy-blue mb-1">15–30% APY</h3>
-            <p className="text-sm text-neutral-500 font-sans">
+            <h3 className="text-2xl font-bold text-petroleum-900 font-display">15–22% APY</h3>
+            <p className="text-sm text-graphite-900 font-sans font-semibold">
               Target Staking Yield (USDT)
             </p>
+            <small className="text-xs text-petroleum-900 mt-auto">Variable, performance-based (net)</small>
           </div>
 
           {/* Metric 4 */}
-          <div className="p-6 border border-neutral-200 rounded-lg bg-neutral-50 hover:shadow transition">
+          <div className="p-6 border border-neutral-200 rounded-lg bg-neutral-50 hover:shadow transition flex flex-col">
             <img
               src="/icons/icon-security.svg"
               alt="Transparency"
               className="w-8 h-8 mb-3"
             />
-            <h3 className="text-2xl font-bold text-energy-blue mb-1">100%</h3>
-            <p className="text-sm text-neutral-500 font-sans">
+            <h3 className="text-2xl font-bold text-petroleum-900 font-display">100%</h3>
+            <p className="text-sm text-graphite-900 font-sans font-semibold">
               On-Chain Transparency
             </p>
+            <small className="text-xs text-petroleum-900 mt-auto">All allocations verifiable</small>
           </div>
         </div>
       </div>

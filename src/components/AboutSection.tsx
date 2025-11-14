@@ -7,14 +7,14 @@ export default function AboutSection() {
           What is DGTEnergy?
         </h2>
         <p className="text-lg text-neutral-600 font-sans mb-8 max-w-3xl mx-auto leading-relaxed">
-          DGTEnergy is a decentralized gateway to real-world energy investments.
-          Our utility token is economically anchored in receivables from clean energy operations, enabling global access to yield, transparency, and tokenized infrastructure.
+          DGTEnergy is a decentralized gateway to verified energy receivables.
+          Our utility token provides transparent access to staking, governance, and protocol data, anchored in real-world energy operations.
         </p>
       </div>
 
       {/* Blocos informativos */}
       <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mt-12">
-        <div className="bg-[#FAFAFA] rounded-lg shadow-md p-6 border border-neutral-200">
+        <div className="bg-neutral-50 rounded-lg shadow-md p-6 border border-neutral-200">
           <img
             src="/icons/icon-treasury.svg"
             alt="Treasury"
@@ -24,25 +24,25 @@ export default function AboutSection() {
             Treasury Anchored
           </h3>
           <p className="text-sm text-neutral-600 leading-relaxed">
-            Backed by actual energy receivables, locked in a transparent treasury with programmable rules.
+            100% of net capital allocated to verified energy receivables, locked in transparent treasury with programmable rules and multisig controls.
           </p>
         </div>
 
-        <div className="bg-[#FAFAFA] rounded-lg shadow-md p-6 border border-neutral-200">
+        <div className="bg-neutral-50 rounded-lg shadow-md p-6 border border-neutral-200">
           <img
             src="/icons/icon-staking.svg"
             alt="Staking"
             className="w-10 h-10 mb-4"
           />
           <h3 className="text-xl font-display font-semibold text-energy-blue mb-2">
-            Yield via Staking
+            Performance Allocations
           </h3>
           <p className="text-sm text-neutral-600 leading-relaxed">
-            Token holders can stake to receive performance-based rewards in stablecoins, directly from protocol results.
+            Token holders access performance-based USDT distributions via staking, derived from verified energy operations, net of administrative fees.
           </p>
         </div>
 
-        <div className="bg-[#FAFAFA] rounded-lg shadow-md p-6 border border-neutral-200">
+        <div className="bg-neutral-50 rounded-lg shadow-md p-6 border border-neutral-200">
           <img
             src="/icons/icon-security.svg"
             alt="Audited"
@@ -52,7 +52,7 @@ export default function AboutSection() {
             Audited & Transparent
           </h3>
           <p className="text-sm text-neutral-600 leading-relaxed">
-            Audited protocol, public treasury dashboard, and full legal compliance across jurisdictions.
+            Audited protocol, public treasury dashboards, and full legal compliance across jurisdictions. Every allocation is verifiable on-chain.
           </p>
         </div>
       </div>
