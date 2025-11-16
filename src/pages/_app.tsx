@@ -2,7 +2,7 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Inter, Noto_Sans, Poppins } from "next/font/google";
 import { useEffect } from "react";
 
 import {
@@ -39,13 +39,14 @@ function GlobalGuards() {
   return null;
 }
 
-const inter = Inter({
+const inter = Noto_Sans({
   subsets: ["latin"],
   variable: "--font-inter",
 });
 
-const spaceGrotesk = Space_Grotesk({
+const spaceGrotesk = Poppins({
   subsets: ["latin"],
+  weight: ["400", "600", "700"],
   variable: "--font-space-grotesk",
 });
 
