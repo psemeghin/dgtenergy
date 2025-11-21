@@ -22,7 +22,7 @@ These actors interact with the system interfaces (DApp, Wallets) or the physical
 4.  **Treasury (Multisig Committee):** 2-of-3 multisig (De Goat Capital AG) managing capital flows, FX conversions, and deployments.
 5.  **Compliance Officer:** Internal role responsible for KYC validation, FX reconciliation, and publishing Full Deployment Reports (FDR).
 6.  **Auditor:** External independent party verifying smart contracts and off-chain asset integrity.
-7.  **Regulator:** Passive observer (CVM, FINMA, etc.) consuming transparency data.
+7.  **Regulator:** Passive observer (CCEE, ANEEL, CVM, FINMA, etc.) consuming transparency data.
 
 ### 2.2. On-Chain Actors (Smart Contracts/System)
 These are autonomous agents enforcing protocol logic.
@@ -46,7 +46,7 @@ This section maps the complete financial and operational journeys for the key ac
     *   *Flow:* USDT → DGT3.
 2.  **Utility (Holding):** User stakes DGT3 in `Staking` contract.
     *   *Flow:* DGT3 (Wallet) → DGT3 (Staking Contract).
-3.  **Yield (Functional Output):** User receives verified distributions (if eligible).
+3.  **Stake (Functional Output):** User receives verified distributions (if eligible).
     *   *Flow:* USDT (Performance Pool) → USDT (User Wallet).
 4.  **Reversal (Liquidity Recovery):** User unstakes or cancels a P2P order.
     *   *Flow:* DGT3 (Contract) → DGT3 (User Wallet).
@@ -78,6 +78,16 @@ This section maps the complete financial and operational journeys for the key ac
 2.  **Registry Update:** Updates `IdentityRegistry` to allow/block wallets.
 3.  **Audit:** Verifies Treasury vs. Billi reports and FX rates.
 4.  **FDR Publication:** Toggles the "FDR Verified" flag on-chain to enable Staking Distributions.
+
+### 3.5. Management Fee Lifecycle
+1.  **Fee Inflow (Primary Sale - 4%):** Receives 4% of all USDT entering TokenSale.
+    *   *Flow:* USDT (TokenSale) → USDT (Management Fee Safe).
+2.  **Fee Accrual (Admin - 0,33% Monthly):** UStaking.sol deducts the admin fee before distributions.
+    *   *Flow:* USDT (TokenSale) → USDT (Management Fee Safe).
+3.  **Operational Use:** Fees cover compliance, audit and infrastructure costs.
+    *   *Flow:* Management Fee Safe → Service Providers.
+4.  **Isolated Funds:** Fees never enter deployment or reinvestment flows.
+
 
 ---
 
@@ -215,7 +225,7 @@ This section maps the complete financial and operational journeys for the key ac
 **Acceptance Criteria:**
 - [ ] **Venue Constraint:** Purchase MUST happen via `EscrowDesk` interaction (no generic DEX swaps).
 - [ ] **Price Floor:** Purchase price must be **≥ 80%** of the *Next Round* price (from TokenSale ladder).
-- [ ] **Volume Cap:** Total purchases in a month must NOT exceed **1%** of the Circulating Supply.
+- [ ] **Volume Cap:** Total purchases in a month must NOT exceed **2%** of the Circulating Supply.
 - [ ] **Source Funds:** Only "Reinvestable Reserves" (performance > 1.2%) can be used.
 
 #### Story 7b: Emergency Pause
