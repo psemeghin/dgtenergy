@@ -5,11 +5,16 @@ import LogoLoop from "./ui/logo-loop";
 
 import icon from "@/assets/logo-billi.svg";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { XIcon } from "lucide-react";
 
 export default function HeroSection() {
   const [isOpen, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+  setMounted(true);
+  }, []);
 
   return (
     <>
@@ -66,7 +71,7 @@ export default function HeroSection() {
           gap={128}
         />
       </section>
-      {createPortal(
+      {mounted && createPortal(
         <div
           data-open={isOpen}
           className="fixed inset-0 flex items-center justify-center p-2 lg:p-8 bg-black/30 pointer-events-none z-50 opacity-0 data-[open=true]:opacity-100 data-[open=true]:pointer-events-auto transition-all"
@@ -83,7 +88,7 @@ export default function HeroSection() {
             <h1 className="font-display text-4xl font-semibold w-full max-w-2xl">
               Our Manifesto
             </h1>
-            <p className="font-sans w-full max-w-2xl flex flex-col gap-4">
+            <div className="font-sans w-full max-w-2xl flex flex-col gap-4">
               <p>
                 The energy sector is shifting quickly. Demand grows, markets
                 expand and new possibilities appear every day. Yet access
@@ -126,7 +131,7 @@ export default function HeroSection() {
                 instruments. All allocations are performance based,
                 discretionary and fully transparent on chain.
               </p>
-            </p>
+            </div>
           </div>
         </div>,
         document.body
