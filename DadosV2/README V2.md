@@ -6,6 +6,8 @@
 This repository consolidates the institutional, technical and operational documents that define the DGTEnergy protocol. It serves as the single source of truth for engineering, audit, compliance, governance and operational execution.  
   
 All documents are in English and aligned with MiCA, FINMA and CVM 188/23 utility-token standards.  
+
+Institutional Version Whitepaper added @3:15pm - check it for deeper understanding.
   
 ⸻  
   
