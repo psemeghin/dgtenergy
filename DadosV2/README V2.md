@@ -20,13 +20,8 @@ It is the **driver** that triggered the refinement of the Whitepaper and the tok
   
 ⸻  
   
-**2. Core Protocol Documents**  
   
-**00_01_V3_Whitepaper Full Institutional Version**  
-  
-The canonical and extended institutional Whitepaper, fully aligned with Henry’s review.  
-  
-**00_02_V2_Whitepaper Public Edition**  
+**00_02_V3_Whitepaper Public Edition**  
   
 Public-facing edition, simplified and narrative, aligned with the institutional version.  
   
