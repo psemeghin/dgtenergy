@@ -2,19 +2,19 @@
   
 **1.Executive Summary**  
   
-Brazil is entering the largest retail-energy opening in the world. With MP 1304/25, more than 90 million consumers will be free to choose their electricity provider, creating an annual opportunity estimated between 10 and 15 billion dollars in consumer migration, energy-financing demand and real operational flows. DGTEnergy was created to give participants structured access to these real-world energy operations through a simple mechanism: staking the DGT3 utility token.  
+Brazil is entering the largest retail-energy opening in the world. With MP 1304/25, more than 90 million consumers will be able to choose their electricity provider, creating an annual opportunity estimated between 10 and 15 billion dollars in consumer migration, energy-financing demand and real operational flows. DGTEnergy was created to give participants structured access to these real-world operations through a simple mechanism: staking the DGT3 utility token.
 
-Billi illustrates how real-world energy operations enter the protocol. In Brazil, most consumers still buy electricity in the regulated Captive Market, where prices are fixed and often higher. Billi helps these consumers “migrate” to the Free Market, where energy can be purchased at lower, negotiated rates. During this migration, consumers secure a cheaper price for the energy they will use in the future. Billi finances this future discount upfront, allowing households and businesses to immediately benefit from lower energy costs while the migration is still being processed. Billi then recovers the financed portion through regulated monthly settlements handled by the CCEE. This cycle generates a stable, recurring receivable stream tied to essential-service billing, which becomes the operational foundation feeding DGTEnergy’s monthly cycles.
-  
-DGTEnergy transforms verified energy-financing activity into predictable monthly operational cycles. Participants who stake DGT3 activate their position inside these cycles and gain access to the protocol’s coordinated environment. When an operational cycle performs, the protocol may generate functional outputs that reflect that performance window. Historically, mature energy-financing markets often produce annualized performance ranges around 13 to 20 percent depending on operational behavior, although outcomes are never guaranteed by the protocol.  
-  
-The operational foundation is already active. Billi, DGTEnergy’s first integrated partner, operates a validated consumer energy-financing engine backed by CCEE settlement, more than two years of measurable activity and delinquency levels consistently near one and a half percent (Brazilian Energy Market average). These are real consumers, real energy bills and real receivables, processed under a regulatory structure known for its stability and predictability.  
-  
-DGTEnergy begins in Brazil because it is the most advanced environment for large-scale consumer migration and structured energy-financing operations. Yet the architecture is global. Any partner with verifiable real-world energy activity can integrate into the protocol, allowing expansion into other regulated markets and multiplying the scale of the opportunity.  
-  
-DGT3 is the access key to this environment.  
-Real-world operations are the foundation.  
-Monthly cycles are the engine that connects participants to the heart of the transition.  
+The operational foundation of the protocol is already active. Billi, DGTEnergy’s first integrated partner, operates a validated consumer energy-financing engine backed by CCEE settlement, with more than two years of measurable activity and delinquency levels consistently near one and a half percent. These are real consumers, real energy bills and real receivables processed under a regulatory structure known for stability and predictable behavior.
+
+Billi also illustrates how real operational flows enter the protocol. Most Brazilian consumers still purchase electricity in the regulated Captive Market, where prices are fixed and often higher. Billi supports their migration to the Free Market, where energy can be purchased at lower, negotiated rates. During this transition, consumers secure a cheaper energy price for future consumption. Billi advances the value of this future discount upfront, allowing households and businesses to benefit immediately while the migration is being processed. This advance becomes operationally viable through the structured environment that DGTEnergy provides, which connects participants to verified real-world cycles and allows these operational flows to be organized and sustained. The financed portion is later recovered through regulated monthly settlements handled by the CCEE, generating a stable and recurring receivable stream that forms the base for DGTEnergy’s monthly cycles.
+
+DGTEnergy transforms these verified energy-financing flows into predictable monthly coordination cycles. Participants who stake DGT3 activate their position inside this environment and gain access to cycle data, partner performance and treasury activity. When an operational cycle performs, the protocol may generate functional outputs that reflect the verified performance window. In mature energy-financing environments, annualized operational behavior often ranges around 13 to 20 percent depending on market conditions, although outcomes are never guaranteed.
+
+DGTEnergy launches from Brazil because it is the most advanced and scalable environment for consumer migration and structured energy-financing activity. Yet the architecture is global. Any partner with verifiable real-world energy operations can integrate into the protocol, enabling expansion into other regulated markets and multiplying the scale of the opportunity.
+
+DGT3 is the access key to this environment.
+Real-world operations are the foundation.
+Monthly cycles are the engine that connects participants to the heart of the transition.
   
 ⸻  
   
