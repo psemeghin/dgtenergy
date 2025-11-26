@@ -71,13 +71,6 @@ export default function HeroSection() {
             {
               node: (
                 <Link href="/">
-                  <Image className="h-8 w-auto drop-shadow" src={billi} alt="billi" />
-                </Link>
-              ),
-            },
-            {
-              node: (
-                <Link href="/">
                   <Image className="h-8 w-auto drop-shadow" src={bnb} alt="bnb" />
                 </Link>
               ),

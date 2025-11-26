@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { formatUnits } from 'viem';
+
 import { useAccount, useBalance, useDisconnect, useWriteContract } from 'wagmi';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import ERC20_ABI from '../abis/ERC20.json';
