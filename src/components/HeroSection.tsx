@@ -3,17 +3,25 @@ import { createPortal } from "react-dom";
 import Image from "next/image";
 import LogoLoop from "./ui/logo-loop";
 
-import icon from "@/assets/logo-billi.svg";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { XIcon } from "lucide-react";
+
+import billi from "@/assets/partners/logo-billi.svg";
+import bnb from "@/assets/partners/logo-bnb.svg";
+import cloudflare from "@/assets/partners/logo-cloudflare.svg";
+import github from "@/assets/partners/logo-github.svg";
+import gnosis from "@/assets/partners/logo-gnosis.svg";
+import metamask from "@/assets/partners/logo-metamask.svg";
+import oz from "@/assets/partners/logo-oz.svg";
+import vercel from "@/assets/partners/logo-vercel.svg";
 
 export default function HeroSection() {
   const [isOpen, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-  setMounted(true);
+    setMounted(true);
   }, []);
 
   return (
@@ -34,11 +42,11 @@ export default function HeroSection() {
         <div className="relative flex flex-col gap-16 z-10 max-w-3xl px-6 items-center">
           <div className="flex flex-col items-center justify-center gap-4 drop-shadow-[0_0_3px_rgba(0,0,0,0.75)]">
             <h1 className="font-display text-4xl md:text-6xl font-semibold text-white drop-shadow">
-              A New Gateway to Energy Finance
+              A new way to walk through energy
             </h1>
             <p className="text-lg text-neutral-50 font-sans drop-shadow">
-              Utility token for transparent access to verified energy operations
-              — staking, governance, and on-chain data.
+              Transforming real-world operations into transparent cycles that
+              reveal the momentum of what's rising.
             </p>
           </div>
           <div className="flex flex-col items-center justify-center gap-2 lg:gap-4">
@@ -58,11 +66,61 @@ export default function HeroSection() {
           </div>
         </div>
         <LogoLoop
+        logoHeight={24}
           logos={[
             {
               node: (
-                <Link href="/" className="size-16 drop-shadow">
-                  <Image src={icon} alt="DGTEnergy symbol" />
+                <Link href="/">
+                  <Image className="h-8 w-auto drop-shadow" src={billi} alt="billi" />
+                </Link>
+              ),
+            },
+            {
+              node: (
+                <Link href="/">
+                  <Image className="h-8 w-auto drop-shadow" src={bnb} alt="bnb" />
+                </Link>
+              ),
+            },
+            {
+              node: (
+                <Link href="/">
+                  <Image className="h-8 w-auto drop-shadow" src={cloudflare} alt="cloudflare" />
+                </Link>
+              ),
+            },
+            {
+              node: (
+                <Link href="/">
+                  <Image className="h-8 w-auto drop-shadow" src={github} alt="github" />
+                </Link>
+              ),
+            },
+            {
+              node: (
+                <Link href="/">
+                  <Image className="h-8 w-auto drop-shadow" src={gnosis} alt="gnosis" />
+                </Link>
+              ),
+            },
+            {
+              node: (
+                <Link href="/">
+                  <Image className="h-8 w-auto drop-shadow" src={metamask} alt="metamask" />
+                </Link>
+              ),
+            },
+            {
+              node: (
+                <Link href="/">
+                  <Image className="h-8 w-auto drop-shadow" src={oz} alt="oz" />
+                </Link>
+              ),
+            },
+            {
+              node: (
+                <Link href="/">
+                  <Image className="h-8 w-auto drop-shadow" src={vercel} alt="vercel" />
                 </Link>
               ),
             },
@@ -71,71 +129,60 @@ export default function HeroSection() {
           gap={128}
         />
       </section>
-      {mounted && createPortal(
-        <div
-          data-open={isOpen}
-          className="fixed inset-0 flex items-center justify-center p-2 lg:p-8 bg-black/30 pointer-events-none z-50 opacity-0 data-[open=true]:opacity-100 data-[open=true]:pointer-events-auto transition-all"
-        >
-          <div className="relative flex flex-col items-center justify-start py-12 lg:py-4 lg:justify-center overflow-auto gap-8 bg-graphite-900 rounded-lg p-4 lg:p-8 w-full h-full text-neutral-50 text-center">
-            <button
-              className="fixed right-6 top-6 lg:right-12 lg:top-12"
-              onClick={() => {
-                setOpen(false);
-              }}
-            >
-              <XIcon />
-            </button>
-            <h1 className="font-display text-4xl font-semibold w-full max-w-2xl">
-              Our Manifesto
-            </h1>
-            <div className="font-sans w-full max-w-2xl flex flex-col gap-4">
-              <p>
-                The energy sector is shifting quickly. Demand grows, markets
-                expand and new possibilities appear every day. Yet access
-                remains limited by legacy systems, opaque workflows and outdated
-                structures that hold progress back. DGTEnergy was created to
-                remove these barriers with transparency, technology and
-                disciplined execution. We view energy not as a restricted domain
-                but as a global field of opportunity. We connect international
-                capital to real operational activity in emerging markets. Our
-                team, partners and architecture position us to scale with
-                precision.
-              </p>
-              <p>
-                We believe energy, finance and technology must be simple,
-                verifiable and grounded in fact.
-              </p>
-              <p>We believe trust is earned through evidence, not narrative.</p>
-              <p>
-                Our first partner Billi Energy has financed energy transitions
-                for more than two years with exceptional consistency. This is
-                not theory. This is not an experiment. This is a functioning
-                protocol rooted in real operational delivery. Brazil's energy
-                market transformation will generate exceptional opportunities:
-                ninety million consumers accessing competitive electricity
-                markets. Two hundred sixty billion reais in financing demand. We
-                are constructing the infrastructure connecting this demand to
-                international capital. Exceptional opportunities demand
-                exceptional execution. Our founders bring decades of financial
-                expertise. DGTEnergy unites world-class professionals, a robust
-                operational network and transparent on-chain architecture.
-                Participation is shaped by real operational evidence,
-                transparent processes and a framework designed for institutional
-                rigor. The next era of energy requires clarity, speed and
-                institutional reliability. We are building the infrastructure
-                that makes this future accessible. We believe in building what
-                comes next. Join us. Disclaimer — Compliance Notice DGTEnergy is
-                a utility-token protocol. Participation grants access to
-                protocol utilities only including staking, governance and data
-                visibility and does not represent equity, debt or financial
-                instruments. All allocations are performance based,
-                discretionary and fully transparent on chain.
-              </p>
+      {mounted &&
+        createPortal(
+          <div
+            data-open={isOpen}
+            className="fixed inset-0 flex items-center justify-center p-2 lg:p-8 bg-black/30 pointer-events-none z-50 opacity-0 data-[open=true]:opacity-100 data-[open=true]:pointer-events-auto transition-all"
+          >
+            <div className="relative flex flex-col items-center justify-start py-12 lg:py-4 lg:justify-center overflow-auto gap-8 bg-graphite-900 rounded-lg p-4 lg:p-8 w-full h-full text-neutral-50 text-center">
+              <button
+                className="fixed right-6 top-6 lg:right-12 lg:top-12"
+                onClick={() => {
+                  setOpen(false);
+                }}
+              >
+                <XIcon />
+              </button>
+              <h1 className="font-display text-4xl font-semibold w-full max-w-2xl">
+                Our Manifesto
+              </h1>
+              <div className="font-sans lg:text-xl w-full max-w-2xl flex flex-col gap-4">
+                <p>The energy world opens: step in.</p>
+                <p>
+                  Imagine walking into a vibrant market, full of movement, light
+                  and new paths waiting to be explored. Every corner reveals a
+                  fresh possibility, every cycle carries its own pulse. This is
+                  the landscape where DGTEnergy comes to life.
+                </p>
+                <p>
+                  Here, energy becomes experience. Technology becomes clarity.
+                  And every participant finds a direct way into an environment
+                  that grows, evolves and invites you to follow its rhythm.
+                </p>
+                <p>
+                  Our partner Billi already sets the tone: real activity, real
+                  people choosing better energy solutions, consistent
+                  performance emerging month after month. It’s the kind of
+                  momentum that inspires confidence and sparks curiosity.
+                </p>
+                <p>
+                  DGT3 is your entry pass. With it, you tap into the heart of
+                  this movement: real cycles, real data, real activity shaping
+                  an ecosystem built with structure, rhythm and endless
+                  possibility.
+                </p>
+
+                <p>
+                  The future of energy is taking shape. It is dynamic,
+                  transparent and full of pathways worth exploring.
+                </p>
+                <p>DGTEnergy. A new way to walk through energy.</p>
+              </div>
             </div>
-          </div>
-        </div>,
-        document.body
-      )}
+          </div>,
+          document.body
+        )}
     </>
   );
 }

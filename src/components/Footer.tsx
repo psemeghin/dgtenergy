@@ -74,6 +74,11 @@ export default function Footer() {
           <ul className="space-y-1 text-sm">
             <li>
               <a href="/data" className="text-graphite-900/80 hover:underline underline-offset-2">
+                /rounds — whitelist
+              </a>
+            </li>
+            <li>
+              <a href="/data" className="text-graphite-900/80 hover:underline underline-offset-2">
                 /data — transparency &amp; disclosures
               </a>
             </li>

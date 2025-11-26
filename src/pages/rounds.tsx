@@ -70,15 +70,16 @@ export default function Rounds() {
       {/* Highlight Section */}
       <section className="max-w-4xl mx-auto mb-12 text-center">
         <h1 className="font-display text-4xl md:text-5xl font-extrabold tracking-tight mb-4 text-petroleum-900 drop-shadow-lg">
-          DGT3 Token Sale - Participate Now!
+          DGT3 Token
         </h1>
+        <h2 className="font-display text-2xl lg:text-3xl font-extrabold tracking-tight mb-4 text-petroleum-900">Join the unfolding movement</h2>
         <p className="text-lg md:text-xl max-w-3xl mx-auto text-graphite-900">
           Secure your DGT3 tokens by connecting your wallet, completing KYC, approving USDT, and buying tokens in a few easy steps.
         </p>
       </section>
 
       {/* Purchase Section */}
-      <section className="max-w-xl mx-auto bg-gradient-to-b from-neutral-50 to-neutral-300 rounded-lg shadow-lg p-8 space-y-6">
+      <section className="max-w-xl mx-auto rounded-lg p-8 space-y-6">
         <h2 className="text-2xl font-semibold text-petroleum-900 mb-4 text-center">
           Token Purchase
         </h2>
@@ -101,7 +102,7 @@ export default function Rounds() {
         <button
           onClick={toggleKyc}
           disabled={!isConnected}
-          className={`w-full py-3 rounded-md font-semibold text-lg transition-colors shadow-md ${
+          className={`w-full py-3 rounded-md font-semibold text-lg text-white transition-colors shadow-md ${
             isKycCompleted
               ? 'bg-petroleum-600 hover:bg-petroleum-700'
               : 'bg-neutral-700 hover:bg-neutral-600'
@@ -215,31 +216,6 @@ export default function Rounds() {
             </ul>
           </div>
         ))}
-      </section>
-
-      {/* Balances Section */}
-      <section className="max-w-xl mx-auto mt-16 bg-neutral-800 rounded-lg shadow-lg p-6 space-y-4 text-center">
-        <h2 className="text-2xl font-semibold text-petroleum-900 mb-4">
-          Your Wallet Balances
-        </h2>
-        {isConnected ? (
-          <>
-            <p className="text-lg">
-              <span className="font-bold">DGT3:</span>{' '}
-              {dgt3BalanceData
-                ? `${parseFloat(formatUnits(dgt3BalanceData.value, dgt3BalanceData.decimals)).toFixed(4)}`
-                : 'Loading...'}
-            </p>
-            <p className="text-lg">
-              <span className="font-bold">USDT:</span>{' '}
-              {usdtBalanceData
-                ? `${parseFloat(formatUnits(usdtBalanceData.value, usdtBalanceData.decimals)).toFixed(4)}`
-                : 'Loading...'}
-            </p>
-          </>
-        ) : (
-          <p className="text-neutral-400">Connect your wallet to see balances.</p>
-        )}
       </section>
 
       {/* Legal & Compliance Section */}

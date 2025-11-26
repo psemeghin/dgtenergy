@@ -118,7 +118,7 @@ export default function RoadmapSection() {
             Phase 5
           </div>
           <h1 className="font-display text-2xl font-semibold">
-            Reinvestment & Treasury Growth (Q3–Q4 2026)
+            Reinvestment & Treasury Growth (Q3-Q4 2026)
           </h1>
           <p>
             Execution of Conditional Reinvestment Rule: verified excess &gt;1.2%

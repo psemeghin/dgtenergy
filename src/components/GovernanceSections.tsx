@@ -2,8 +2,8 @@
 
 export default function GovernanceSections() {
   return (
-    <section className="py-16 px-6 bg-white text-graphite-900">
-      <div className="max-w-5xl mx-auto space-y-16">
+    <section className="px-6 bg-white text-graphite-900">
+      <div className="max-w-5xl mx-auto space-y-8">
 
         {/* Snapshot & Voting */}
         <div className="bg-white p-8 shadow border border-neutral-200 rounded-lg">
@@ -11,14 +11,6 @@ export default function GovernanceSections() {
           <p className="text-neutral-700 font-sans mb-4">
             Proposals are created by the community, discussed in forum, and voted on Snapshot. One token equals one vote.
           </p>
-          <a
-            href="https://snapshot.org/#/dgte.eth"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block text-white bg-energy-blue hover:bg-energy-blue/90 px-5 py-2 rounded font-semibold transition"
-          >
-            Go to Snapshot
-          </a>
         </div>
 
         {/* Governance Framework */}

@@ -1,7 +1,7 @@
 // src/components/UtilitySection.tsx
 export default function UtilitySection() {
   return (
-    <section className="bg-energy-gray text-white py-24 px-6">
+    <section className="bg-energy-gray text-white px-6">
       <div className="max-w-6xl mx-auto text-center">
         <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
           Token Utility

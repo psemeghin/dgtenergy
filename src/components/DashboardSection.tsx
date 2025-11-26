@@ -1,7 +1,7 @@
 // src/components/DashboardSection.tsx
 export default function DashboardSection() {
   return (
-    <section className="bg-neutral-100 py-24 px-6 text-graphite-900">
+    <section className="bg-neutral-100 px-6 text-graphite-900">
       <div className="max-w-6xl mx-auto text-center">
         <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
           Protocol Dashboard
@@ -35,7 +35,7 @@ export default function DashboardSection() {
             <p className="text-sm text-graphite-900 font-sans font-semibold">
               Tokens in Staking
             </p>
-            <small className="text-xs text-petroleum-900 mt-auto">Whitelist Target: 33.3M (3.3% supply)</small>
+            <small className="text-xs text-petroleum-900 mt-auto">Whitelist Target: 34.7M (3.47% supply)</small>
           </div>
 
           {/* Metric 3 */}
