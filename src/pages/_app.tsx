@@ -39,7 +39,7 @@ function GlobalGuards() {
   return null;
 }
 
-const noto-sans = Noto_Sans({
+const noto = Noto_Sans({
   subsets: ["latin"],
   variable: "--font-noto-sans",
 });
@@ -82,7 +82,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <title>DGTEnergy — Protocol DApp</title>
       </Head>
 
-      <div className={`${poppins.variable} ${noto-sans.variable} font-sans`}>
+      <div className={`${poppins.variable} ${noto.variable} font-sans`}>
         <WagmiProvider config={config}>
           <QueryClientProvider client={queryClient}>
             <RainbowKitProvider
