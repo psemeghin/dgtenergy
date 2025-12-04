@@ -39,15 +39,15 @@ function GlobalGuards() {
   return null;
 }
 
-const inter = Noto_Sans({
+const noto-sans = Noto_Sans({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-noto-sans",
 });
 
-const spaceGrotesk = Poppins({
+const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "600", "700"],
-  variable: "--font-space-grotesk",
+  variable: "--font-poppins",
 });
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -82,7 +82,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <title>DGTEnergy — Protocol DApp</title>
       </Head>
 
-      <div className={`${spaceGrotesk.variable} ${inter.variable} font-sans`}>
+      <div className={`${poppins.variable} ${noto-sans.variable} font-sans`}>
         <WagmiProvider config={config}>
           <QueryClientProvider client={queryClient}>
             <RainbowKitProvider

@@ -83,10 +83,10 @@ module.exports = {
   		},
   		fontFamily: {
   			sans: [
-  				'var(--font-inter)'
+  				'var(--font-noto-sans)'
   			],
   			display: [
-  				'var(--font-space-grotesk)'
+  				'var(--font-poppins)'
   			]
   		},
   		spacing: {
