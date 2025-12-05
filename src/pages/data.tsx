@@ -2,9 +2,9 @@
 
 import MetaHead from "../components/MetaHead";
 import TokenomicsSection from "../components/TokenomicsSection";
-import DataRoadmap from "../components/DataRoadmap";
 import TransparencyNotes from "../components/TransparencyNotes";
 import DocumentLibrary from "../components/DocumentLibrary";
+import RoadmapSection from "@/components/RoadmapSection";
 
 export default function DataPage() {
   return (
@@ -14,8 +14,8 @@ export default function DataPage() {
         <section id="tokenomics" className="w-full bg-white py-20 px-6">
           <TokenomicsSection />
         </section>
-        <section id="roadmap" className="w-full bg-[#F5F5F5] py-20 px-6">
-          <DataRoadmap />
+        <section id="roadmap" className="w-full bg-neutral-50 py-20 px-6">
+          <RoadmapSection />
         </section>
         <section id="transparency" className="w-full bg-white py-20 px-6">
           <TransparencyNotes />

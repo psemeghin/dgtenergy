@@ -17,7 +17,7 @@ export default function RoadmapSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative flex flex-col bg-gray-50 py-2 text-gray-900 gap-8 lg:px-10 pl-10 pr-2 container mx-auto"
+      className="relative flex flex-col bg-neutral-50 py-2 text-gray-900 gap-8 lg:px-10 pl-10 pr-2 container mx-auto"
     >
       <motion.div
         className="absolute lg:left-1/2 lg:-translate-x-1/2 left-2 top-0 w-2 bg-petroleum-900 rounded-full"

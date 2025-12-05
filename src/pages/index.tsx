@@ -31,9 +31,9 @@ export default function HomePage() {
         <section id="dashboard" className="w-full bg-neutral-100 py-20">
           <DashboardSection />
         </section>
-        <section id="governance" className="w-full bg-white py-20">
+        {/* <section id="governance" className="w-full bg-white py-20">
           <GovernanceSections />
-        </section>
+        </section> */}
         <section id="roadmap" className="w-full py-20">
           <RoadmapSection />
         </section>

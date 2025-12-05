@@ -16,12 +16,11 @@ const DGT3_ADDRESS = TOKEN_SALE_ADDRESS; // Assuming DGT3 token address is the s
 
 export default function Rounds() {
   const { address, isConnected } = useAccount();
-  const { disconnect } = useDisconnect();
 
-  const [usdtAmount, setUsdtAmount] = useState("");
+  const [usdtAmount, setUsdtAmount] = useState(0);
   const [isKycCompleted, setIsKycCompleted] = useState(false);
 
-  const usdtParsed = usdtAmount ? BigInt(Number(usdtAmount) * 1e18) : undefined;
+  const usdtParsed = usdtAmount / 100;
 
   const { writeContract: approveWrite, isPending: isApproving } =
     useWriteContract();
@@ -38,16 +37,12 @@ export default function Rounds() {
     token: DGT3_ADDRESS,
   });
 
-  // Refresh balances after approve or buy success
-  useEffect(() => {
-    // No isSuccess available, so no automatic refetch here.
-    // You may want to add event listeners or manual refresh logic.
-  }, [refetchUsdtBalance, refetchDgt3Balance]);
+  const moneyMask = (value: number) => {
+    return value === 0 ? "" : String(value / 100)
+  }
 
-  // Handle KYC toggle (simulated)
   const toggleKyc = () => setIsKycCompleted((prev) => !prev);
 
-  // Cards data for Seed and Rounds phases
   const phases = [
     {
       title: "Seed Round",
@@ -72,7 +67,7 @@ export default function Rounds() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-neutral-50 via-neutral-300 to-neutral-50 text-graphite-900 p-6 pt-24 md:p-12 font-sans">
       {/* Highlight Section */}
-      <section className="max-w-4xl mx-auto mb-12 text-center">
+      <section className="max-w-3xl mx-auto mb-12 text-center">
         <h1 className="font-display text-4xl md:text-5xl font-extrabold tracking-tight mb-4 text-petroleum-900 drop-shadow-lg">
           DGT3 Token
         </h1>
@@ -86,12 +81,12 @@ export default function Rounds() {
       </section>
 
       {/* Purchase Section */}
-      <section className="max-w-xl mx-auto rounded-lg p-8 space-y-6 bg-neutral-100">
+      <section className="max-w-3xl mx-auto rounded-lg p-8 space-y-6 bg-neutral-100">
         <div className="flex justify-between">
           <div className="lg:w-16 w-12"></div>
-        <h2 className="text-2xl font-semibold font-display text-petroleum-900 mb-4 text-center w-full">
-          Token Purchase
-        </h2>
+          <h2 className="text-2xl font-semibold font-display text-petroleum-900 mb-4 text-center w-full">
+            Token Purchase
+          </h2>
         </div>
 
         <Stepper
@@ -102,8 +97,53 @@ export default function Rounds() {
                 <ConnectButton />
               </div>
             </>,
+            <div className="flex flex-col items-center w-full gap-2 font-semibold">
+              <div className="flex gap-2 w-full">
+                <div className="relative w-full h-13">
+                  <strong className="hidden lg:flex absolute left-4 top-1/2 -translate-y-1/2 text-white font-bold z-10">USDT</strong>
+                <input
+                  type="text"
+                  step="any"
+                  value={moneyMask(usdtAmount)}
+                  onChange={(e) => {
+                    const userInput = e.target.value;
+                    const newAmount = Number(userInput.replace(/\D/g, "").padStart(3, "0"))
+
+                    setUsdtAmount(newAmount)
+                  }}
+                  placeholder="0.00"
+                  disabled={!isConnected}
+                  className="w-full h-full p-2 pl-6 rounded-md bg-graphite-900 text-neutral-50 placeholder-neutral-400 focus:outline-petroleum-900 text-right font-semibold disabled:opacity-50 transition-all"
+                  aria-label="USDT amount input"
+                />
+                </div>
+                <button
+                  onClick={() =>
+                    approveWrite({
+                      address: USDT_ADDRESS,
+                      abi: ERC20_ABI,
+                      functionName: "approve",
+                      args: [TOKEN_SALE_ADDRESS, usdtParsed ?? 0n],
+                    })
+                  }
+                  disabled={
+                    !isConnected ||
+                    isApproving ||
+                    !usdtParsed ||
+                    usdtParsed === 0
+                  }
+                  className={`w-full p-3 rounded-md font-semibold text-sm lg:text-lg transition-colors shadow-md ${
+                    isApproving
+                      ? "bg-transparent hover:brightness-110 border border-petroleum-900 text-petroleum-900"
+                      : "bg-petroleum-900 hover:brightness-110 text-white"
+                  } transition-all`}
+                  aria-label="Approve USDT"
+                >
+                  {isApproving ? "Approving..." : "Approve"}
+                </button>
+              </div>
+            </div>,
             <>
-              {/* Step 2: KYC Completed */}
               <button
                 onClick={toggleKyc}
                 disabled={!isConnected}
@@ -118,51 +158,7 @@ export default function Rounds() {
                 {isKycCompleted ? "KYC Completed (✔)" : "Complete KYC"}
               </button>
             </>,
-            <div className="flex flex-col items-center w-full gap-2 font-semibold">
-              {/* <h2 className="text-center text-xs lg:text-base">Type an amount of USDT below</h2> */}
-            <div className="flex gap-2 w-full">
-              {/* Step 3: Approve USDT */}
-              <input
-                type="number"
-                min="0"
-                step="any"
-                value={usdtAmount}
-                onChange={(e) => setUsdtAmount(e.target.value)}
-                placeholder="USDT"
-                disabled={!isConnected}
-                className="w-full p-2 rounded-md bg-graphite-900 text-neutral-50 placeholder-neutral-400 focus:outline-petroleum-900 text-center font-semibold disabled:opacity-50 transition-all"
-                aria-label="USDT amount input"
-              />
-              <button
-                onClick={() =>
-                  approveWrite({
-                    address: USDT_ADDRESS,
-                    abi: ERC20_ABI,
-                    functionName: "approve",
-                    args: [TOKEN_SALE_ADDRESS, usdtParsed ?? 0n],
-                  })
-                }
-                disabled={
-                  !isConnected ||
-                  isApproving ||
-                  !usdtParsed ||
-                  usdtParsed === 0n
-                }
-                className={`w-full p-3 rounded-md font-semibold text-sm lg:text-lg transition-colors shadow-md ${
-                  isApproving
-                  ? "bg-transparent hover:brightness-110 border border-petroleum-900 text-petroleum-900"
-                  : "bg-petroleum-900 hover:brightness-110 text-white"
-                } transition-all`}
-                aria-label="Approve USDT"
-              >
-                {isApproving
-                  ? "Approving..."
-                  : "Approve"}
-              </button>
-            </div>
-            </div>,
             <>
-              {/* Step 4: Buy DGT3 */}
               <button
                 onClick={() =>
                   buyWrite({
@@ -177,18 +173,16 @@ export default function Rounds() {
                   isBuying ||
                   !isKycCompleted ||
                   !usdtParsed ||
-                  usdtParsed === 0n
+                  usdtParsed === 0
                 }
                 className={`w-full py-3 rounded-md font-semibold text-lg shadow-md bg-green-700 text-white disabled:bg-transparent hover:brightness-110 disabled:border disabled:border-petroleum-900 disabled:text-petroleum-900 transition-all`}
                 aria-label="Buy DGT3 tokens"
               >
-                {isBuying
-                  ? "Buying DGT3..."
-                  : "Buy DGT3"}
+                {isBuying ? "Buying DGT3..." : "Buy DGT3"}
               </button>
             </>,
           ]}
-          current={4}
+          current={1}
         />
 
         <div className="mt-6 space-y-2 text-sm text-graphite-900">
@@ -212,7 +206,7 @@ export default function Rounds() {
       </section>
 
       {/* Phases Grid Section */}
-      <section className="max-w-2xl mx-auto mt-16 flex flex-col gap-8">
+      <section className="max-w-3xl mx-auto mt-16 flex lg:flex-row flex-col gap-8">
         {phases.map(
           ({ title, description, price, bonus, duration, bgColor }) => (
             <div

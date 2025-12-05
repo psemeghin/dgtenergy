@@ -12,7 +12,7 @@ export const Stepper = ({ steps, current }: Stepper) => {
       {steps.map((step, i) => {
         return (
           <div className="flex justify-between">
-            <div className="flex flex-col items-center justify-center lg:w-12 w-8">
+            <div className="flex flex-col items-center justify-center lg:w-12 w-4">
               <div
                 className="data-[status=first]:bg-transparent data-[status=active]:bg-petroleum-900 data-[status=inactive]:bg-petroleum-900/30 w-1 h-full"
                 data-status={
@@ -20,7 +20,7 @@ export const Stepper = ({ steps, current }: Stepper) => {
                 }
               ></div>
               <div
-                className="flex items-center justify-center lg:min-h-12 lg:size-12 min-h-8 size-8 rounded-full data-[status=first]:bg-transparent data-[status=active]:bg-petroleum-900 data-[status=inactive]:bg-transparent-900/30 data-[status=inactive]:border border-petroleum-900 data-[status=inactive]:text-petroleum-900 text-white text-2xl font-bold font-display"
+                className="flex items-center justify-center lg:min-h-12 lg:size-12 min-h-4 size-4 rounded-full data-[status=first]:bg-transparent data-[status=active]:bg-petroleum-900 data-[status=inactive]:bg-transparent-900/30 data-[status=inactive]:border border-petroleum-900 data-[status=inactive]:text-petroleum-900 text-white text-xs lg:text-2xl font-semibold lg:font-bold font-display"
                 data-status={i <= current ? "active" : "inactive"}
               >
                 {i < current ? <CheckIcon /> : i + 1}
